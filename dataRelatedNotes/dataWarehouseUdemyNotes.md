@@ -66,4 +66,98 @@
 - <b style="color:#0FBAF1">Transform</b> Transform the data to make it understandable and useable
 - <b style="color:#0FBAF1">Load</b> Load the data into systems, creating a warehouse to be used by end users
 
-----  
+----
+
+## <b>Data warehousing Architecture</b>
+### <b>Centralized data warehouse</b>
+- A single data warehousing environment
+- All data goes into a <b style="color:#f08f18"> single </b> database
+- Advantage is that it's all together in one place
+### <b>Data Mart</b>
+- <b style="color:#f08f18"> Dependent </b> data marts depend on the data warehouse to obtain specific data
+- <b style="color:#f08f18"> Independent </b> data marts does not require a data warehouse and draws from 1 or more sources.
+  | <b style="color:#0FBAF1">Dependent</b> | <b style="color:#0FBAF1">Independent</b> |
+  | -------------------------------------- | ---------------------------------------- |
+  | data from warehouse                    | data from applications / systems         |
+  | uniform                                | not uniform                              |
+  | architecturally straightforward        | "spaghetti" architecture                 |
+
+### <b>Data Warehouse VS Independent Data Mart</b>
+They are basically the same except for the number of data sources
+  | <b style="color:#0FBAF1">Data Warehouse</b> | <b style="color:#0FBAF1">Data Mart</b> |
+  | ------------------------------------------- | -------------------------------------- |
+  | Many sources (```50+```)                    | Few sources (```1-6```)                |
+
+### <b>DW Architectural Options</b>
+dataWarehouseTree.png
+
+#### <b> Centralized </b>
+- Default option, one stop shopping, modern tech
+- High cross-org cooperation, data governance, ripple effects
+
+#### <b> Centralized - EDW </b>
+- Building a DW to satisfy the analytical needs for an enterprise
+- Can go further to use relational or specialized databases
+
+#### <b> Centralized - Data Lake </b>
+- Sometimes a Data Lake is required
+- Platforms such has Hadoop, AWS S3
+
+
+#### <b> Component-Based </b>
+- Divide data into multiple components, isolating environments from changes
+- Mix-match tech
+- Bolt together components 
+- Inconsistent data, difficult to cross-integrate.
+
+#### <b> Component-Based - Architected</b>
+- Built with DWs + DMs or just DMs
+- With DWs + DMs, the DMs would be dependent or front-end DMs (reverses order of data flow for DMs and DWs)  
+
+#### <b> Component-Based - Un Architected</b>
+- Built with DMs
+- DW Bus , follows conformed dimensions, follows apples ->  to apples
+- Considers all DMs in decision making.
+
+### <b>Cube and MDBMS</b>
+- Not a relational database (RDBMS)
+- Dimensionally aware
+- Fast query times
+- "modest" data volumes (`<100GB`>)
+- less flexible data structures
+- nowadays take advantage of both RDBMS and MDBMS and can be used together
+
+### <b>Operational Data Store (ODS)</b>
+- Similar to a DW but only focuses on current operational data
+- Realtime data comes in, instead of waiting for the next data refresh to update the database.
+- <i>"Tell me what is happening right now"</i> is the focus of an ODS
+- ODS and DW can coexist and users would pick depending on their needs
+- Another option would be data would go into ODS then to a DW
+- Can be used with all the other options (DWs, DLs and DVs)
+
+### <b>The layers in a DW</b>
+<p> A data warehouse has the following two layers <p>
+<ul>
+  <li> <b style="color:#0FBAF1">Staging</b> </li>
+  <p> A <i>"landing zone"</i> for incoming data from the source</p>
+  <li> <b style="color:#0FBAF1">User Access</b> </li>
+  <p> Where users access the DW and DMs to obtain data for analytics and decision making</p>
+</ul>
+
+#### <b> The Staging Layer </b>
+<ul>
+  <li>Data needs to be pulled from source systems quickly and non-intrusively </li>
+  <li>Focus on the <b style="color:#f08f18">E</b> more than <b style="color:#f08f18">T</b> of <b style="color:#f08f18">ETL</b> when integrating data from the source </li>
+</ul>
+
+#### <b> Different types of staging layers </b>
+<ul>
+  <li> <b style="color:#0FBAF1">Non - Persistent</b> </li>
+  <p> After ETL and the user access layer has the data, the staging layer is emptied out </p>
+  <p> Less storage but would require to go back to source if QA is required </p>
+  <li> <b style="color:#0FBAF1">Persistent</b> </li>
+  <p> The same as non - persistent except the data in the staging layer is kept </p>
+  <p> More storage but do not need to go back to source however there is a risk of ungoverned access </p>
+</ul>
+
+---

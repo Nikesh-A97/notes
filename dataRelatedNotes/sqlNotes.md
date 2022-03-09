@@ -2,7 +2,7 @@
 
 ## Commands
 
-- <b style="color:#0FBAF1"> SELECT </b> and <b style="color:#0FBAF1"> FROM </b>  
+- <b style="color:#0FBAF1"> SELECT </b> & <b style="color:#0FBAF1"> FROM </b>  
   ```SQL
   -- This query returns all (*) columns in the table tableName.
   SELECT * FROM tableName
@@ -36,4 +36,54 @@
   ```SQL
   -- Limits the table to the number specified
   SELECT * FROM tableName LIMIT 10
-  ``` 
+  ```
+- <b style="color:#0FBAF1"> MIN </b> & <b style="color:#0FBAF1"> MAX </b>  
+  ```SQL
+  -- find the min value of the table row
+  SELECT MIN/MAX(tableRow) FROM tableName
+  ```
+- <b style="color:#0FBAF1"> COUNT </b>
+  ```SQL
+  -- returns the number of records 
+  SELECT COUNT(*) FROM tableName
+  ```
+- <b style="color:#0FBAF1"> AND </b>
+  ```SQL
+  -- chain multiple conditions 
+  SELECT COUNT(*) FROM tableName WHERE tableRow1 <op> condition1 AND tableRow2 <op> condition2
+  ```
+- <b style="color:#0FBAF1"> AND </b>
+  ```SQL
+  -- chain multiple conditions 
+  SELECT COUNT(*) FROM tableName WHERE tableRow1 <op> condition1 AND tableRow2 <op> condition2
+  ```
+- <b style="color:#0FBAF1"> BETWEEN </b>
+  ```SQL
+  -- between is inclusive
+  SELECT COUNT(*) FROM tableName 
+    WHERE 
+      tableRow1 BETWEEN condition1 AND condition2
+  -- is the same as
+  SELECT COUNT(*) FROM tableName 
+    WHERE 
+      tableRow1 >= condition1 AND 
+      tableRow1 <= condition2
+  ```
+- <b style="color:#0FBAF1"> AS </b>
+  ```SQL
+  -- use an alias
+  SELECT 
+    tableRow1 AS tableRowNewName
+    FROM tableName
+  ```
+- <b style="color:#0FBAF1"> CASE, WHEN, THEN, ELSE </b>
+  ```SQL
+  -- create a new table col with own name and values that depend on conditions
+  SELECT 
+    CASE
+      WHEN condition_1 THEN result_1
+      WHEN condition_n THEN result_n
+      ELSE default_result
+    END AS aTableColName
+  FROM tableName
+  ```

@@ -161,3 +161,115 @@ dataWarehouseTree.png
 </ul>
 
 ---
+
+## <b>Bring Data into your Data Warehouse </b>
+
+### <b>E</b> <b style="color:#f08f18">T</b> <b style="color:#9b75d9">L</b>
+<ul>
+  <li><b style="color:#0FBAF1">Extract</b></li>
+  <ul>
+    <li>Quickly pull data from sources</li>
+    <li>Done in <i>"batches"</i>, so at set intervals such as every week/day/hours</li>
+    <li>In a raw form, may contain errors as well</li>
+    <li>Goes into the Staging Layer</li>
+  </ul>
+  <li><b style="color:#0FBAF1">Transform</b></li>
+  <ul>
+    <li>Data from multiple sources may differ from one another, stored differently structurally</li>
+    <li>Prepare the data, and turn it as uniform as possible</li>
+    <li>Can be <b>very</b> complex</li>
+  </ul>
+  <li><b style="color:#0FBAF1">Load</b></li>
+  <ul>
+    <li>After the data is prepared, it will be stored in the user access layer</li>
+    <li>Significant data <b style="color:#f08f18">analysis</b> & <b style="color:#f08f18">modeling</b> is required <b>before</b> storing data</li>
+  </ul>
+</ul>
+
+### <b>E</b> <b style="color:#9b75d9">L</b> <b style="color:#f08f18 " >T</b>
+<p> Flip the order for T & L, so extract and load the data in first as is, then apply transformations when needed. </p>
+<ul>
+  <li><i>"Blast"</i> the data into a low level storage bucket such as Hadoop or AWS S3 where structure is irrelevant </li>
+  <li>Use the computing power in the large data environments , improves performance for extremely large volumes of data</li>
+  <li>"Schema on read" vs. "Schema on write", schema is deferred until the data is available for analytic usage</li>
+</ul>
+
+### <b>When to use ETL or ELT</b>
+<ul>
+  <li>Traditional DW built upon RDBMS or cubes (MDBMS) then use ETL</li>
+  <li>Data lake or DW - DL hybrid, then an ELT would be better to use</li>
+</ul>
+
+### <b>Initial ETL</b>
+<ul>
+  <li>Before DW goes live, get all data transform and load it, typically only happens once</li>
+  <li>Only bring in <b>relevant</b> data for BI and analytics</li>
+  <li>It is possible to redo the entire DW  if it gets corrupted etc.</li>
+  <li>Data that is <b>definitely</b> needed, <b>probably</b> needed and <b>historical</b> data</li>
+</ul>
+
+### <b>Incremental ETL</b>
+<ul>
+  <li>Data in the DW is incrementally "refreshed" at set intervals to keep DW up to date</li>
+  <li>New data or modified data is brought in</li>
+  <li>Deleted data is specially handled, usually kept for historical purposes</li>
+</ul>
+
+#### <b>Four Major Incremental ETL patterns</b>
+<ul>
+	<li><b style="color:#0FBAF1">Append</b> (normally used today)</li>
+	<p>Any new data gets appended to the DW onto whatever that is already there</p>
+  
+  <li><b style="color:#0FBAF1">In-place update</b> (normally used today) </li>
+	<p>Not appending, but making changes in existing data</p>
+  
+  <li><b style="color:#0FBAF1">Complete Replacement</b></li>
+	<p>A portion of the DW is overridden even if the changes are small</p>
+  
+  <li><b style="color:#0FBAF1">Rolling append</b></li>
+	<p>Whenever there is new update, you wipe out the oldest equivalent data in the given time period where the time window keeps rolling</p>
+</ul>
+
+### <b>Explore the role of Data transformation</b>
+
+#### <b>Data transformation goals</b>
+<ul>
+	<li><b style="color:#0FBAF1">Uniformity</b></li>
+	<p>Data has to be kept uniform as it may originally not be</p>
+
+  <li><b style="color:#0FBAF1">Restructuring</b></li>
+	<p>Raw data is un-organized so it needs to be restructured to be </p>
+</ul>
+
+### <b>Common Transformation models</b>
+<ul>
+	<li><b style="color:#0FBAF1">Data value unification</b></li>
+	<p>Unify data inconsistent data values</p>
+
+  <li><b style="color:#0FBAF1">Data type and size unification</b></li>
+	<p>Unify the data type and size for data values</p>
+
+  <li><b style="color:#0FBAF1">De - duplication</b></li>
+	<p>Remove duplicate data coming in from multiple data sources</p>
+
+  <li><b style="color:#0FBAF1">Dropping columns (vertical slicing) </b></li>
+	<p>Drop columns for information that is not required for the given purpose</p>
+
+  <li><b style="color:#0FBAF1">Value-based row filtering (horizontal slicing)</b></li>
+	<p>Drop rows for information that is not required for the given purpose</p>
+
+  <li><b style="color:#0FBAF1">Correct known errors</b></li>
+	<p>If the existence of errors is known, they are corrected on its way to the DW</p>
+</ul>
+
+### <b>Multiple ETL feeds</b>
+<ul>
+	<li>Many ETL feeds going into one DW where each feed will be a mix & match approach</li>
+	<li>Each ETL feed will be different in how frequently the data is updated or what transformation pattern it uses</li>
+  <li>Going further into the feed, at a tabular level, each table may have different patterns on how the data is updated or brought into the overall DW </li>
+</ul>
+<p><b>Design and build what makes sense for your environment</b></p>
+
+---
+
+## <b>Data Warehousing building blocks </b>

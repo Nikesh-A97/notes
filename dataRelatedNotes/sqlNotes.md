@@ -15,14 +15,6 @@
   -- Returns the table with all columns but with the specified condition by WHERE
   SELECT * FROM tableName WHERE tableCol = someValue
   ```
-- <b style="color:#0FBAF1"> WITH </b> and <b style="color:#0FBAF1"> AS </b> 
-  ```SQL
-  -- Returns a sub-table of tableName called newTable with respect to the condition of WHERE
-  WITH newTable  AS (
-    SELECT * FROM tableName WHERE tableCol1 = someValue
-  )
-  SELECT * FROM newTable
-  ```
 - <b style="color:#0FBAF1"> ORDER BY </b> 
   ```SQL
   -- By default , the ordering will be ASC
@@ -86,4 +78,12 @@
       ELSE default_result
     END AS aTableColName
   FROM tableName
+  ```
+- <b style="color:#0FBAF1"> WITH </b> and <b style="color:#0FBAF1"> AS </b> 
+  ```SQL
+  -- Returns a sub-table of tableName called newTable with respect to the condition of WHERE
+  WITH newTable  AS (
+    SELECT * FROM tableName WHERE tableCol1 = someValue
+  )
+  SELECT * FROM newTable
   ```

@@ -273,3 +273,213 @@ dataWarehouseTree.png
 ---
 
 ## <b>Data Warehousing building blocks </b>
+
+### <b>Deciding what your DW will be used for </b>
+Ever DW is used to make Data driven decisions but depends on the type of BI
+<table>
+  <tr style="color:#0FBAF1">
+    <th>BI Category</th>
+    <th>Data Model</th>
+  </tr>
+  <tr>
+    <td>Basic Reporting</td>
+    <td>Dimensional</td>
+  </tr>
+  <tr>
+    <td>Online analytical processing</td>
+    <td>Dimensional</td>
+  </tr>
+  <tr style="color:#9c9c9c">
+    <td>Predictive Analysis</td>
+    <td>Data mining / Specialized</td>
+  </tr>
+  <tr style="color:#9c9c9c">
+    <td>Exploratory</td>
+    <td>Data mining / Specialized</td>
+  </tr>
+</table>
+
+### <b>Principles of Dimensionality</b>
+
+#### <b>Making data - driven decisions</b>
+<ul>
+	<li><b>One ore more </b> <b style="color:#9b75d9">measurements</b> </li>
+	<p>Measurements are required in order to be used for analysis</p>
+  <li><b style="color:#f08f18">Dimensional context</b> <b>for each measurement</b></li>
+	<p>Context is required for a measurement a number that has no symbol or words could mean anything</p>
+</ul>
+
+#### <b>Providing dimensional context with <b style="color:#0FBAF1">by</b> and <b style="color:#0FBAF1">for</b></b>
+
+<table>
+  <tr>
+    <th>Wording</th>
+    <th>Usage</th>
+  </tr>
+  <tr>
+    <td style="color:#0FBAF1"><b>By</b></td>
+    <td>"Sliced and grouped" by values of the entire dimension</td>
+  </tr>
+  <tr>
+    <td style="color:#0FBAF1"><b>For</b></td>
+    <td>One or more specific values from within the entire dimension</td>
+  </tr>
+</table>
+
+<p>Some examples of both implicit and explicit examples given below for dimensional context</p>
+<ul>
+	<li><b style="color:#0FBAF1">By</b></li>
+	<p>What is the <b style="color:#9b75d9">average annual revenue</b> <b style="color:#f08f18">by product type, by brand.</b></p>
+  
+  <li><b style="color:#0FBAF1">For</b></li>
+	<p>What is the <b style="color:#9b75d9">average annual revenue</b> <b style="color:#f08f18">for brand_A by product type</b></p>
+
+  <li><b style="color:#0FBAF1">Implied and swapped wording</b></li>
+	<p>What is the <b style="color:#9b75d9">average annual salary</b> <b style="color:#f08f18">last year for all assistant mangers at every branch</b></p>
+</ul>
+<p>The critical lesson is that we have to organize data by measurements, filtered and organized by context, which will help when making data driven decisions</p>
+
+### <b>Compare Facts, Fact tables, Dimensions, Dimension Tables.</b>
+<ul>
+	<li>Measurements = facts</li>
+  <li>Dimensional context = dimensions</li>
+</ul>
+
+#### <b>Facts</b>
+<ul>
+	<li>Numerical & quantifiable</li>
+  <li>Think "measurement", (salary, money, #students in a course) </li>
+  <li>Not the same as a logical fact</li>
+  <li>Facts are stored in fact tables</li>
+  <li>Fact <b style="color:Red">&#8800;</b> Fact table</li>
+</ul>
+
+#### <b>Dimensions</b>
+<ul>
+	<li>Context for a fact</li>
+  <li>Example a student, employee, a building</li>
+  <li>Dimensions are stored in dimension tables</li>
+  <li> Dimensions and dimension table are interchangeable but different</li>
+</ul>
+
+### <b>Additivity in facts</b>
+<p>A DW fact can be ...</p>
+<ul>
+	<li><b style="color:#0FBAF1">Additive</b></li>
+	<p>An additive fact can be added under all circumstances</p>
+
+  <li><b style="color:#0FBAF1">Non - Additive</b></li>
+	<p>A fact that cannot be added, for example, averages, ratios</p>
+  <ul>
+		<li>Store the underlying component of the fact in fact table</li>
+    <li>Use underlying components to calculate the averages, ratios, etc </li>
+	</ul>
+
+  <li><b style="color:#0FBAF1">Semi - Additive</b></li>
+	<p>In-between sometimes you can add and sometimes you can't</p>
+</ul>
+<p><b>Additivity relates solely to the "ability to add"</b></p>
+
+### <b>Star and Snowflake Schemas</b>
+<p>Same dimensions different table representation</p>
+<table>
+  <tr style="color:#0FBAF1">
+    <th>Start Schema </th> 
+    <th>Snowflake Schema</th>
+  </tr>
+  <tr>
+    <td>All dimensions in a hierarchy in a single dim table </td>
+    <td>Each dimension level in its own dim table</td>
+  </tr>
+  <tr>
+    <td>One level away from a fact table along each hierarchy </td>
+    <td>One or more levels away from a fact table along each hierarchy</td>
+  </tr>
+  <tr>
+    <td>Fewer DB joins </td>
+    <td>More DB joins</td>
+  </tr>
+  <tr>
+    <td>DB primary key relationship --> foreign key straightforward</td>
+    <td>DB primary key relationship --> foreign key complex</td>
+  </tr>
+  <tr>
+    <td>More DB storage needed for dimensional data</td>
+    <td>Less DB storage needed for dimensional data</td>
+  </tr>
+  <tr>
+    <td>More repeating data</td>
+    <td>Less repeating data</td>
+  </tr>
+</table>
+
+#### <b>Star Schema</b>
+starSchema.png
+
+#### <b>Snowflake Schema</b>
+snowflakeSchema.png
+
+### <b>Database Keys for DW</b>
+
+#### <b style="color:#0FBAF1">Primary Key</b>
+<ul>
+	<li>A unique identifier for each row in a database table</li>
+  <li>Might have more than one column to uniquely identify each row</li>
+  <li>An example would be an ID column where each ID is unique</li>
+</ul>
+
+#### <b style="color:#0FBAF1">Foreign Key</b>
+<ul>
+	<li>This column would point to another tables' Primary key</li>
+  <li>Indicates Logical relationships</li>
+  <li>Improves query performance and enforces data integrity</li>
+</ul>
+
+#### <b style="color:#0FBAF1">Natural Key</b>
+<ul>
+	<li>May or may not be understandable, can infer what the key means</li>
+  <li>Natural keys are not generated but already exist from the source system</li>
+</ul>
+
+#### <b style="color:#0FBAF1">Surrogate Key</b>
+<ul>
+	<li>No "business meaning" and is usually just a random string of numbers</li>
+  <li>DB itself will generate the keys</li>
+</ul>
+
+#### <b style="color:#0FBAF1">DW and natural keys</b>
+<table>
+  <tr style="color:#0FBAF1">
+    <th>Question/Decision </th> 
+    <th>Guidance</th>
+  </tr>
+  <tr>
+    <td>Use surrogate keys as primary and foreign keys ? </td>
+    <td>Add surrogate keys as data comes into DW</td>
+  </tr>
+  <tr>
+    <td>Keep or discard natural keys in DTs ? </td>
+    <td>Keep as "secondary keys"</td>
+  </tr>
+  <tr>
+    <td>Keep or discard natural keys in FTs ? </td>
+    <td>Best practice is to discard</td>
+  </tr>
+</table>
+
+---
+
+## <b>Design Facts, Fact Tables, Dimensions and Dimension Tables </b>
+
+
+---
+
+## <b>Managing Data Warehouse History Through Slowly </b>
+
+---
+
+## <b>Designing Your ETL </b>
+
+---
+
+## <b>Selecting Your Data Warehouse Environment </b>

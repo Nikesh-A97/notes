@@ -42,30 +42,30 @@
 - <b style="color:#0FBAF1"> AND </b>
   ```SQL
   -- chain multiple conditions 
-  SELECT COUNT(*) FROM tableName WHERE tableRow1 <op> condition1 AND tableRow2 <op> condition2
+  SELECT COUNT(*) FROM tableName WHERE tableCol1 <op> condition1 AND tableCol2 <op> condition2
   ```
 - <b style="color:#0FBAF1"> AND </b>
   ```SQL
   -- chain multiple conditions 
-  SELECT COUNT(*) FROM tableName WHERE tableRow1 <op> condition1 AND tableRow2 <op> condition2
+  SELECT COUNT(*) FROM tableName WHERE tableCol1 <op> condition1 AND tableCol2 <op> condition2
   ```
 - <b style="color:#0FBAF1"> BETWEEN </b>
   ```SQL
   -- between is inclusive
   SELECT COUNT(*) FROM tableName 
     WHERE 
-      tableRow1 BETWEEN condition1 AND condition2
+      tableCol1 BETWEEN condition1 AND condition2
   -- is the same as
   SELECT COUNT(*) FROM tableName 
     WHERE 
-      tableRow1 >= condition1 AND 
-      tableRow1 <= condition2
+      tableCol1 >= condition1 AND 
+      tableCol1 <= condition2
   ```
 - <b style="color:#0FBAF1"> AS </b>
   ```SQL
   -- use an alias
   SELECT 
-    tableRow1 AS tableRowNewName
+    tableCol1 AS tableRowNewName
     FROM tableName
   ```
 - <b style="color:#0FBAF1"> CASE, WHEN, THEN, ELSE </b>
@@ -86,4 +86,13 @@
     SELECT * FROM tableName WHERE tableCol1 = someValue
   )
   SELECT * FROM newTable
+  ```
+- <b style="color:#0FBAF1"> :: </b>
+  ```SQL
+  -- Casts the given tableCol current data type to the given dataType
+  SELECT 
+  COUNT(*)
+    FROM tableName
+    WHERE
+    tableCol::dataType <some condition>
   ```

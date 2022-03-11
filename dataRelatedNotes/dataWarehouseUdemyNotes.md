@@ -414,10 +414,10 @@ Ever DW is used to make Data driven decisions but depends on the type of BI
 </table>
 
 #### <b>Star Schema</b>
-starSchema.png
+<img src="diag/starSchema.svg" width="468" height="519">
 
 #### <b>Snowflake Schema</b>
-snowflakeSchema.png
+<img src="diag/snowflakeSchema.svg" width="663" height="519">
 
 ### <b>Database Keys for DW</b>
 
@@ -471,10 +471,178 @@ snowflakeSchema.png
 
 ## <b>Design Facts, Fact Tables, Dimensions and Dimension Tables </b>
 
+### <b>Foundational Concepts</b>
+<ul>
+	<li>Dimension <b style="color:#0FBAF1">&#8594;</b> Context for measurements (facts)</li>
+  <li>Dimension <b style="color:Red">&#8800;</b> Dimension Table </li>
+  <li>"Table" <b style="color:#0FBAF1">&#8594;</b> relational database </li>
+  <li>RDBMS table require primary keys </li>
+  <li>DW primary key = surrogate key </li>
+</ul>
+
+### <b>Dimension Table ground rules</b>
+<ul>
+	<li><b style="color:#0FBAF1">Use surrogate keys as primary keys to replace natural keys</b></li>
+	<p> <code> &lt;name&gt;_ID </code> Is a natural key, <code> &lt;name&gt;_key </code> is a surrogate primary key </p>
+  
+  <li><b style="color:#0FBAF1">Key DW subject areas</b></li>
+	<p>Areas that provide context to measurements</p>
+  
+  <li><b style="color:#0FBAF1">Provide meaningful information</b></li>
+	<p>These dimension tables become "One-stop-shopping" subjects</p>
+</ul>
+
+
+
+### <b>Design Dimension Tables for Star Schemas</b>
+<ul>
+	<li><b style="color:#0FBAF1">A single table</b></li>
+	<p>For a hierarchy with multiple dimensions, there is just a single table</p>
+  
+  <li><b style="color:#0FBAF1">Dimension table setup</b></li>
+  Each dimension table will have only 1 primary surrogate key, and multiple natural keys which correspond to the dimensions in the hierarchy
+
+</ul>
+
+### <b>Design Dimension Tables for Snowflake Schemas</b>
+<ul>
+	<li><b style="color:#0FBAF1">1 table for each level of a hierarchy</b></li>
+	<p>Each table relates to its own dimension</p>
+  
+  <li><b style="color:#0FBAF1">Every non-terminal dimension has</b></li>
+	<ul>
+		<li>Primary Key which is a surrogate Key</li>
+    <li>A foreign key which is a primary/surrogate key of one level above table</li>
+	</ul>
+
+  <li><b style="color:#0FBAF1">Every terminal dimension has</b></li>
+	<ul>
+		<li>Primary Key which is a surrogate Key</li>
+    <li>No higher foreign key as there is no higher level</li>
+	</ul>
+</ul>
+
+### <b>Four Types of DW Fact Tables</b>
+<ul>
+	<li><b style="color:#0FBAF1">Transaction Fact Table</b></li>
+	<p>Records facts (measurements) from transactions in source systems</p>
+
+  <li><b style="color:#0FBAF1">Periodic Fact Table</b></li>
+	<p>Track some sort of periodic measurements at regular intervals</p>
+
+  <li><b style="color:#0FBAF1">Accumulating Snapshot Fact Table</b></li>
+	<p>Track the progress of a well defined process through various changes</p>
+
+  <li><b style="color:#0FBAF1">Fact-less Fact Table</b></li>
+	<p>Record the occurrence of a transaction or coverage of eligibility of relationships</p>
+</ul>
+
+### <b>Transaction Fact Table</b>
+<ul>
+	<li><b style="color:#0FBAF1">Transaction-grained fact table</b></li>
+	<p>There is a lot of detail</p>
+
+  <li><b style="color:#0FBAF1">Heart of the dimensional model</b></li>
+	
+  <li><b style="color:#0FBAF1">Store facts from transactions</b></li>
+  <p>There is a lot of detail</p>
+
+  <li><b style="color:#0FBAF1">Number of facts</b></li>
+  <p>More facts can be stored but there are rules which govern which can/cannot be stored</p>
+</ul>
+
+### <b>Rules governing fact and transaction fact tables</b>
+<p>We can store more than 2 facts in the same fact table if and only if </p>
+<ul>
+	<li><b style="color:#0FBAF1">Facts available at the same level of detail (grain) </b></li>
+	<p>The dimensions must include facts that are related and analyzed at the same grain</p>
+
+  <li><b style="color:#0FBAF1">Facts occur simultaneously </b></li>
+  <p>The process must occur at the same time</p>
+</ul>
+
+<p>The reason both these points must apply is that </p>
+<ul>
+	<li>Complicates Data Analysis if facts are parts of different business processes</li>
+  <li>Requires SQL workarounds</li>
+</ul>
+
+#### <b>Keys in Transactional Fact Tables</b>
+<ul>
+	<li><b style="color:#0FBAF1">Primary Key</b></li>
+	<p>Combination of <b style="color:#f08f18">all foreign keys</b> that correspond to the dimension table even if the fact table has a natural key</p>
+</ul>
+
+### <b>Periodic snapshot fact tables</b>
+<p>Take and record regular periodic measurements = levels</p>
+<ul>
+	<li><b style="color:#0FBAF1">Aggregated result of "regular" transactions</b></li>
+  <p>For example taking periodic measurements of balances at the end of each week</p>
+
+  <li><b style="color:#0FBAF1">Levels are  not related to "regular" transactions</b></li>
+  <p>An example would be tracking the volume of water in a reservoir at a specific interval</p>
+</ul>
+
+### <b>Periodic snapshot fact tables and semi-additive facts</b>
+<p>An example of a periodic snapshot table with semi-additive facts. <p>
+<p>Let's say you were tracking periodically tracking the volume of water in multiple tanks every week. These tanks are independent of one another (ie in different locations).</p>
+<p>For a single tank you cannot add all the periodically measure volumes, but you can use it to find an average for that tank over a time period </p>
+
+### <b>Accumulating snapshot fact table</b>
+<ul>
+	<li><b style="color:#">Measure the elapsed time spent for each phase</b></li>
+	
+  <li><b style="color:#">Include both completed and in-progress phases</b></li>
+  <p>At any given time we can look at a fact table to see where one or more business processes are</p>
+
+  <li><b style="color:#">Can also track other measurements along with the cycle</b></li>
+
+  <li><b style="color:#">Multiple relationships from fact table to a single dimension table</b></li>
+</ul>
+
+### <b>Fact-less fact table</b>
+<ul>
+	<li><b style="color:#">An event that needs to be tracked but nothing significant about it</b></li>
+	<p>For example a webinar where students can register their interests</p>
+
+  <li><b style="color:#">Include both completed and in-progress phases</b></li>
+</ul>
+
+#### <b>1st Type of fact-less fact table</b>
+<ul>
+	<li>The "measurement" is actually the occurrence of the event</li>
+  <li>The presence of a row in the (fact-less) fact table is the measurement itself</li>
+  <li>Can count rows with or without filters</li>
+  <li>Fact-less fact table has PK/FK columns only</li>
+  <li>A tracking fact can be used to count rows and the value is 1</li>
+</ul>
+
+#### <b>2nd Type of fact-less fact table</b>
+<ul>
+	<li>Record a particular relationship or association among multiple parties</li>
+  <li>Transactions do not occur</li>
+  <li>Typically starting and ending time or date</li>
+  <li>An example would be an advisor assigned to a student</li>
+</ul>
+
+### <b>Structure of Fact tables in schemas</b>
+
+#### <b>Star Schema</b>
+<ul>
+	<li>The main fact table will have the primary key as the foreign key for the corresponding dimension table</li>
+  <li>All the information for all hierarchies related to the foreign key is accessible in the corresponding dimension table</li>
+</ul>
+
+#### <b>Snowflake Schema</b>
+<ul>
+	<li>Only store the lowest level of PK-FK relationship in the fact table </li>
+  <li>The lowest dimension table will link to the one above in the hierarchy</li>
+</ul>
+
 
 ---
 
-## <b>Managing Data Warehouse History Through Slowly </b>
+## <b>Managing Data Warehouse History Through Slowly Changing Dimensions (SCD) </b>
 
 ---
 

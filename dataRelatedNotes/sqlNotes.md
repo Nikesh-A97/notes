@@ -31,8 +31,8 @@
   ```
 - <b style="color:#0FBAF1"> MIN </b> & <b style="color:#0FBAF1"> MAX </b>  
   ```SQL
-  -- find the min value of the table row
-  SELECT MIN/MAX(tableRow) FROM tableName
+  -- find the min value of the table col
+  SELECT MIN/MAX(tableCol) FROM tableName
   ```
 - <b style="color:#0FBAF1"> COUNT </b>
   ```SQL
@@ -96,3 +96,28 @@
     WHERE
     tableCol::dataType <some condition>
   ```
+- <b style="color:#0FBAF1"> Order of operations </b>
+  ```SQL 
+  /*
+    Order of execution
+    FROM --> WHERE --> GROUP BY --> SELECT --> DISTINCT --> ORDER BY --> LIMIT
+  */
+  SELECT
+  country,
+  COUNT(*) AS users_count
+  FROM users
+  WHERE
+    country IN ('us', 'ca', 'gb', 'au', 'at', 'de', 'ch')
+  GROUP BY country
+  ORDER BY users_count DESC
+  ```
+- <b style="color:#0FBAF1"> UNION </b>
+  ```SQL
+  -- Casts the given tableCol current data type to the given dataType
+  SELECT 
+  COUNT(*)
+    FROM tableName
+    WHERE
+    tableCol::dataType <some condition>
+  ```
+

@@ -590,22 +590,22 @@ Ever DW is used to make Data driven decisions but depends on the type of BI
 
 ### <b>Accumulating snapshot fact table</b>
 <ul>
-	<li><b style="color:#">Measure the elapsed time spent for each phase</b></li>
+	<li><b style="color:#0FBAF1">Measure the elapsed time spent for each phase</b></li>
 	
-  <li><b style="color:#">Include both completed and in-progress phases</b></li>
+  <li><b style="color:#0FBAF1">Include both completed and in-progress phases</b></li>
   <p>At any given time we can look at a fact table to see where one or more business processes are</p>
 
-  <li><b style="color:#">Can also track other measurements along with the cycle</b></li>
+  <li><b style="color:#0FBAF1">Can also track other measurements along with the cycle</b></li>
 
-  <li><b style="color:#">Multiple relationships from fact table to a single dimension table</b></li>
+  <li><b style="color:#0FBAF1">Multiple relationships from fact table to a single dimension table</b></li>
 </ul>
 
 ### <b>Fact-less fact table</b>
 <ul>
-	<li><b style="color:#">An event that needs to be tracked but nothing significant about it</b></li>
+	<li><b style="color:#0FBAF1">An event that needs to be tracked but nothing significant about it</b></li>
 	<p>For example a webinar where students can register their interests</p>
 
-  <li><b style="color:#">Include both completed and in-progress phases</b></li>
+  <li><b style="color:#0FBAF1">Include both completed and in-progress phases</b></li>
 </ul>
 
 #### <b>1st Type of fact-less fact table</b>
@@ -644,9 +644,195 @@ Ever DW is used to make Data driven decisions but depends on the type of BI
 
 ## <b>Managing Data Warehouse History Through Slowly Changing Dimensions (SCD) </b>
 
+### <b>SCD</b>
+<ul>
+	<li>Techniques used to manage history within data warehouse</li>
+  <li>Multiple techniques based on various historical data policies</li>
+  <li>Enables DW to manage history regardless of policies in transactional applications</li>
+</ul>
+
+#### <b>Polices for historical data</b>
+<ul>
+	<li>Overwrite old data - no history retention</li>
+  <li>Maintain unlimited history</li>
+  <li>Maintain limited history</li>
+</ul>
+
+<table>
+  <tr>
+    <th>SCD Type</th>
+    <th>Technique</th>
+    <th>Implications</th>
+  </tr>
+
+  <tr>
+    <td>Type 0</td>
+    <td>Always retain original values</td>
+    <td>?</td>
+  </tr>
+
+  <tr>
+    <td>Type 1</td>
+    <td>In place update</td>
+    <td>Simple but no history</td>
+  </tr>
+
+  <tr>
+    <td>Type 2</td>
+    <td>Create new dim table row for each version</td>
+    <td>Complex but robust</td>
+  </tr>
+
+  <tr>
+    <td>Type 3</td>
+    <td>Small dim table columns for multiple versions</td>
+    <td>Switch back & forth "as-is" and "as-was"</td>
+  </tr>
+
+  <tr>
+    <td>Type 4</td>
+    <td>Some columns change more than others do</td>
+    <td>?</td>
+  </tr>
+</table>
+
+
+### <b>Type 1 SCD</b>
+<ul>
+	<li>Replace old value with new value</li>
+  <li>Main usage us to correct errors and when the old value is not needed</li>
+  <li>A simple overwrite</li>
+</ul>
+
+<table>
+  <tr>
+    <th>Advantages</th>
+    <th>Disadvantages</th>
+  </tr>
+  <tr>
+    <td>Simple & Straightforward</td>
+    <td>Might want history of errors</td>
+  </tr>
+  <tr>
+    <td>Errors gone forever</td>
+    <td>DA can change before and after error</td>
+  </tr>
+  <tr>
+    <td>Best case for when you "don't need historical data</td>
+    <td>Tendency to overuse Type 1 over Type 2</td>
+  </tr>
+</table>
+
+### <b>Type 2 SCD</b>
+
+#### <b>Method for type 2 SCD</b>
+<ul>
+	<li>Existing row is kept, new row added</li>
+  <li>New row reflects current state of all attributes</li>
+  <li>Complications with reporting and analytics</li>
+</ul>
+
+#### <b>Why Type 2 SCD</b>
+<ul>
+	<li>Needed to accurately reflect state of data for reporting & analytics</li>
+  <li>Could include NKs but not recommended as it takes a lot of storage</li>
+  <li>Use "multi - step" SQL queries</li>
+</ul>
+
+#### <b>Maintain correct order of data</b>
+<p>The base version of type 2 change maintains limitless versions but does not indicate order</p>
+<p>Solution include...</p>
+<ul>
+	<li>To add a flag column, with T/F data</li>
+  <li>If multiple changes, then another solution is effective - exp date</li>
+  <p>This row of data from date, to expiration date. If data changes, exp date is changed to when it changes and new row is added with the exp date.</p>
+  <li>A combination of flags and eff-exp date can be used as well</li>
+</ul>
+
+### <b>Type 3 SCD</b>
+
+#### <b>Method for type 3 SCD</b>
+<ul>
+	<li>Adding a new column to reflect changes (old/new) columns</li>
+  <li>Supports back - and - forth switching for flexible reporting & analytics</li>
+  <li>Useful if all data in same dimension being re-organized</li>
+  <li>Not limited to 2 columns, but past 4 better to change to Type 2 SCDs</li>
+</ul>
+
+#### <b>Limitations</b>
+<ul>
+	<li>Use cases where every row in a dim  table will change at the same time </li>
+  <li>classic use case</li>
+  <li>Not suited for random changes, for a single row</li>
+</ul>
+
 ---
 
 ## <b>Designing Your ETL </b>
+
+### <b>Build ETL from ETL Architecture</b>
+
+#### <b>Best practice and guidelines</b>
+<ul>
+	<li><b style="color:#0FBAF1">Limit amount of incoming data to be processed</b></li>
+	<p>Limit it to a small subset, so data that's not in the DW or update information</p>
+
+  <li><b style="color:#0FBAF1">Process dimension tables before fact tables</b></li>
+	<p>This is because keys in fact tables need to be able to access the data in the DIM tables</p>
+
+  <li><b style="color:#0FBAF1">Opportunities for parallel processing</b></li>
+	<p>To save time process multiple dimension tables at a time</p>
+</ul>
+
+### <b>ETL for Dimension table (star schema example)</b>
+<p>For snowflake schemas you  would need to deal with dependencies from other tables</p>
+<ul>
+	<li><b style="color:#">Step 1: Data Preparation</b></li>
+  <li><b style="color:#">Step 2: Data Transformation</b></li>
+  <li><b style="color:#">Step 3: Process new dimension rows</b></li>
+  <li><b style="color:#">Step 4: Process SCD type 1 changes</b></li>
+  <li><b style="color:#">Step 5: Process SCD type 2 changes</b></li>
+</ul>
+
+
+#### <b>Step 1 : data preparation - "change data capture"</b>
+<p>Ideally you want to detect at the source before latter stages of ETL or in the DW to check if data is new or old.</p>
+<ul>
+	<li><b style="color:#">Transactional data timestamps</b></li>
+	<p>Data has timestamps on each row of data, by comparing timestamps before the last ETL run, can skip if timestamp has not changed</p>
+
+  <li><b style="color:#">Database Logs</b></li>
+	<p>Compare the actual data in the database logs</p>
+
+  <li><b style="color:#">Last-resort</b></li>
+	<p>Compare inside the DW by scanning and comparing</p>
+</ul>
+
+#### <b>Step 2 : Data transformation"</b>
+Refer back to transformation models
+
+#### <b>Step 3: "Dimension Rows"</b>
+For each row that will be coming in for consideration into the DW
+<ul>
+	<li>If new: add to DIM table</li>
+  <li>If not new: process any Type 1 & 2 changes</li>
+</ul>
+
+#### <b>Step 4: Process SCD Type 1 to a DIM table</b>
+<ul>
+	<li>Might need to apply Type 1 change to multiple rows (occurs after a prior T2 change)</li>
+  <li>Done by looking for all DIM table rows with NKs</li>
+</ul>
+
+
+#### <b>Step 5: Process SCD Type 2 to a DIM table</b>
+<ul>
+	<li>A basic append with a new (generated) surrogate key by using a NK as a guide</li>
+</ul>
+
+
+### <b>Design ETL for Fact tables</b>
+<p>Watch out for complications with all dimension and fact table data during ETL</p>
 
 ---
 

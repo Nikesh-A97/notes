@@ -141,23 +141,81 @@ mongoimport --db dfx --collection trainees --file dfxDataImport.json
 
   <li><code> .pretty()</code></li>
 	<p>append on a <code>.find()</code> to make result shown look easier to read</p>
+
+  <li><code> db.&lt;collectionName&gt;.findOne() </code></li>
+	<p>finds the first document in the collection</p>
+
+  <li><code> db.&lt;collectionName&gt;.insert({"&lt;key&gt;" : "&lt;value&gt;", ...}, ...) </code></li>
+	<p>Insert documents into the collection, cannot insert something with the same <code>_id</code></p>
+
+  <li><code> ...updateMany({"&lt;key&gt;" : "&lt;value&gt;", ...}, {"$&lt;operator&gt;" : {"&lt;key&gt;" : "&lt;value&gt;", ...}}) </code></li>
+	<p>Update many matching documents with the new document values and corresponding operator</p>
+
+  <li><code> ...updateOne({"&lt;key&gt;" : "&lt;value&gt;", ...}, {"$&lt;operator&gt;" : {"&lt;key&gt;" : "&lt;value&gt;", ...}}) </code></li>
+	<p>Update one matching documents with the new document values and corresponding operator</code></p>
+
+  <li><code> ...deleteOne({"&lt;key&gt;" : "&lt;value&gt;", ...}) </code></li>
+	<p>Update one matching documents with the new document values and corresponding operator</code></p>
+
+  <li><code> ...deleteMany({"&lt;key&gt;" : "&lt;value&gt;", ...}) </code></li>
+	<p>Update one matching documents with the new document values and corresponding operator</code></p>
 </ul>
 
 ---
 
 ## <b>Chapter 3 - Creating and Manipulating Documents</b>
-- _id
-  ```java
-  for(int i)
-  ```
 
+### <b>ObjectID</b>
 <ul>
 	<li><b style="color:#32a852">_id</b></li>
 	<p>Every document has a unique <b style="color:#32a852">_id</b> value</p>
-  <pre><code class="lang-java">for(int i = 2)</code></pre>;
+  
+  <li><b style="color:#32a852">ObjectID()</b></li>
+	<p>Default value for the <b style="color:#32a852">_id</b> field unless specified</p>
 </ul>
 
-Creating and manipulating documents
+```JSON
+    {"_id" : ObjectID("52cdef7c4bab8bd675297d8a")}
+    {"_id" : "123-ABC-45"}
+  ```
+### <b>Inserting multiple documents</b>
+<ul>
+	<li>When inserting multiple documents, they are inserted in the order that is listed in the arguments of the insert command</li>
 
+  <li>If there is an error in the data being inserted, like a duplicate <code>_id</code>, the documents that come after the duplicate, are not inserted</li>
+
+  <li>Can add <code>{[{...},{...}...], {"ordered": false}}</code> to continue inserting documents with unique <code>_id</code></li>  
+</ul>
+
+### <b>Updating documents</b>
+
+### <b>Updating operators</b>
+<ul>
+	<li><b style="color:#32a852">$inc</b></li>
+	<p>Increment a field(s) by a specified amount</p>
+</ul>
+
+```JSON
+{"$inc" : {"<field1>" : <value>, ... }}
+```
+<ul>
+	<li><b style="color:#32a852">$set</b></li>
+	<p>Set a field(s) by the  specified amount. Any typos will result in an implicit creationn</p>
+</ul>
+
+```JSON
+{"$set" : {"<field1>" : <value>, ... }}
+```
+
+<ul>
+	<li><b style="color:#32a852">$push</b></li>
+	<p>Adds an element to an array field</p>
+</ul>
+
+```JSON
+{"$push" : {<field1> : <value1>, ... }}
+```
+
+### <b>Delete documents</b>
 
 ---

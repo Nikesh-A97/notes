@@ -219,3 +219,7 @@ mongoimport --db dfx --collection trainees --file dfxDataImport.json
 ### <b>Delete documents</b>
 
 ---
+
+## <b>Chapter 4 - Advanced CRUD operations</b>
+
+---

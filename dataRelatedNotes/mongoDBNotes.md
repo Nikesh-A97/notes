@@ -222,4 +222,71 @@ mongoimport --db dfx --collection trainees --file dfxDataImport.json
 
 ## <b>Chapter 4 - Advanced CRUD operations</b>
 
+### <b>Query Operators</b>
+All query operators used the same syntax as
+```JSON
+{"<field>" : {"$<operator>" : <value>}, ...}
+```
+<code>$eq</code> issued as the  default operator when an operator is not specified
+<table>
+	<tr>
+		<th>Operator</th>
+    <th>Meaning</th>
+	</tr>
+  <tr>
+		<td>$eq</td>
+    <td>=</td>
+	</tr>
+  <tr>
+		<td>$ne</td>
+    <td>&#8800;</td>
+	</tr>
+  <tr>
+		<td>$gt</td>
+    <td>&gt;</td>
+	</tr>
+  <tr>
+		<td>$lt</td>
+    <td>&lt;</td>
+	</tr>
+  <tr>
+		<td>$gte</td>
+    <td>&geq;</td>
+	</tr>
+  <tr>
+		<td>$lte</td>
+    <td>&leq;</td>
+	</tr>
+</table>
+
+
+### <b>Logic Operators</b>
+<table>
+	<tr>
+		<th>Operator</th>
+    <th>Meaning</th>
+    <th>Syntax</th>
+	</tr>
+  <tr>
+		<td>$and</td>
+    <td>Match all</td>
+    <td><code>{&lt;operator> : [{statement1}, {...},...]}</code></td>
+	</tr>
+  <tr>
+		<td>$or</td>
+    <td>At least one</td>
+    <td><code>{&lt;operator> : [{statement1}, {...},...]}</code></td>
+	</tr>
+  <tr>
+		<td>$nor</td>
+    <td>Fail to match</td>
+    <td><code>{&lt;operator> : [{statement1}, {...},...]}</code></td>
+	</tr>
+  <tr>
+		<td>$not</td>
+    <td>Negate</td>
+    <td><code>{&lt;operator> : {statement1}}</code></td>
+	</tr>
+</table>
+
 ---

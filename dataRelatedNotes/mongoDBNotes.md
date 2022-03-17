@@ -144,3 +144,20 @@ mongoimport --db dfx --collection trainees --file dfxDataImport.json
 </ul>
 
 ---
+
+## <b>Chapter 3 - Creating and Manipulating Documents</b>
+- _id
+  ```java
+  for(int i)
+  ```
+
+<ul>
+	<li><b style="color:#32a852">_id</b></li>
+	<p>Every document has a unique <b style="color:#32a852">_id</b> value</p>
+  <pre><code class="lang-java">for(int i = 2)</code></pre>;
+</ul>
+
+Creating and manipulating documents
+
+
+---

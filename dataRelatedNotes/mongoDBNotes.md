@@ -285,7 +285,7 @@ All query operators used the same syntax as
   <tr>
 		<td>$not</td>
     <td>Negate</td>
-    <td><code>{&lt;operator> : {statement1}}</code></td>
+    <td><code>{&lt;operator> : {statement1}}</code></td>  
 	</tr>
 </table>
 

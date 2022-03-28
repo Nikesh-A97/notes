@@ -775,3 +775,66 @@ Grouping similar fields together into document.
 </ul>
 
 ---
+
+### <b>Approximation Pattern</b>
+Approximating incoming data to reduce writes
+
+#### <b style="color:#32a852">What is the pattern for ? </b>
+<ul>
+	<li>Data that is expensive to calculate</li>
+  <li>If precision does not matter</li>
+</ul>
+
+#### <b style="color:#32a852">How to use pattern </b>
+<ul>
+	<li>Few writes, higher payload</li>
+</ul>
+
+#### <b style="color:#32a852">Use Case Examples ? </b>
+<ul>
+	<li>Webpage counters</li>
+  <li>Any counters with tolerance to imprecision</li>
+  <li>Metric statistics</li>
+</ul>
+
+#### <b style="color:#32a852">Pros/Cons </b>
+<ul>
+	<li>Less writes</li>
+  <li>Less contention on documents</li>
+  <li>Statistically valid numbers</li>
+  <li>However implementation is client side (application) and the numbers are not exact</li>
+</ul>
+
+---
+
+### <b>Outlier Pattern</b>
+To handle outliers in data 
+
+#### <b style="color:#32a852">What is the pattern for ? </b>
+<ul>
+	<li></li>
+</ul>
+
+#### <b style="color:#32a852">How to use pattern </b>
+<ul>
+	<li>Implement a design that works for majority</li>
+  <li>Outliers have their own field which application handles differently</li>
+</ul>
+
+#### <b style="color:#32a852">Use Case Examples ? </b>
+<ul>
+	<li>Social Networks</li>
+</ul>
+
+#### <b style="color:#32a852">Pros/Cons </b>
+<ul>
+	<li>Optimized solution for most use cases</li>
+  <li>However the differences must be handled application side</li>
+  <li>Difficult for aggregation or ad hoc queries</li>
+</ul>
+
+---
+
+
+### <b>Summary Pattern</b>
+<img src="diag/patterns-use-cases.png" width="576" height="521">

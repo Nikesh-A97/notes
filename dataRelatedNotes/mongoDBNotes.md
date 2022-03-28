@@ -289,4 +289,198 @@ All query operators used the same syntax as
 	</tr>
 </table>
 
+
 ---
+
+# MongoDB - M100 Notes
+
+---
+# MongoDB - M320 Notes
+
+## <b>Patterns</b>
+---
+### <b>Attribute Pattern</b>
+
+#### <b style="color:#32a852">What is the pattern for ? </b>
+<ul>
+	<li>Lots of similar fields</li>
+  <li>Want to search across many fields at once</li>
+  <li>Fields present in only a small subset of documents</li>
+</ul>
+
+#### <b style="color:#32a852">How to use pattern ? </b>
+<ul>
+	<li>Break the field/value pairs into a document</li>
+</ul>
+
+```JSON
+{
+  {"colour" : "red", "size" : "large"},
+  {"colour" : "blue", "size" : "small"}
+}
+/* gets transformed into */
+{[
+  {{"k" : "color", "v":"blue"},{"k" : "size", "v":"large"}},
+  {{"k" : "color", "v":"red"},{"k" : "size", "v":"small"}}
+]}
+```
+
+#### <b style="color:#32a852">Use case Examples? </b>
+<ul>
+	<li>Characteristics of a product</li>
+  <li>Set of fields all having the same value type</li>
+</ul>
+
+#### <b style="color:#32a852">Pros/Cons </b>
+<ul>
+	<li>Easier to index</li>
+  <li>Allow for non-deterministic field names</li>
+  <li>Ability to qualify the relationship of the original field and value</li>         
+</ul>
+
+#### <b style="color:#32a852">Summary </b>
+<ul>
+	<li>Orthogonal Pattern to Polymorphism</li>
+  <li>Organization for</li>
+  <ul>
+    <li>Common fields that need to be searched across</li>
+    <li>Fields that are rare or to help manage an influx of unpredictable fields</li>
+  </ul>
+  <li>Reduces the number of indexes</li>  
+  <li>Transpose the key/values as an array of sub-documents</li>       
+</ul>
+
+---
+### <b>Extended Reference Pattern</b>
+
+#### <b style="color:#32a852">How to manage Duplication </b>
+<ul>
+	<li><b style="color:#">Minimize</b></li>
+	<ul>
+		<li>Select the fields that do not change often</li>
+    <li>Bring only fields you need</li>
+	</ul>
+  <li><b style="color:#">After source is updated</b></li>
+	<ul>
+		<li>What extended references to be changed</li>
+    <li>When should the extended references be updated</li>
+	</ul>
+  <li><b style="color:#">Sometimes duplication may be better than a unique reference</b></li>
+</ul>
+
+#### <b style="color:#32a852">What is the pattern for ? </b>
+<ul>
+	<li>To avoid joining data at query time, data is pre-joined</li>
+</ul>
+
+#### <b style="color:#32a852">How to use pattern </b>
+<ul>
+	<li>Identify the fields on the lookup side</li>
+  <li>Append those fields into the main object</li>
+</ul>
+
+#### <b style="color:#32a852">Use Case Examples ? </b>
+<ul>
+	<li>Mobile Applications</li>
+  <li>Real-time Analytics</li>
+</ul>
+
+#### <b style="color:#32a852">Pros/Cons </b>
+<ul>
+	<li>Faster Reads, as the documents required are embedded in the main object</li>
+  <li>Reduces the number of joins and lookups</li>
+  <li>May introduce lots of duplication if extended reference fields that change a lot</li>
+</ul>
+
+---
+
+### <b>Subset Pattern</b>
+#### <b style="color:#32a852">What is the pattern for ? </b>
+<ul>
+	<li>To reduce the size of the working set that is too large to fit in RAM</li>
+  <li>Usually, a large subset of the data from a document is rarely needed</li>
+</ul>
+
+#### <b style="color:#32a852">How to use pattern </b>
+<ul>
+	<li><b style="color:#">Split collection into 2 sub collections</b></li>
+	<ul>
+		<li>Most used part (small size) and least used part (larger size) of documents</li>
+	</ul>
+  <li><b style="color:#">Duplicate part of a 1-N or N-N relationships</b></li>
+</ul>
+
+#### <b style="color:#32a852">Use Case Examples ? </b>
+<ul>
+	<li>Lists of anything that contains a lot of data to process or read or take a substantial amount of memory</li>
+  <li>For example a list of reviews</li>
+</ul>
+
+#### <b style="color:#32a852">Pros/Cons </b>
+<ul>
+	<li>Smaller working sets so documents retrieved faster</li>
+  <li>More round trips from and to server, with more space used in disk as data is duplicated</li>
+</ul>
+
+#### <b style="color:#32a852">Summary </b>
+<ul>
+	<li>Reduces working set by splitting information</li>    
+</ul>
+
+---
+
+### <b>Computed Pattern</b>
+
+#### <b style="color:#32a852">Types of operations </b>
+<ul>
+	<li><b style="color:#">Mathematical Operations</b></li>
+	<ul>
+		<li>An example would be if you had to sum numerical data that changes/gets updated</li>
+    <li>To reduce computations, sum data as it comes in (rolling sum) instead of calculating it from scratch</li>
+    <li>Reduces the number of read and write operations</li>
+	</ul>
+  <li><b style="color:#">Fan Out Operations</b></li>
+  To do many tasks to represent one logical task
+  <ul>
+		<li>It is better to fan out on writes by grouping data at write time so during read time, it does not need to fan out.</li>
+  </ul>
+  <li><b style="color:#">Roll up Operations</b></li>
+  Merge data together
+  <ul>
+		<li>Grouping categories such as time based data from smaller to larger intervals </li>
+    <li>Mathematical computations are roll-ups as well </li>
+    <li>Doing these operations at write time, saves computational costs at read time </li>
+  </ul>
+</ul>
+
+#### <b style="color:#32a852">What is the pattern for ? </b>
+<ul>
+	<li>To avoid repeating computational tasks at read time, especially if they are expensive</li>
+  <li>Executed on data that is frequent and produces the same result</li>
+</ul>
+
+#### <b style="color:#32a852">How to use pattern </b>
+<ul>
+	<li>Perform the operations at write times, and store the result in an appropriate document and collection </li>
+  <li>Keep the sources of data for computation if required later on, or for analytics </li>
+</ul>
+
+#### <b style="color:#32a852">Use Case Examples ? </b>
+<ul>
+	<li>IOT</li>
+  <li>Event Sourcing</li>
+  <li>Time Series Data</li>
+  <li>Frequent Aggregation Framework queries</li>
+</ul>
+
+#### <b style="color:#32a852">Pros/Cons </b>
+<ul>
+	<li>Read queries are faster</li>
+  <li>Saving on resource such as CPU and disk</li>
+  <li>Use it when you need it, as it may add complexity</li>
+</ul>
+
+#### <b style="color:#32a852">Summary </b>
+<ul>
+	<li>Avoid performing similar operations many times</li>    
+</ul>

@@ -111,13 +111,34 @@
   GROUP BY country
   ORDER BY users_count DESC
   ```
-- <b style="color:#0FBAF1"> UNION </b>
-  ```SQL
-  -- Casts the given tableCol current data type to the given dataType
-  SELECT 
-  COUNT(*)
-    FROM tableName
-    WHERE
-    tableCol::dataType <some condition>
-  ```
+---
+## Joins
 
+- <b style="color:#0FBAF1"> INNER JOIN </b>
+  ```SQL 
+  SELECT *
+  FROM A
+  INNER JOIN B
+  ON A.<col> = B.<col>
+  ```
+- <b style="color:#0FBAF1"> LEFT JOIN </b>
+  ```SQL 
+  SELECT *
+  FROM A
+  LEFT JOIN B
+  ON A.<col> = B.<col>
+  ```
+- <b style="color:#0FBAF1"> RIGHT JOIN </b>
+  ```SQL 
+  SELECT *
+  FROM A
+  RIGHT JOIN B
+  ON A.<col> = B.<col>
+  ```
+- <b style="color:#0FBAF1"> CROSS JOIN </b>
+  ```SQL 
+  SELECT *
+  FROM A
+  CROSS JOIN B
+  ON A.<col> = B.<col>
+  ```

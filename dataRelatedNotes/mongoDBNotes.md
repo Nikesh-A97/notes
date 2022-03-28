@@ -484,3 +484,294 @@ All query operators used the same syntax as
 <ul>
 	<li>Avoid performing similar operations many times</li>    
 </ul>
+
+---
+
+### <b>Bucket Pattern</b>
+
+#### <b style="color:#32a852">What is the pattern for ? </b>
+<ul>
+	<li>To avoid too many documents, or large documents</li>
+  <li>A 1 to many relationship that can't be embedded if the many side is boundless</li>
+</ul>
+
+#### <b style="color:#32a852">How to use pattern </b>
+<ul>
+	<li>Define the optimal amount of information to group together</li>
+  <li>Use arrays to store information</li>
+  <li>An embedded 1 to many relationship where N documents have average of many/n sub documents</li>
+</ul>
+
+#### <b style="color:#32a852">When not to use </b>
+<ul>
+	<li>If there are random insertions/deletions in buckets</li>
+  <li>If you need to sort across buckets</li>
+  <li>Works best when the "complexity" is hidden in the application</li>
+</ul>
+
+#### <b style="color:#32a852">Use Case Examples ? </b>
+<ul>
+	<li>IOT</li>
+  <li>DW</li>
+  <li>Lots of information associated to one object</li>
+</ul>
+
+#### <b style="color:#32a852">Pros/Cons </b>
+<ul>
+	<li>Balance between number of data and access and size of data returned</li>
+  <li>Makes data more manageable</li>
+  <li>Leads to poor query results if designed incorrectly or too complex for BI tools if</li>
+</ul>
+
+#### <b style="color:#32a852">Summary </b>
+<ul>
+	<li>Alternative to fully embedding or fulling linking a 1 to many relationship</li>
+  <li>Need a good understanding of the workload</li>    
+</ul>
+
+---
+
+### <b>Schema Versioning Pattern</b>
+Used when there is a need to require no downtime when updating schema. The basic idea is that the schema has a version number field to indicate the version of the schema, in order for the application using it to know how to handle the data.
+
+#### <b style="color:#32a852">Application Lifecycle</b>
+
+On the application side of things...
+
+<ul>
+	<li style="color:#32a852">Modify Application</li>
+	<ul>
+		<li>The application is able to read/write all versions of documents</li>
+    <li>Different handlers per version</li>
+    <li>Re-shape documents before processing it</li>
+	</ul>
+  <li style="color:#32a852">Update all application servers</li>
+	<ul>
+		<li>Install updated application</li>
+    <li>Remove old processes</li>
+	</ul>
+  <li style="color:#32a852">Once migration completed</li>
+	<ul>
+		<li>Can remove code that processed old schema versions</li>
+	</ul>
+</ul>
+
+#### <b style="color:#32a852">Document Lifecycle</b>
+
+On the document side of things...
+
+<ul>
+	<li style="color:#32a852">New Documents</li>
+	<ul>
+		<li>Any new documents are written in the latest schema version</li>
+	</ul>
+  <li style="color:#32a852">Existing Documents</li>
+	<ul>
+		<li>Update documents to transform to latest version</li>
+    <li>Can be done in batches, so time is not a problem</li>
+    <li>Can keep old version of documents if process is long, so can use both while updating</li>
+	</ul>
+</ul>
+
+#### <b style="color:#32a852">What is the pattern for ? </b>
+<ul>
+	<li>To avoid downtime while updating schemas</li>
+  <li>For a large volume of data where downtime is unaffordable</li>
+  <li>When you don't need to update all documents</li>
+</ul>
+
+#### <b style="color:#32a852">How to use pattern </b>
+<ul>
+	<li>Each document has a "schema_version" field</li>
+  <li>Application can handle all versions</li>
+  <li>Require a stratgey to migrate the documents</li>
+</ul>
+
+#### <b style="color:#32a852">Use Case Examples ? </b>
+<ul>
+	<li>Applications that use a database deployed solution in production and heavily used</li>
+  <li>Systems with legacy data</li>
+</ul>
+
+#### <b style="color:#32a852">Pros/Cons </b>
+<ul>
+	<li>No downtime</li>
+  <li>In control of migration</li>
+  <li>Technical debt is reduced for future as it is easy to maintain</li>
+</ul>
+
+#### <b style="color:#32a852">Summary</b>
+<ul>
+	<li>Avoid downtime while performing schema upgrades and be in control</li>  
+</ul>
+
+---
+
+### <b>Tree Patterns</b>
+
+<table>
+	<tr>
+		<th></th>
+    <th>Ancestors</th>
+    <th>Reports to</th>
+    <th>Nodes under</th>
+    <th>Change categories </th>
+	</tr>
+  <tr>
+		<th>Parent References</th>
+    <td>Maybe</td>
+    <td>Yes</td>
+    <td>Maybe</td>
+    <td>Yes</td>
+	</tr>
+  <tr>
+		<th>Child References</th>
+    <td>Maybe</td>
+    <td>Maybe</td>
+    <td>Yes</td>
+    <td>Maybe</td>
+	</tr>
+  <tr>
+		<th>Array Ancestors</th>
+    <td>Yes</td>
+    <td>Yes</td>
+    <td>Maybe</td>
+    <td>Maybe</td>
+	</tr>
+  <tr>
+		<th>Materialized References</th>
+    <td>Yes</td>
+    <td>Maybe</td>
+    <td>Maybe</td>
+    <td>Maybe</td>
+	</tr>
+  <tr>
+		<th>Ancestor + Parent</th>
+    <td>Yes</td>
+    <td>Yes</td>
+    <td>Yes</td>
+    <td>Yes</td>
+	</tr>
+</table>
+
+
+#### <b style="color:#32a852">Parent References model</b>
+```JSON
+{
+  {"nodeName" : "nameOfNode"},
+  {"parent" : "parentOfNodeName"}
+}
+```
+
+#### <b style="color:#32a852">Child References model</b>
+```JSON
+{
+  {"nodeName" : "nameOfNode"},
+  {"children" : ["child1", "child2", ...]}
+}
+```
+
+#### <b style="color:#32a852">Array of Ancestors</b>
+```JSON
+{
+  {"nodeName" : "nameOfNode"},
+  {"ancestors" : ["ancestor1", "ancestor2", ...]}
+}
+```
+
+#### <b style="color:#32a852">Materialized Paths</b>
+```JSON
+{
+  {"nodeName" : "nameOfNode"},
+  {"ancestors" : ".ancestor1.ancestor2. ..."}
+}
+```
+#### <b style="color:#32a852">Ancestor + Parent</b>
+```JSON
+{
+  {"nodeName" : "nameOfNode"},
+  {"parent" : "parentOfNodeName"},
+  {"ancestors" : ["ancestor1", "ancestor2", ...]}
+}
+```
+
+#### <b style="color:#32a852">What is the pattern for ? </b>
+<ul>
+	<li>To model hierarchical data structures</li>
+  <li>Different patterns for different purposes to navigate tree</li>
+</ul>
+
+#### <b style="color:#32a852">How to use pattern </b>
+<ul>
+	<li>Different patterns to navigate tree, see above</li>
+</ul>
+
+#### <b style="color:#32a852">Use Case Examples ? </b>
+<ul>
+	<li>Organization charts</li>
+  <li>Product categories</li>
+</ul>
+
+#### <b style="color:#32a852">Pros/Cons </b>
+<ul>
+	<li><b style="color:#">Child</b></li>
+	<ul>
+		<li>Easy to navigate to children nodes or tree descending access patterns</li>
+	</ul>
+  <li><b style="color:#">Parent</b></li>
+	<ul>
+		<li>Immediate parent node discovery and tree updates</li>
+	</ul>
+  <li><b style="color:#">Array of Ancestors</b></li>
+	<ul>
+		<li>Navigate upwards on the ancestors path</li>
+	</ul>
+  <li><b style="color:#">Materialized path</b></li>
+	<ul>
+		<li>Use RegExp to find nodes in trees</li>
+	</ul>
+</ul>
+
+#### <b style="color:#32a852">Summary</b>
+<ul>
+	<li>Documents are good data structures to represent hierarchical data</li> 
+  <li>Several different patterns to represent trees</li>
+  <li>Several patterns to choose from to optimize for the specific use case</li>
+</ul>
+
+---
+
+### <b>Polymorphic Pattern</b>
+Grouping similar fields together into document.
+
+#### <b style="color:#32a852">What is the pattern for ? </b>
+<ul>
+	<li>When object are similar than they are different</li>
+  <li>Want to keep objects in the same collection for a simplified view</li>
+</ul>
+
+#### <b style="color:#32a852">How to use pattern </b>
+<ul>
+	<li>A field that keeps track of the type of the sub/document</li>
+  <li>Application code has document type or has subclasses</li>
+</ul>
+
+#### <b style="color:#32a852">Use Case Examples ? </b>
+<ul>
+	<li>Single View</li>
+  <li>Product catalogs</li>
+  <li>Content Management</li>
+</ul>
+
+#### <b style="color:#32a852">Pros/Cons </b>
+<ul>
+	<li>Easier to implement</li>
+  <li>Allow to query across a single collection</li>
+</ul>
+
+#### <b style="color:#32a852">Summary</b>
+<ul>
+	<li>Basic pattern and a base for other patterns such as the schema pattern</li>
+</ul>
+
+---

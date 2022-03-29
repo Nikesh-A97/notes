@@ -1,4 +1,4 @@
-# MongoDB Notes
+# MongoDB M001 Notes
 
 ## <b>Chapter 1 - What is MongoDB</b>
 
@@ -112,9 +112,10 @@ Bridges the gap between binary representation of the JSON format
               --collection = <collection name>
               --out = <filename>.json
   ```
-```
-mongoimport --db dfx --collection trainees --file dfxDataImport.json
-```
+  
+  ```
+  mongoimport --db dfx --collection trainees --file dfxDataImport.json
+  ```
 
 ### <b>Some Commands</b>
 <ul>
@@ -293,6 +294,153 @@ All query operators used the same syntax as
 ---
 
 # MongoDB - M100 Notes
+
+## <b>Chapter 1 - Concepts of RMDBS and MongoDB</b>
+### <b>Database Terminology</b>
+<img src="diag/DB-terminology.png" width="921" height="336">
+
+### <b>ACID</b>
+MongoDB supports ACID. A transaction guarantees ACID for multiple document writes
+<ul>
+	<li><b style="color:#32a852">Atomicity</b></li>
+	<p>Transactions are all or nothing</p>
+  <li><b style="color:#32a852">Consistency</b></li>
+	<p>Only valid data is saved</p>
+  <li><b style="color:#32a852">Isolation</b></li>
+	<p>Transactions do not affect each other</p>
+  <li><b style="color:#32a852">Durability</b></li>
+	<p>Written data will not be lost</p>
+</ul>
+Summary
+<ul>
+	<li>Fewer transactions means minimal performance impact</li>
+  <li>Avoid long running transactions</li>
+  <li>Prefer the document model to limit updates to a single document to achieve ACID over transactions</li>
+</ul>
+
+### <b>Read/Write Operation Guarantees</b>
+A guarantee that a write will not be lost is called durability
+<ul>
+	<li><b style="color:#32a852">writeConcern</b></li>
+	<p>The durability guarantee for a write operation</p>
+  <li><b style="color:#32a852">readConcern</b></li>
+	<p>The guarantee that a read operation will get durable data</p>
+  <li><b style="color:#32a852">readPreference</b></li>
+	<p>is the preferred node to read from</p>
+</ul>
+
+---
+## <b>Chapter 2 - Modelling for mongoDB</b>
+
+### <b>Flexible modeling for a traditional Relational Database</b>
+
+### <b>Simple Methodology</b>
+<ul>
+	<li><b style="color:#32a852">Phase 1: Describe the workload</b></li>
+	<ul>
+		<li>What operations are we modeling for</li>
+    <li>Quantify and qualify the read/write operations</li>
+    <li>outputs are the list of operations and which of these are important</li>
+	</ul>
+  <li><b style="color:#32a852">Phase 2: Model the relationships</b></li>
+	<ul>
+		<li>Identify the one-to-one, one-to-many, many-to-many relationships</li>
+    <li>Pick between embed or linking documents for one/many - to  many </li>
+	</ul>
+  <li><b style="color:#32a852">Phase 3: Apply Patterns</b></li>
+	<ul>
+		<li>Recognize and apply any patterns that can be used</li>
+    <li>Addresses problems in performance, maintenance or simplicity requirements</li>
+	</ul>
+</ul>
+
+#### <b>Describing the Workload</b>
+<ul>
+	<li><b style="color:#32a852">Understand the workload</b></li>
+	<ul>
+		<li>What Query ?</li>
+    <li>Quantify the query (reads-writes/time)</li>
+    <li>Tolerance for the read-writes</li>
+	</ul>
+  <li><b style="color:#32a852">Data Staleness</b></li>
+	Identify the type of staleness for the tolerance
+  <ul>
+		<li>Must access latest version</li>
+    <li>Staleness is acceptable</li>
+    <li>Staleness as product from a secondary server or computation</li>
+	</ul>
+  <li><b style="color:#32a852">Sizing</b></li>
+	<ul>
+		<li>Calculate the size of the data set, how long to hold data for, r-w operations</li>
+	</ul>
+</ul>
+
+#### <b>Relationships</b>
+Need to identify if to embed or reference/link.
+<ul>
+	<li><b style="color:#32a852">Embedding</b></li>
+	<ul>
+		<li>No Foreign Key</li>
+    <li>No Integrity check needed</li>
+    <li>Cascading deletes is implicit</li>
+	</ul>
+  <li><b style="color:#32a852">Referencing/Linking</b></li>
+	<ul>
+		<li>Similar to RDBMS</li>
+    <li>Use <code>$lookup</code> to join documents</li>
+    <li>Use sub queries for the second collection</li>
+	</ul>
+</ul>
+
+#### <b>Rules</b>
+<ul>
+	<li><b style="color:#32a852">Constraint - physical constraints</b></li>
+	<ul>
+		<li>Reference - if "many" relationship is large</li>
+    <li>Reference - physical disk limitations</li>
+	</ul>
+  <li><b style="color:#32a852">Integrity - R-W to maintain consistency</b></li>
+	<ul>
+		<li>Embed - for read operations</li>
+    <li>Embed - for one-to-one & one-to-many relationships</li>
+    <li>Reference - for many-to-many relationships </li>
+	</ul>
+  <li><b style="color:#32a852">Data Expiration</b></li>
+	<ul>
+		<li>Embed - data that is deleted together at a given time</li>
+	</ul>
+  <li><b style="color:#32a852">Default - Embed > Reference </b></li>
+</ul>
+
+#### <b>Applying Patterns - GOTO M320</b>
+Just used to improve performance and migrate schemas. However be careful of data duplication and staleness
+
+### <b>Validation</b>
+<ul>
+	<li>Uses JSON schemes for validation</li>
+  <li>Includes the option to have required fields/types/values</li>
+  <li>Validate documents with multiple versions of schemas</li>
+  <li>Arrays and sub-documents are supported</li>
+</ul>
+
+
+### <b>Sharding</b>
+<ul>
+	<li>Shards contain a partition of the overall data</li>
+  <li>Contains the shard key to identify which shard to r/w operations from</li>
+  <li>Queries that do not use keys, will not scale</li>
+  <li>Consider when to use for r/w operation and how to scale</li>
+</ul>
+
+### <b>Data Integrity</b>
+<ul>
+	<li>Maintaining the accuracy and freshness of the data</li>
+  <li>Entities will always have a unique primary key assigned automatically</li>
+  <li>No support for foreign keys across collections</li>
+  <li>Foreign keys are not required in relationships modeled by embedding</li>
+  <li>Data is restricted to a type and set of values</li>
+  <li>Change streams for integrity checks automatically triggered on any changes</li>
+</ul>
 
 ---
 # MongoDB - M320 Notes

@@ -222,7 +222,7 @@ Bridges the gap between binary representation of the JSON format
 ### <b>Delete documents</b>
 
 ---
-<a name="mod1"></a>
+<a name="ch4"></a>
 ## <b>Chapter 4 - Advanced CRUD operations</b>
 
 

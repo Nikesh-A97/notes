@@ -1,5 +1,7 @@
 # MongoDB M001 Notes
 
+[ Chapter 4 ](#ch4)
+
 ## <b>Chapter 1 - What is MongoDB</b>
 
 ### <b>What is MongoDB</b>
@@ -220,8 +222,11 @@ Bridges the gap between binary representation of the JSON format
 ### <b>Delete documents</b>
 
 ---
-
+<a name="mod1"></a>
 ## <b>Chapter 4 - Advanced CRUD operations</b>
+
+
+
 
 ### <b>Query Operators</b>
 All query operators used the same syntax as
@@ -292,6 +297,8 @@ All query operators used the same syntax as
 
 
 ---
+
+
 
 # MongoDB - M100 Notes
 

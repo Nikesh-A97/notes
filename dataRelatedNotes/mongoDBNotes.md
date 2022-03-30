@@ -1,7 +1,14 @@
 # MongoDB M001 Notes
 
+[ Chapter 1 ](#ch1)
+
+[ Chapter 2 ](#ch2)
+
+[ Chapter 3 ](#ch3)
+
 [ Chapter 4 ](#ch4)
 
+<a name="ch1"></a>
 ## <b>Chapter 1 - What is MongoDB</b>
 
 ### <b>What is MongoDB</b>
@@ -43,6 +50,7 @@
 
 ---
 
+<a name="ch2"></a>
 ## <b>Chapter 2 Importing, Exporting & Querying Data</b>
 
 ### <b>What is a Valid JSON document</b>
@@ -166,6 +174,7 @@ Bridges the gap between binary representation of the JSON format
 
 ---
 
+<a name="ch3"></a>
 ## <b>Chapter 3 - Creating and Manipulating Documents</b>
 
 ### <b>ObjectID</b>

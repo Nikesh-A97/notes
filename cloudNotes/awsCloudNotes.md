@@ -78,13 +78,10 @@
 - A secure cloud platform that offers cloud-based products
 - Flexible and services work together as building blocks
 
-### Categories of AWS services
+### Categories of AWS services and covered in the course
 <p>
-<img src="diag/AWS_Services.png" width="572" height="273">
+<img src="diag/awsService.png" width="572" height="273">
 </p>
-
-### Covered in the course
-<img src="diag/AWS_Services_course.png" width="572" height="273">
 
 ### Ways to interact with AWS
 - AWS Management Console
@@ -185,12 +182,241 @@ The considerations are
   - Technical Account manager
 - Support Plans : Basic, Dev, Business and Enterprise
 
-
 --- 
 
 ## Module 3 : AWS Global Infrastructure Overview
 
 [ To the top ](#contents)
+
+### Global Infrastructure
+- Designed and built to deliver a flexible, reliable, scalable and secure cloud computing environment
+- Provides high quality global network performance
+
+### AWS Region
+- A geographical area
+- Consist of two or more Availability zones
+- An availability zone contains 1 ore more DC
+- Data is not replicated outside the given region
+
+### Selecting a Region
+- Consider the data governance and legal requirements restricts regions
+- Proximity to customers affect latency
+- Not all AWS services are available in every region
+- Costs vary by region
+
+### Availability Zones
+- Each zone is an isolated partition of the AWS infrastructure
+- Consists of discrete data centers
+- Designed for fault isolation
+- Interconnected by a private network
+- Recommend replicating data/resources across zones
+
+### AWS infrastructure features
+<ul>
+	<li><b style="color:#f08f18">Elasticity and scalability</b></li>
+	<ul>
+		<li>Dynamically adjust capacity and scalable to accommodate growth</li>
+	</ul>
+  <li><b style="color:#f08f18">Fault Tolerance</b></li>
+	<ul>
+		<li>Continues to operate in the presence of a failure</li>
+    <li>Built in redundancy</li>
+	</ul>
+  <li><b style="color:#f08f18">High Availability</b></li>
+	<ul>
+		<li>High level of operational performance</li>
+    <li>Minimal downtime</li>
+    <li>Little to no human intervention</li>
+	</ul>
+</ul>
+
+### AWS Storage Service Category
+<ul>
+	<li><b style="color:#f08f18">Amazon S3</b></li>
+	<ul>
+		<li>Service that offers scalability, data availability, security and performance</li>
+	</ul>
+  <li><b style="color:#f08f18">Amazon EBS</b></li>
+	<ul>
+		<li>High performance block storage designed to be used with EC2 for intensive workloads</li>
+	</ul>
+  <li><b style="color:#f08f18">Amazon EFS</b></li>
+	<ul>
+		<li>Scalable elastic network file system</li>
+	</ul>
+  <li><b style="color:#f08f18">Amazon Glacier</b></li>
+	<ul>
+		<li>Low cost AWS S3 storage class for data archiving and long term backup</li>
+	</ul>
+</ul>
+
+### AWS Compute Service Category
+<ul>
+	<li><b style="color:#f08f18">Amazon EC2</b></li>
+	<ul>
+		<li>Resizable compute capacity as VMs in the cloud</li>
+	</ul>
+  <li><b style="color:#f08f18">Amazon EC2 Auto Scaling</b></li>
+	<ul>
+		<li>Automatically add or remove EC2 instances as desired</li>
+	</ul>
+  <li><b style="color:#f08f18">Amazon ECS</b></li>
+	<ul>
+		<li>Scalable containers that support docker containers</li>
+	</ul>
+  <li><b style="color:#f08f18">Amazon EC2 Registry</b></li>
+	<ul>
+		<li>Make it easier to store, manage and deploy docker containers</li>
+	</ul>
+  <li><b style="color:#f08f18">Amazon Elastic Beanstalk</b></li>
+	<ul>
+		<li>Deploying and scaling web applications</li>
+	</ul>
+  <li><b style="color:#f08f18">Amazon EKS</b></li>
+	<ul>
+		<li>For applications that use Kubernetes on AWS</li>
+	</ul>
+  <li><b style="color:#f08f18">AWS Lambda</b></li>
+	<ul>
+		<li>Run code without provisioning or managing servers</li>
+	</ul>
+  <li><b style="color:#f08f18">AWS Fargate</b></li>
+	<ul>
+		<li>For ECS to run containers without managing clusters or servers</li>
+	</ul>
+</ul>
+
+### AWS Database Service Category
+<ul>
+	<li><b style="color:#f08f18">Amazon Relational DB (RDB) Service</b></li>
+	<ul>
+		<li>RDB in the cloud</li>
+	</ul>
+  <li><b style="color:#f08f18">Amazon Aurora</b></li>
+	<ul>
+		<li>MySQL and postgresSQL compatible RDB</li>
+	</ul>
+  <li><b style="color:#f08f18">Amazon Redshift</b></li>
+	<ul>
+		<li>Enables to run analytical queries against large sets of data</li>
+	</ul>
+  <li><b style="color:#f08f18">Amazon DynamoDB</b></li>
+	<ul>
+		<li>A K-V document noSQL DB</li>
+	</ul>
+</ul>
+
+### AWS Networking & Content Delivery Service Category
+<ul>
+	<li><b style="color:#f08f18">Amazon VPC</b></li>
+	<ul>
+		<li>Launch AWS resources in a virtual network you define</li>
+	</ul>
+  <li><b style="color:#f08f18">Elastic Load Balancing</b></li>
+	<ul>
+		<li>Automatically distribute incoming traffic across multiple targets such as EC2 or lambda</li>
+	</ul>
+  <li><b style="color:#f08f18">Amazon CloudFront</b></li>
+	<ul>
+		<li>A CDN that delivers data, videos, APIs, and more globally</li>
+	</ul>
+  <li><b style="color:#f08f18">AWS Transit Gateway</b></li>
+	<ul>
+		<li>Connect VPC and on-premise network to a centrally managed gateway</li>
+	</ul>
+  <li><b style="color:#f08f18">Amazon Route 53</b></li>
+	<ul>
+		<li>Cloud domain name system used to route end users to internet applications</li>
+	</ul>
+  <li><b style="color:#f08f18">AWS Direct Connect</b></li>
+	<ul>
+		<li>A dedicated private network connection from your own DCs to AWS</li>
+	</ul>
+  <li><b style="color:#f08f18">AWS VPN</b></li>
+	<ul>
+		<li>A VPN to the AWS global network</li>
+	</ul>
+</ul>
+
+### AWS Security, Identity & Compliance Service Category
+<ul>
+	<li><b style="color:#f08f18">AWS IAM</b></li>
+	<ul>
+		<li>Securely access AWS services and resources</li>
+	</ul>
+  <li><b style="color:#f08f18">AWS Organizations</b></li>
+	<ul>
+		<li>Manage multiple AWS accounts and restrict and manage services for accounts</li>
+	</ul>
+  <li><b style="color:#f08f18">Amazon Cognito</b></li>
+	<ul>
+		<li>Add user authentication to web and mobile applications</li>
+	</ul>
+  <li><b style="color:#f08f18">AWS Artifact</b></li>
+	<ul>
+		<li>Provides access to AWS security reports and online agreements</li>
+	</ul>
+  <li><b style="color:#f08f18">AWS Key Management Service</b></li>
+	<ul>
+		<li>Create and manage encryption keys, control encryption for all applications and services</li>
+	</ul>
+  <li><b style="color:#f08f18">AWS Shield</b></li>
+	<ul>
+		<li>Protection for DDoS on applications running on AWS</li>
+	</ul>
+</ul>
+
+### AWS Cost Management Service Category
+<ul>
+	<li><b style="color:#f08f18">AWS Cost and Usage Report</b></li>
+	<ul>
+		<li>Comprehensive AWS service costs and usage data</li>
+	</ul>
+  <li><b style="color:#f08f18">AWS Budgets</b></li>
+	<ul>
+		<li>Set custom budgets for AWS services and alerts</li>
+	</ul>
+  <li><b style="color:#f08f18">AWS Cost Explorer</b></li>
+	<ul>
+		<li>Visualize, understand and manage AWS service usage overtime</li>
+	</ul>
+</ul>
+
+### AWS Management & Governance Service Category
+<ul>
+	<li><b style="color:#f08f18">AWS Management Console</b></li>
+	<ul>
+		<li>Web based user interface used to manage your AWS account</li>
+	</ul>
+  <li><b style="color:#f08f18">AWS Config</b></li>
+	<ul>
+		<li>Track service inventory and changes</li>
+	</ul>
+  <li><b style="color:#f08f18">Amazon CloudWatch</b></li>
+	<ul>
+		<li>Monitor resources and applications</li>
+	</ul>
+  <li><b style="color:#f08f18">AWS Auto Scaling</b></li>
+	<ul>
+		<li>Automatically scale resources to meet demand</li>
+	</ul>
+  <li><b style="color:#f08f18">AWS CLI</b></li>
+	<ul>
+		<li>Unified tool to manage AWS services</li>
+	</ul>
+  <li><b style="color:#f08f18">AWS Trusted Advisor</b></li>
+	<ul>
+		<li>Optimize performance and security</li>
+	</ul>
+  <li><b style="color:#f08f18">AWS Well-Architected Tool</b></li>
+	<ul>
+		<li>Provides help to review and manage workloads</li>
+	</ul>
+  <li><b style="color:#f08f18">AWS Cloud Trail</b></li>
+	<ul>
+		<li>Tracks user activity and API usage across accounts</li>
+	</ul>
+</ul>
 
 --- 
 

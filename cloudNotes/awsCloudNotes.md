@@ -80,7 +80,7 @@
 
 ### Categories of AWS services
 <p>
-<img src="diag/AWS_Services.png" width="660" height="315">
+<img src="diag/AWS_Services.png" width="572" height="273">
 </p>
 
 ### Covered in the course

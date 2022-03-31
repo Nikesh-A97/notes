@@ -79,7 +79,9 @@
 - Flexible and services work together as building blocks
 
 ### Categories of AWS services
+<p>
 <img src="diag/AWS_Services.png" width="660" height="315">
+</p>
 
 ### Covered in the course
 <img src="diag/AWS_Services_course.png" width="660" height="315">

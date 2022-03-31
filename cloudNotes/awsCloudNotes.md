@@ -84,7 +84,7 @@
 </p>
 
 ### Covered in the course
-<img src="diag/AWS_Services_course.png" width="660" height="315">
+<img src="diag/AWS_Services_course.png" width="572" height="273">
 
 ### Ways to interact with AWS
 - AWS Management Console
@@ -126,6 +126,65 @@
 ## Module 2 : Cloud Economics & Billing
 
 [ To the top ](#contents)
+
+### AWS pricing model
+<ul>
+	<li><b style="color:#f08f18">Compute</b></li>
+	<ul>
+		<li>Charged per hour/second</li>
+    <li>Varies by instance</li>
+	</ul>
+  <li><b style="color:#f08f18">Storage</b></li>
+	<ul>
+		<li>Charged typically per GB</li>
+	</ul>
+  <li><b style="color:#f08f18">Data Transfer</b></li>
+	<ul>
+		<li>Outbound aggregated and charged</li>
+    <li>Inbound no charge</li>
+    <li>Charged typically per GB</li>
+	</ul>
+</ul>
+
+### Paying for AWS
+- Pay for what you use
+- Pay less when you reserver
+- Pay less when you use more (Tiered pricing)
+- No upfront expenses
+
+### Total Cost of Ownership (TCO)
+
+This is the financial estimate to help identify direct and indirect cost of a system.
+The considerations are
+- Server Costs
+- Storage Costs
+- Network Costs
+- IT Labor Costs
+
+### Pricing calculator
+- The estimates and costs of everything for AWS cloud
+- A bunch of benefits from reduced spending to agile business processes 
+
+### AWS Organizations
+- Account management service for multiple AWS accounts
+- OU - A branch for multiple accounts
+- Apply security and service polices for accounts
+- Create Organization -> Create Organization units -> Create service control policies -> Test restrictions
+- Can be accessed from AWS management console, AWS CLI, SDKs and APIs
+
+### AWS Billing
+- Just tools to look at billing with various tools that show what you are using
+- Tools : AWS -/ Budgets / Cost and Usage Report  / Cost Explorer
+
+### AWS Support
+- Account assistance
+  - AWS support concierge
+- Best practices
+  - AWS Trusted Advisor
+- Proactive guidance
+  - Technical Account manager
+- Support Plans : Basic, Dev, Business and Enterprise
+
 
 --- 
 

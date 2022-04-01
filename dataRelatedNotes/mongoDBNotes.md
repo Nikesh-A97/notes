@@ -1,14 +1,32 @@
+# MongoDB Notes
+---
+## Contents
+1. [MongoDB M001 Notes](#mongodb-m001-notes)
+   - [Chapter 1 - What is MongoDB](#bchapter-1---what-is-mongodbb)
+   - [Chapter 2 Importing, Exporting & Querying Data](#bchapter-2-importing-exporting--querying-datab)
+   - [Chapter 3 - Creating and Manipulating Documents](#bchapter-3---creating-and-manipulating-documentsb)
+   - [Chapter 4 - Advanced CRUD operations](#bchapter-4---advanced-crud-operationsb)
+2. [MongoDB M100 Notes](#mongodb---m100-notes)
+   - [Chapter 1 - Concepts of RMDBS and MongoDB](#bchapter-1---concepts-of-rmdbs-and-mongodbb)
+   - [Chapter 2 - Modelling for mongoDB](#bchapter-2---modelling-for-mongodbb)
+3. [MongoDB M320 Notes](#mongodb---m320-notes)
+   - [Patterns](#-bpatternsb)
+     - [Attribute](#battribute-patternb)
+     - [Extended Reference](#bextended-reference-patternb)
+     - [Subset](#bsubset-patternb)
+     - [Computed](#bcomputed-patternb)
+     - [Bucket](#bbucket-patternb)
+     - [Schema Versioning](#bschema-versioning-patternb)
+     - [Tree](#btree-patternsb)
+     - [Polymorphic](#bpolymorphic-patternb)
+     - [Approximation](#bapproximation-patternb)
+     - [Outlier](#boutlier-patternb)
+     - [Summary](#bsummaryb)
+
+
 # MongoDB M001 Notes
+[To the Top](#contents)
 
-[ Chapter 1 ](#ch1)
-
-[ Chapter 2 ](#ch2)
-
-[ Chapter 3 ](#ch3)
-
-[ Chapter 4 ](#ch4)
-
-<a name="ch1"></a>
 ## <b>Chapter 1 - What is MongoDB</b>
 
 ### <b>What is MongoDB</b>
@@ -50,7 +68,7 @@
 
 ---
 
-<a name="ch2"></a>
+
 ## <b>Chapter 2 Importing, Exporting & Querying Data</b>
 
 ### <b>What is a Valid JSON document</b>
@@ -174,7 +192,7 @@ Bridges the gap between binary representation of the JSON format
 
 ---
 
-<a name="ch3"></a>
+
 ## <b>Chapter 3 - Creating and Manipulating Documents</b>
 
 ### <b>ObjectID</b>
@@ -231,10 +249,8 @@ Bridges the gap between binary representation of the JSON format
 ### <b>Delete documents</b>
 
 ---
-<a name="ch4"></a>
+
 ## <b>Chapter 4 - Advanced CRUD operations</b>
-
-
 
 
 ### <b>Query Operators</b>
@@ -310,6 +326,7 @@ All query operators used the same syntax as
 
 
 # MongoDB - M100 Notes
+[To the Top](#contents)
 
 ## <b>Chapter 1 - Concepts of RMDBS and MongoDB</b>
 ### <b>Database Terminology</b>
@@ -460,6 +477,7 @@ Just used to improve performance and migrate schemas. However be careful of data
 
 ---
 # MongoDB - M320 Notes
+[To the Top](#contents)
 
 ## <b>Patterns</b>
 ---
@@ -1000,5 +1018,5 @@ To handle outliers in data
 ---
 
 
-### <b>Summary Pattern</b>
+### <b>Summary</b>
 <img src="diag/patterns-use-cases.png" width="576" height="521">

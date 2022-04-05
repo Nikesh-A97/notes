@@ -142,3 +142,104 @@
   CROSS JOIN B
   ON A.<col> = B.<col>
   ```
+
+## SQL Recap
+
+### Revenue & Analytics
+
+- <b style="color:#0FBAF1"> ROI - Return of Investment </b>
+  ```SQL 
+  WITH revenue AS (
+    SELECT
+      utm_campaign,                   /* Total made in revenue from users*/
+      SUM(amount) AS total_revenue       
+    FROM
+      purchases p
+    INNER JOIN
+      users u
+      ON
+        p.user_id = u.id              /* Join tables on id */
+        WHERE
+          refunded = FALSE            /* Remove refunds */
+          AND                       
+          utm_campaign IS NOT NULL    /* Remove NULLS */
+    GROUP BY
+      1                             
+  ), spends AS (
+    SELECT
+      utm_campaign,                   /* Total spent in marketing */
+      SUM(amount) AS total_spend
+    FROM
+      marketing_spends
+    GROUP BY
+      1
+  )
+
+  SELECT 
+    s.utm_campaign,                   /* ROI is the r - s / s  */
+    total_spend,
+    total_revenue,
+    (total_revenue - total_spend) / total_spend AS ROI
+    FROM 
+      spends s
+    LEFT JOIN 
+      revenues r
+      ON 
+        s.utm_campaign = r.utm_campaign
+  ```
+
+- <b style="color:#0FBAF1"> ARPU - Average Revenue per User </b>
+  ```SQL
+  /* Free and Paying Users are counted, only distinct ones are counted */
+  SELECT
+    SUM(amount) / COUNT(DISTINCT(u.id)) AS ARPU
+  FROM
+    users u
+  LEFT JOIN
+    purchase p
+    ON
+      u.id = p.user_id
+      AND
+      refunded = FALSE
+  WHERE
+    utm_campaign IS NOT NULL
+  ```
+
+- <b style="color:#0FBAF1"> CPA - Cost Per Acquisition</b>
+  ```SQL
+  WITH spends AS (
+    /* The amount spent on each source campaign */                  
+    SELECT
+      utm_source,
+      SUM(amount) AS total_spend
+    FROM
+      marketing_spends
+    GROUP BY 1
+  ), 
+    total_users AS (
+      /* The number of users that signed up with the source */
+      SELECT
+        utm_source,
+        COUNT(*) AS users_count
+      FROM
+        users
+      WHERE
+        utm_source IS NOT NULL
+      GROUP BY 1
+    )
+  
+  /* Join both tables together on the source and find the CPA */
+  SELECT
+    s.utm_source
+    total_spend / users_count AS CPA
+  FROM
+    spends s
+  INNER JOIN
+    total_users u
+    ON
+      s.utm_source = u.utm_source
+  ```
+- <b style="color:#0FBAF1"> CPA - Cost Per Acquisition</b>
+
+
+  

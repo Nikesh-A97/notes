@@ -769,6 +769,166 @@ Compliance programs can be categorized as
 
 [ To the top ](#contents)
 
+### Networking Concepts
+
+<h4 style="color:#f08f18"><b>IP Address</b></h4>
+<ul>
+  <li>A unique 4 decimal number separated by dots</li>
+  <li>IPv4 - 32 bit address - 192.168.0.1</li>
+  <li>IPv6 - 128 bit address - 2600:1af2: ... :00FF</li>
+</ul>
+
+<h4 style="color:#f08f18"><b>Classless Inter - Domain Routing (CIDR)</b></h4>
+<ul>
+  <li>A way to express a group of ip address consecutive to each other</li>
+</ul>
+<p><img src="diag/CIDR.png" width="510" height="189"></p>
+
+<h4 style="color:#f08f18"><b>Open System Interconnection (OSI) model</b></h4>
+<ul>
+  <li>Used to explain how communication takes place in the cloud and in the network</li>
+</ul>
+<p><img src="diag/OSI_model.png" width="660" height="266"></p>
+
+### Amazon VPC
+<ul>
+  <li>Launch AWS resources in a virtual network that is a logically isolated section of the AWS cloud </li>
+  <li>Control over you VN resources such as IP range, subnets and configs of route tables and network gateways</li>
+  <li>Use multiple layers of security</li>
+</ul>
+
+### VPCs & Subnets
+<p><img src="diag/VPC_Subnets.png" width="425" height="325"></p>
+<h4 style="color:#f08f18">VPCs</h4>
+<ul>
+	<li>Logically Isolated from other VPCs</li>
+  <li>Dedicated to you AWS account</li>
+  <li>Single AWS region - multiple AZs</li>
+</ul>
+
+<h4 style="color:#f08f18">Subnets</h4>
+<ul>
+	<li>Range of IP addresses that divide a VPC</li>
+  <li>Single AZ</li>
+  <li>Public or Private</li>
+</ul>
+
+### IP Addressing
+<ul>
+	<li>After creating a VPC, assign it to an IPv4 CIDR block (range of private IP address)</li>
+  <li>Cannot be change range after creating the VPC</li>
+  <li>IPv4 CIDR block size : min (/28) and max (/16) </li>
+  <li>IPv6 is supported </li>
+  <li>CIDR blocks of subnets cannot overlap </li>
+</ul>
+
+### Reserved IP Address
+<p><img src="diag/subnets.png" width="655" height=245"></p>
+
+
+### Public IP Address types
+<h4 style="color:#f08f18">Public IPv4</h4>
+<ul>
+	<li>Manually assigned through an elastic ip address</li>
+  <li>Automatically assigned at the subnet level by modifying properties</li>
+</ul>
+
+<h4 style="color:#f08f18">Elastic IP address</h4>
+<ul>
+	<li>A static public IPv4 address</li>
+  <li>Associated with an AWS account</li>
+  <li>Can be allocated and remapped anytime</li>
+  <li>Additional costs may apply, so release when no longer in use</li>
+</ul>
+
+### Elastic network interface
+<ul>
+	<li>A VN interface that you can ...</li>
+  <ul>
+		<li>Attach to an instance</li>
+    <li>Detach from an instance and attach to another in order to redirect network traffic</li>
+	</ul>
+  <li>Its attributes follow when re-attached</li>
+  <li>Each instance in your VPC has a default network interface that is assigned a private IPv4 address from a valid range</li>
+</ul>
+
+### Route Tables
+<ul>
+	<li>Contains configurable rules (routes) to direct network traffic</li>
+  <li>Specifies destination (VPC CIDR block) and a target</li>
+  <li>Every table contains a local route for internal communication within the VPC</li>
+  <li>Each subnet mus be associated with at most 1 route table</li>
+  <li>Multiple subnets can be assigned to a route table</li>
+</ul>
+
+### Creating an Amazon VPC
+Note that steps vary depending on requirements
+1. Create an elastic IP that is static and can be readable by the internet
+   - `Elastic IPs` ==> `Allocate new address`
+2. Create the VPC itself using the wizard 
+   - `VPC Dashboard` ==> `VPC with Public and Private Subnets`
+3. Fill in the required fields
+   - `VPC name` ==> fill in CIDRs, AZs & Subnet names ==> Fill in EIP from Step 1 ==> `Create VPC`
+
+
+### VPC networking
+
+### Internet Gateway
+Allows for communication between instance in VPC and the public internet
+<ul>
+	<li>Provides a target in route tables for internet traffic</li>
+  <li>Perform network address translations to instances that were assigned public IPs</li>
+  <li>Attach an internet gateway to the VPC then add a route table associated with the subnet</li>
+</ul>
+
+<p><img src="diag/natgw.png" width="762" height=351"></p>
+
+### Amazon Route 53
+<ul>
+	<li>Is a highly available and scalable DNS web service</li>
+  <li>Routes end users to internet apps by translating domain names into IP addresses</li>
+  <li>Compliant with IPv4 and IPv6</li>
+  <li>Connects requests to infrastructure running in and outside of AWS</li>
+  <li>Features traffic flow</li>
+  <li>Enables you to register domain names</li>
+</ul>
+
+### Amazon Route 53 Supported Routing
+<ul>
+	<li><b style="color:#f08f18">Simple</b></li>
+  <p>Used in single server environments</p>
+
+  <li><b style="color:#f08f18">Weighted</b></li>
+  <p>Assign weights to resource record sets to specify the frequency</p>
+  
+  <li><b style="color:#f08f18">Latency</b></li>
+  <p>Helps improve global applications</p>
+
+  <li><b style="color:#f08f18">Geo-location</b></li>
+  <p>Route traffic based on location of your users</p>
+
+  <li><b style="color:#f08f18">Geo-proximity</b></li>
+  <p>Route traffic based on location of your resources</p>
+
+  <li><b style="color:#f08f18">Failover</b></li>
+  <p>Fail over to a backup site if your primary site becomes unreachable</p>
+  
+  <li><b style="color:#f08f18">Multi-value answer</b></li>
+  <p>Respond to DNS queries with up to eight healthy records selected at random</p>
+</ul>
+
+### Amazon Route 53 DNS Failover
+<ul>
+	<li>Configure backup and failover scenarios for your own apps</li>
+  <li>Routes end users to internet apps by translating domain names into IP addresses</li>
+  <li>Enable multi-region architecture on AWS</li>
+  <li>Create health checks</li>
+</ul>
+
+### Amazon CloudFront
+
+
+
 --- 
 
 ## Module 6 : Compute

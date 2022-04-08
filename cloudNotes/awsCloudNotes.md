@@ -988,7 +988,7 @@ Allows for communication between instance in VPC and the public internet
 
 ### Amazon EC2 Launch Wizard
 
-#### Select an AMI
+<h4><b> 1. Select an AMI </b></h4>
 <ul>
 	<li><b style="color:#f08f18">Amazon Machine Image AMI</b></li>
 	<ul>
@@ -1007,7 +1007,7 @@ Allows for communication between instance in VPC and the public internet
 Creating an AMI
 <p><img src="diag/AMI.png" width="950" height=430"></p>
 
-#### Select an instance type
+<h4><b> 2. Select an instance type </b></h4>
 <ul>
 	<li><b style="color:#f08f18">Consider you use case</b></li>
 	<ul>
@@ -1027,6 +1027,181 @@ Creating an AMI
   <li><b style="color:#f08f18">Instance type offer family generation and size</b></li>
 </ul>
 
+#### Use case of an instance type
+<ul>
+	<li><b style="color:#f08f18">General Purpose</b></li>
+	<ul>
+		<li>Baseline CPU performance, web apps, dev environments, code repositories </li>
+	</ul>
+  <li><b style="color:#f08f18">Compute Optimized</b></li>
+  <ul>
+		<li>Scientific modelling, batch processing, scalable multi-player games, video encoding</li>
+	</ul>
+  <li><b style="color:#f08f18">Memory Oprtimized</b></li>
+  <ul>
+		<li>High performance DBs, data  mining and analysis, real time processes of unstructured big data</li>
+	</ul>
+</ul>
+
+<h4><b> 3. Specify network settings </b></h4>
+<ul>
+	<li><b style="color:#f08f18">Where should the instance be deployed</b></li>
+	<ul>
+		<li>Identify the VPC and optionally the subnet</li>
+    <li>Can also create VPCs or Subnets for instance</li>
+	</ul>
+  <li><b style="color:#f08f18">Should a public IP address be automatically assigned ?</b></li>
+  <ul>
+		<li>To make it internet - accessible</li>
+	</ul>
+</ul>
+
+<h4><b> 4. Attach an IAM role </b></h4>
+<b>Never store AWS credentials on an EC2 instance </b>
+<ul>
+	<li><b style="color:#f08f18">Will software on the EC2 instance need to interact with other AWS services ?</b></li>
+	<ul>
+		<li>Yes ? Then attach role</li>
+	</ul>
+  <li><b style="color:#f08f18">An AWS IAM role attached to EC2 is kept in an instance profile</b></li>
+  <li><b style="color:#f08f18">Can also attach a role to an instance that already exists</b></li>
+</ul>
+
+<h4><b> 5. User Data Script </b></h4>
+<ul>
+	<li><b style="color:#f08f18">Optional to define a user data script at launch</b></li>
+	<ul>
+		<li>Used to automatically install and configure at instance launch</li>
+    <li>Like fetch and install software, apply patches, etc</li>
+	</ul>
+</ul>
+
+<h4><b> 6. Specify Storage </b></h4>
+<ul>
+	<li><b style="color:#f08f18">Configure the root volume</b></li>
+	<ul>
+		<li>Where the guest OS is installed</li>
+	</ul>
+  <li><b style="color:#f08f18">Attach additional storage volumes (optional)</b></li>
+	<ul>
+		<li>AMI might already include more than one volume</li>
+	</ul>
+  <li><b style="color:#f08f18">Fore each volume, specify:</b></li>
+	<ul>
+		<li>The size of the disk (in GB)</li>
+    <li>Volume Type (SSDs or HDDs)</li>
+    <li>Volume is deleted when instance is terminated</li>
+    <li>If encryption should be used</li>
+	</ul>
+</ul>
+
+<h4> Storage Options </h4>
+<ul>
+	<li><b style="color:#f08f18">Amazon EBS</b></li>
+	<ul>
+		<li>Durable block level storage volumes</li>
+    <li>Can stop & and start instance and data will still be there</li>
+	</ul>
+  <li><b style="color:#f08f18">Amazon EC2 Instance store</b></li>
+	<ul>
+		<li>Storage is provided on disks that are attached to the host computer where the EC2 instance is running</li>
+    <li>If the instance stops, the data stored is deleted</li>
+	</ul>
+  <li><b style="color:#f08f18">Other options, not for root</b></li>
+	<ul>
+		<li>Mount an Amazon EFS file system</li>
+    <li>Connect to Amazon Simple Storage Service S3</li>
+	</ul>
+</ul>
+
+<h4><b> 7. Add Tags </b></h4>
+<ul>
+	<li><b style="color:#f08f18">A Label that you can assign to an AWS resource</b></li>
+	<ul>
+		<li>Consist of a key and an optional value</li>
+	</ul>
+  <li><b style="color:#f08f18">Tagging is used to attach metadata to an EC2 instance</b></li>
+  <li><b style="color:#f08f18">Potential benefits include automation, filtering, access control and cost allocation </b></li>
+</ul>
+
+
+<h4><b> 8. Security Groups </b></h4>
+<ul>
+	<li><b style="color:#f08f18">A set of firewall rules that control instance traffic</b></li>
+	<ul>
+		<li>It exists outside the instance's guest OS</li>
+	</ul>
+  <li><b style="color:#f08f18">Create rules that specify source ports that network communications can use</b></li>
+  <ul>
+		<li>Specify port number and protocols such as TCP and UDP</li>
+    <li>Specify the source for example an IP address or security group that is allowed to use th rule</li>
+    <li>By default the security group allows all outbound traffic.</li>
+	</ul>
+</ul>
+
+<h4><b> 9. Identify or create the key-pair </b></h4>
+Optional to include a key-pair before instance is launched.
+<ul>
+	<li><b style="color:#f08f18">At instance launch, specify an existing key-pair or create a new key pair</b></li>
+	<li><b style="color:#f08f18">A key pair consist of - </b></li>
+  <ul>
+		<li>A public key that AWS stores</li>
+		<li>A private key file that you store</li>
+	</ul>
+  <li><b style="color:#f08f18">It enables secure connections to the instance</b></li>
+  <li><b style="color:#f08f18">For Windows</b></li>
+  <ul>
+		<li>Use private key to obtain the admin password that you need to log into your instance</li>
+	</ul>
+  <li><b style="color:#f08f18">For Linux</b></li>
+  <ul>
+    <li>Ise the private key to use SSH to securely connect to your instance</li>
+	</ul>
+</ul>
+
+### Other EC2 launch options
+ - Can use AWS CLI to launch an instance programmatically
+
+### Amazon EC2 Instance lifecycle
+<p><img src="diag/ec2_lifecyle.png" width="790" height=420"></p>
+
+### Consider using an Elastic IP Address
+<ul>
+	<li><b style="color:#f08f18">Rebooting an instance does not change IP or DNS hostname</b></li>
+	<li><b style="color:#f08f18">When an instance is stopped and started again</b></li>
+  <ul>
+		<li>Public IPv4 address and external DNS hostname will change</li>
+		<li>The private IPv4 address and internal DNS hostname do not change</li>
+	</ul>
+  <li><b style="color:#f08f18">If a persistent public IP is required</b></li>
+  <ul>
+		<li>Associate an Elastic IP address with the instance</li>
+	</ul>
+  <li><b style="color:#f08f18">Elastic IP address characteristics</b></li>
+  <ul>
+		<li>Can be associated with the instance in the region as needed</li>
+    <li>Remains allocated to you account until you choose to release it</li>
+	</ul>
+</ul>
+
+### EC2 instance metadata
+<ul>
+	<li><b style="color:#f08f18">Data about your instance</b></li>
+	<li><b style="color:#f08f18">Can view it</b></li>
+  <ul>
+		<li>http://169.254.169.254/latest/meta-data/</li>
+	</ul>
+  <li><b style="color:#f08f18">Can be used to configure or manage a running instance</b></li>
+  <ul>
+		<li>For example author a config script that reads the metadata and uses it to configure application or OS settings</li>
+	</ul>
+</ul>
+
+### Amazon CloudWatch for monitoring
+<ul>
+	<li><b style="color:#f08f18">Used to monitor EC2 instance in real-time and maintains historical data</b></li>
+	<li><b style="color:#f08f18">Basic (free) and detailed (payed) monitoring</b></li>
+</ul>
 
 --- 
 

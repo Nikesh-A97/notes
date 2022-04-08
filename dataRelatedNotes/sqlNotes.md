@@ -282,8 +282,8 @@
   <li>For example, “the latest AB-test had an uplift of 15% in purchase rate”</li>
 </ul> 
 
-### Uplift
+### Cohort Size
 <ul>
-	<li>The name given to a value for a certain metric that has improved in the A-B test</li>
-  <li>For example, “the latest AB-test had an uplift of 15% in purchase rate”</li>
+	<li>The size of the group of people taking the A-B tests</li>
 </ul> 
+

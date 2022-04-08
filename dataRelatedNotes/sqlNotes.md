@@ -96,6 +96,14 @@
     WHERE
     tableCol::dataType <some condition>
   ```
+
+- <b style="color:#0FBAF1"> ROW_NUMBER() </b>
+  ```SQL
+  -- Returns the same amount of rows, groups them and assigns an index that depends on the grouping
+
+  ROW_NUMBER() OVER (PARTITION BY colName1)
+  ```
+
 - <b style="color:#0FBAF1"> Order of operations </b>
   ```SQL 
   /*
@@ -241,5 +249,41 @@
   ```
 - <b style="color:#0FBAF1"> CPA - Cost Per Acquisition</b>
 
+## AB Testing Vocab
 
-  
+### AB testing
+<ul>
+	<li>Testing two different versions of a variable.</li>
+  <li>For example 2 different versions of a webpage or website and testing various different features with users</li>
+</ul> 
+
+### Name and Launch Date
+<ul>
+	<li>An AB test has a name : X vs Y</li>
+  <li>A date that is associated with the tests in order to keep track of the tests</li>
+</ul> 
+
+### Variations, control variation
+<ul>
+	<li>Often A-B tests are run to test new features</li>
+  <li>Therefore one of the versions is a control variation that you compare against.</li>
+</ul> 
+
+### Categorization
+<ul>
+	<li>This is the process of showing users different variations</li>
+  <li>Behind the scenes users are randomly assigned to either use A or B versions of the variable</li>
+  <li>This allows to later use it for analysis</li>
+</ul> 
+
+### Uplift
+<ul>
+	<li>The name given to a value for a certain metric that has improved in the A-B test</li>
+  <li>For example, “the latest AB-test had an uplift of 15% in purchase rate”</li>
+</ul> 
+
+### Uplift
+<ul>
+	<li>The name given to a value for a certain metric that has improved in the A-B test</li>
+  <li>For example, “the latest AB-test had an uplift of 15% in purchase rate”</li>
+</ul> 

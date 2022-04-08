@@ -23,6 +23,7 @@
 - Pay-as-you-go pricing
 - Using computers/resources owned by the service provider
 - Think of it as software not hardware
+- Removes undifferentiated heavy lifting
 
 ### Hardware vs Software
 
@@ -41,6 +42,10 @@
 
 ### Cloud Service Models
 <img src="diag/cloudServiceModels.png" width="500" height="100">
+
+iass : raw resources
+pass : taken care of by the platform
+sass : infrastructure and platforms are taken
 
 ### Advantages of Cloud Computing
 <ul>
@@ -926,14 +931,102 @@ Allows for communication between instance in VPC and the public internet
 </ul>
 
 ### Amazon CloudFront
+<ul>
+	<li>Fast, global and secure CDN service</li>
+  <li>Global network of edge locations and regional edge caches</li>
+  <li>Self service model and pay-as-you-go</li>
+</ul>
 
-
+### Amazon CloudFront Infrastructure
+<ul>
+	<li><b style="color:#f08f18">Edge Locations</b></li>
+	<ul>
+		<li>Network of data centers that CloudFront uses to serve popular content quickly</li>
+	</ul>
+  <li><b style="color:#f08f18">Regional Edge Cache</b></li>
+	<ul>
+		<li>CloudFront location that caches content that is not popular enough</li>
+	</ul>
+</ul>
 
 --- 
 
 ## Module 6 : Compute
 
 [ To the top ](#contents)
+
+
+### Categorizing compute services
+<p><img src="diag/compute_services.svg" width="836" height=331"></p>
+
+#### Choosing the optimal compute services
+<ul>
+	<li><b style="color:#f08f18">Depends on use case</b></li>
+  <li><b style="color:#f08f18">Some Aspects to Consider</b></li>
+	<ul>
+		<li>What is  your application design ?</li>
+    <li>What are you usage patterns ?</li>
+    <li>What config settings do you want to manage</li>
+	</ul>
+  <li><b style="color:#f08f18">Selecting the wrong solution can lead to lower performance</b></li>
+</ul>
+
+### Amazon EC2 Overview
+<ul>
+	<li><b style="color:#f08f18">Amazon EC2</b></li>
+	<ul>
+		<li>Provides VMs referred to as EC2 instances in the cloud</li>
+    <li>Gives you full control over the guest OS on each instance</li>
+    <li>What config settings do you want to manage</li>
+	</ul>
+  <li><b style="color:#f08f18">Launch instance of any size into an AZ </b></li>
+  <ul>
+		<li>Launch instance from AMI and ready in minutes</li>
+	</ul>
+  <li><b style="color:#f08f18">Can control traffic to and from instances</b></li>
+</ul>
+
+### Amazon EC2 Launch Wizard
+
+#### Select an AMI
+<ul>
+	<li><b style="color:#f08f18">Amazon Machine Image AMI</b></li>
+	<ul>
+		<li>A template used to create an EC2 instance (a VM that runs in the AWS cloud)</li>
+    <li>Windows or Linux OS</li>
+    <li>Some software pre-installed</li>
+	</ul>
+  <li><b style="color:#f08f18">AMI choices</b></li>
+  <ul>
+		<li>Quick Start - Linux and Windows OS provided by AWS</li>
+    <li>MY AMIs - Your own AMI</li>
+    <li>AWS Marketplace - Pre-configured templates from third parties</li>
+    <li>Community AMIs = AMIs shared by others</li>
+	</ul>
+</ul>
+Creating an AMI
+<p><img src="diag/AMI.png" width="950" height=430"></p>
+
+#### Select an instance type
+<ul>
+	<li><b style="color:#f08f18">Consider you use case</b></li>
+	<ul>
+		<li>How will it be used ?</li>
+	</ul>
+  <li><b style="color:#f08f18">Instance ype that you choose determine</b></li>
+  <ul>
+		<li>Memory (RAM)</li>
+    <li>Processing POwer (CPU)</li>
+    <li>Disk Space and Type (Storage) </li>
+    <li>Network Performance</li>
+	</ul>
+  <li><b style="color:#f08f18">Instance type categories</b></li>
+  <ul>
+		<li>General purpose, Compute/Memory/Storage Optimized, Accelerated computing</li>
+	</ul>
+  <li><b style="color:#f08f18">Instance type offer family generation and size</b></li>
+</ul>
+
 
 --- 
 

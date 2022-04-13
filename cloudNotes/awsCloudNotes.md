@@ -1163,7 +1163,7 @@ Optional to include a key-pair before instance is launched.
  - Can use AWS CLI to launch an instance programmatically
 
 ### Amazon EC2 Instance lifecycle
-<p><img src="diag/ec2_lifecyle.png" width="790" height=420"></p>
+<p><img src="diag/ec2_lifecyle.png" width="70%" ></p>
 
 ### Consider using an Elastic IP Address
 <ul>
@@ -1209,11 +1209,216 @@ Optional to include a key-pair before instance is launched.
 
 [ To the top ](#contents)
 
+### Amazon EBS
+<ul>
+	<li>Persistent block storage, retains data (non-volatile storage)</li>
+	<li>Scalable within minutes</li>
+  <li>Offers block - level storage</li>
+  <li>Create individual volumes and attach to EC2 instance</li>
+  <li>Volumes are automatically replicated within its AZ</li>
+  <li>Can be backed up using Amazon S3 snapshots</li>
+</ul>
+
+### Block Storage VS Object storage
+There are two main storage options
+<p><img src="diag/block_vs_object.png" width="40%"></p>
+
+### Amazon Simple Storage Service S3
+<ul>
+	<li>Data is stored as objects in "buckets"</li>
+	<li>Virtually unlimited storage (single object max  is 5TB)</li>
+  <li>Designed for 11 9s of durability</li>
+  <li>Granular access to bucket and objects</li>
+</ul>
+
+### Amazon S3 Storage Classes
+<ul>
+	<li><b style="color:#f08f18">Standard</b></li>
+	<p>For frequently accessed data, and has high performance, durability and availability</p>
+  <li><b style="color:#f08f18">Intelligent-Tiering</b></li>
+	<p>Moves objects around to other storage classes, works well with data that has unknown access usage</p>
+  <li><b style="color:#f08f18">Standard - Infrequent Access</b></li>
+	<p>For long term storage and backup of data</p>
+  <li><b style="color:#f08f18">Standard - One zone - Infrequent Access</b></li>
+	<p>Data that is accessed less frequently but requires rapid access when needed</p>
+  <li><b style="color:#f08f18">Glacier</b></li>
+	<p>Low cost and durable for data archiving, where retrieval options are between minutes and hours</p>
+  <li><b style="color:#f08f18">Glacier Deep Archive</b></li>
+	<p>Designed for data that needs to be stored for a long period of time and accessed very rarely</p>
+</ul>
+
+### Amazon S3 bucket style
+- The path style endpoint is used to accesss objects
+- The virtual-hosted endpoint is used as static website data
+- Bucket names may only contain letters, numbers and dashes
+
+<p><img src="diag/bucket2.png" width="30%"></p>
+
+### Amazon S3 Pricing
+<ul>
+	<li><b style="color:#f08f18">You pay for</b></li>
+	<ul>
+		<li>GBs per month</li>
+		<li>Transfer OUT to other Regions</li>
+		<li>PUT, COPY, POST, LIST and GET request</li>
+	</ul>
+  <li><b style="color:#f08f18">You do not pay for</b></li>
+	<ul>
+		<li>Transfers IN to S3</li>
+		<li>Transfers OUT from S3 to Cloudfront or EC2 in the same region</li>
+	</ul>
+</ul>
+
+### Amazon S3 Storage Pricing
+
+<ul>
+	<li><b style="color:#f08f18">You pay for</b></li>
+	<ul>
+		<li>GBs per month</li>
+		<li>Transfer OUT to other Regions</li>
+		<li>PUT, COPY, POST, LIST and GET request</li>
+	</ul>
+  <li><b style="color:#f08f18">You do not pay for</b></li>
+	<ul>
+		<li>Transfers IN to S3</li>
+		<li>Transfers OUT from S3 to Cloudfront or EC2 in the same region</li>
+	</ul>
+</ul>
+
+### Amazon EFS
+- Shared elastic file storage in the AWS cloud
+- Scales easily and pay fo what you use
+- Works well for big data and analytics,  workflows, content management, web serving, etc.
+- Compatible with all Linux based AMIs for Amazon EC2
+- Supports NFS versions 4.0 & 4.1
+
+### Amazon EFS architecture
+- Create and mount file systems on EC2 instances
+- R/W data to and from file system
+- Concurrent access from multiple EC2 instances in VPC
+- Can access in the same region with multiple AZs
+
+### Amazon EFS implementation
+1. Create your Amazon EC2 resources and launch your Amazon EC2 instance
+2. Create your Amazon EFS file system
+3. Create you mount targets in the appropriate subnets
+4. Connect your Amazon EC2 instances to the mount targets
+5. Verify the resources and protection of your AWS account
+
+### Amazon Glacier
+Designed for data archiving
+- Provides 11 9s of durability
+- Supports encryption of data at rest and in transit
+- Vault Lock enforces compliance through a policy
+- Cannot retrieve immediately
+  - Standard (3-5 hours), bulk (5-12 hours), expedited (1-5 minutes)  
+- An archive is an object that is stored in the glacier
+- A vault is a container is a container for storing archives
+
+### Use cases
+- Media assets
+- Healthcare information
+- Regulatory and Compliance
+- Scientific data
+- Digital Preservation
+- Magnetic tape replacement
+
+### Lifecycle 
+Amazon S3 lifecycle policies enable you to delete or move objects based on age
+
+### Storage Classes
+<p><img src="diag/storage_classes.png" width="70%"></p>
+
 --- 
 
 ## Module 8 : Databases
 
 [ To the top ](#contents)
+
+### Amazon RDS
+You manage:
+- Application optimization
+
+AWS manages :
+- OS installation and patches
+- DB software installation and patches
+- DB backups
+- High Availability
+- Scaling
+- Power and stacking servers
+- Server maintenance
+
+### Amazon Dynamo DB
+- NoSQL DB tables
+- Virtually unlimited storage
+- Items can have differing attributes
+- Low - latency queries
+- Scalable read/write throughput 
+
+#### Core components
+- Tables
+  - A collection of data
+- Items 
+  - A group of attributes that is uniquely identifiable 
+- Attribute
+  - A fundamental element of the table  
+- Two keys, primary and partition
+
+### Amazon Redshift
+- Fully managed DW
+- Allows you to run complex SQL queries in parallel
+- Can automate the administrative tasks to manage, monitor and scale
+- Compatible with standard SQL connectors and BI tools or directly
+
+### Parallel Processing Architecture
+Consist of a  cluster of leader and compute nodes
+<ul>
+	<li><b style="color:#">Leader Node</b></li>
+	<ul>
+		<li>Manages communication with client programmes and compute nodes</li>
+    <li>Performs operations required to obtain results from complex queries</li>
+    <li>Compiles and assigns code to individual compute nodes</li>
+	</ul>
+  <li><b style="color:#">Compute Node</b></li>
+	<ul>
+		<li>Runs the compiled code</li>
+    <li>Sends the intermediate results to the leader for aggregation</li>
+	</ul>
+</ul>
+
+<p><img src="diag/redshift.png" width="45%"></p>
+
+### Amazon Redshift use cases
+<ul>
+	<li><b style="color:#f08f18">Enterprise data warehouse</b></li>
+	<ul>
+		<li>Migrate at a pace that customers are comfortable with</li>
+    <li>Experiment without a large upfront cost or commitment</li>
+    <li>Respond faster to business needs</li>
+	</ul>
+  <li><b style="color:#f08f18">Big Data</b></li>
+	<ul>
+		<li>Low price point for small customers</li>
+    <li>Managed service for ease of deployment and maintenance</li>
+    <li>Focus more on data and less on DB management</li>
+	</ul>
+  <li><b style="color:#f08f18">SaaS</b></li>
+	<ul>
+		<li>Scale the DW capacity as demand grows</li>
+    <li>Add analytic functionality to applications</li>
+    <li>Reduce hardware and software costs</li>
+	</ul>
+</ul>
+
+### Amazon Aurora
+- A MySQL and PostgreSQL compatible DB
+- Enterprise-class RDBMS
+- Designed to automate time-consuming tasks such as patching, backup, repair, etc.
+- Ideal solution for large relational DB sets
+- High availability and resilient design, by storing it at multiple AZs
+- Designed for instant crash recovery
+
+
 
 --- 
 
@@ -1221,6 +1426,218 @@ Optional to include a key-pair before instance is launched.
 
 [ To the top ](#contents)
 
+### Pillars
+
+#### Operational Excellence
+<ul>
+	<li><b style="color:#f08f18">Focus</b></li>
+	<ul>
+		<li>Run and monitor systems to deliver business value</li>
+    <li>Continually improve supporting processes and procedures</li>
+	</ul>
+  <li><b style="color:#f08f18">Key Topics</b></li>
+	<ul>
+		<li>Managing and automating changes</li>
+    <li>Respond to events</li>
+    <li>Defining standards to successfully manage daily operations</li>
+	</ul>
+</ul>
+
+#### Design Principles
+<ul>
+	<li><b style="color:#f08f18">Perform operations as code</b></li>
+	<p>Define your entire workload as code to limit human error and enable consist responses</p>
+	
+  <li><b style="color:#f08f18">Annotate Documentation</b></li>
+	<p>Annotate after every build</p>
+	
+  <li><b style="color:#f08f18">Make frequent, small reversible changes</b></li>
+	<p>Design workloads to enable components to be updated regularly and be reversible</p>
+	
+  <li><b style="color:#f08f18">Refine Operations procedures frequently</b></li>
+	<p>Improve features and update as they evolve</p>
+	
+  <li><b style="color:#f08f18">Anticipate failure</b></li>
+	<p>Identify potential sources of failure and test them</p>
+	
+  <li><b style="color:#f08f18">Learn from operational events and failures</b></li>
+	<p>Share what has been learnt across teams and organization</p>
+</ul>
+
+#### Security
+<ul>
+	<li><b style="color:#f08f18">Focus</b></li>
+	<ul>
+		<li>Protect information, systems and assets while delivering business value</li>
+    <li>Done through risk assessment and mitigation strategies</li>
+	</ul>
+  <li><b style="color:#f08f18">Key Topics</b></li>
+	<ul>
+		<li>Identify and managing who can do what</li>
+    <li>Establishing controls to detect security events</li>
+    <li>Protecting systems and services</li>
+    <li>Protecting confidentiality and integrity of data</li>
+	</ul>
+</ul> 
+
+#### Design Principles
+<ul>
+	<li><b style="color:#f08f18">Implement a strong identity foundation</b></li>
+	<p>Implement the principle of least privilege</p>
+	
+  <li><b style="color:#f08f18">Enable Traceability</b></li>
+	<p>Monitor, alert and audit changes in realtime using logs</p>
+	
+  <li><b style="color:#f08f18">Apply security at all layers</b></li>
+	<p>Apply defense in depth and security to all layers of architecture</p>
+	
+  <li><b style="color:#f08f18">Automate security best practices</b></li>
+	<p>Automate security mechanisms to securely scale rapidly and cost effectively</p>
+	
+  <li><b style="color:#f08f18">Protect data in transit and at rest</b></li>
+	<p>Classify data into sensitivity levels use mechanisms like encryption or tokenization</p>
+	
+  <li><b style="color:#f08f18">Keep people away from data</b></li>
+	<p>Create tools and mechanisms to remove the direct access to data</p>
+
+  <li><b style="color:#f08f18">Prepare for security events</b></li>
+	<p>Run incident response simulations and tools to detect recovery</p>
+</ul>
+
+#### Reliability
+<ul>
+	<li><b style="color:#f08f18">Focus</b></li>
+	<ul>
+		<li>Prevent and quickly recover from failures</li>
+	</ul>
+  <li><b style="color:#f08f18">Key Topics</b></li>
+	<ul>
+		<li>Setting up</li>
+    <li>Cross-project requirements</li>
+    <li>Recovery planning</li>
+    <li>Handling Change</li>
+	</ul>
+</ul> 
+
+#### Design Principles
+<ul>
+	<li><b style="color:#f08f18">Test Recovery Procedures</b></li>
+	<p>Test how your systems fails to prepare for real system failure</p>
+	
+  <li><b style="color:#f08f18">Automatically recover from failure</b></li>
+	<p>Monitor systems for key performance indicators and configure systems to auto recover</p>
+	
+  <li><b style="color:#f08f18">Scale horizontally to increase aggregate system availability</b></li>
+	<p>Split a large resource into multiple smaller resources to distribute requests</p>
+	
+  <li><b style="color:#f08f18">Stop guessing capacity</b></li>
+	<p>Automate the capacity to satisfy resource demands</p>
+	
+  <li><b style="color:#f08f18">Manage change in automation</b></li>
+	<p>Use automation to make changes to infrastructure</p>
+</ul>
+
+#### Performance Efficiency
+<ul>
+	<li><b style="color:#f08f18">Focus</b></li>
+	<ul>
+		<li>Use IT and computing resources efficiently to meet system requirements</li>
+		<li>Maintain efficiency as demand changes and technologies evolve</li>
+	</ul>
+  <li><b style="color:#f08f18">Key Topics</b></li>
+	<ul>
+		<li>Selecting the right resource types and sizes based on workload requirements</li>
+    <li>Monitoring Performance</li>
+    <li>Making informed decisions to maintain efficiency</li>
+	</ul>
+</ul> 
+
+#### Design Principles
+<ul>
+	<li><b style="color:#f08f18">Democratize advanced technologies</b></li>
+	<p>Consume technologies as a service</p>
+	
+  <li><b style="color:#f08f18">Go global in minutes</b></li>
+	<p>Deploy systems in multiple AWS regions to provide low latency</p>
+	
+  <li><b style="color:#f08f18">Use serverless architectures</b></li>
+	<p>Remove operational burden of running servers</p>
+	
+  <li><b style="color:#f08f18">Experiment more often</b></li>
+	<p>Perform comparative testing of instances and storage</p>
+	
+  <li><b style="color:#f08f18">Mechanical Sympathy</b></li>
+	<p>Use the best technology approach that aligns to what you need</p>
+</ul>
+
+#### Cost Optimization
+<ul>
+	<li><b style="color:#f08f18">Focus</b></li>
+	<ul>
+		<li>Run systems to deliver business value at the lowest price point</li>
+	</ul>
+  <li><b style="color:#f08f18">Key Topics</b></li>
+	<ul>
+		<li>Understanding and controlling when money is being spent</li>
+    <li>Selecting the most appropriate and right number of resource types</li>
+    <li>Analyzing spending over time</li>
+    <li>Scaling to meeting business needs without overspending</li>
+	</ul>
+</ul> 
+
+#### Design Principles
+<ul>
+	<li><b style="color:#f08f18">Adopt a consumption model</b></li>
+	<p>Pay for only what resources you require</p>
+	
+  <li><b style="color:#f08f18">Measure overall efficiency</b></li>
+	<p>Measure the business output of the workload and the costs for delivering it</p>
+	
+  <li><b style="color:#f08f18">Stop spending money on data center operations</b></li>
+	<p>AWS does it for you</p>
+	
+  <li><b style="color:#f08f18">Analyze and attribute expenditure</b></li>
+	<p>Identify system usage and costs</p>
+	
+  <li><b style="color:#f08f18">Use managed and application level services to reduce cost of ownership</b></li>
+	<p>Reduces the operation burden on some operations</p>
+</ul>
+
+#### Reliability
+- A measure of you system's ability to provide functionality when desired by the user
+- System includes all system components; hardware, firmware and software
+- Probability that you entire system will function as intended for a specified period
+- Mean time between failures is the total time in service over the number of failures
+<p><img src="diag/mtbf.png" width="40%"></p>
+
+#### Availability
+- Normal operation time / total time
+- A percentage of uptime over a time period (1 year)
+- Number of 9s so 4 9s = 99.99% availability
+
+#### High Availability
+- System can withstand some measures of degradation while still remaining available
+- Downtime is minimized
+- Minimal human intervention is required
+<p><img src="diag/avail.png" width="40%"></p>
+
+
+#### Factors that influence availability
+<ul>
+	<li><b style="color:#f08f18">Fault Tolerance</b></li>
+	<p>Built in redundancy of an application's components and its ability to remain operational</p>
+	
+  <li><b style="color:#f08f18">Scalability</b></li>
+	<p>The ability of an application to accommodate increases in capacity needs without changing design</p>
+	
+  <li><b style="color:#f08f18">Recoverability</b></li>
+	<p>The process, policies and procedures that are related to restoring service after a catastrophic event</p>
+</ul>
+
+### AWS Trusted Advisors
+- Online tool that provides real-time guidance to help you provision your resources following AWS best practices
+- Looks at you entire AWS environment and gives you real time recommendations in five categories
+  - Cost Optimization, Performance, Security, Fault Tolerance, Service Limits
 --- 
 
 ## Module 10 : Auto-Scaling and Monitoring

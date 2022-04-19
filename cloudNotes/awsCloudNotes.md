@@ -1619,7 +1619,7 @@ Consist of a  cluster of leader and compute nodes
 - System can withstand some measures of degradation while still remaining available
 - Downtime is minimized
 - Minimal human intervention is required
-<p><img src="diag/avail.png" width="40%"></p>
+<p><img src="diag/avail.png" width="50%"></p>
 
 
 #### Factors that influence availability
@@ -1643,5 +1643,98 @@ Consist of a  cluster of leader and compute nodes
 ## Module 10 : Auto-Scaling and Monitoring
 
 [ To the top ](#contents)
+
+### Elastic Load Balancing
+- Distributes incoming application or network traffic across multiple targets in a single or multiple AZs
+- Scales your load balancer as traffic to your application changes over time
+
+### Types of Load Balancers
+<p><img src="diag/elb.png" width="60%"></p>
+
+### How they work
+- With Application and Network Load Balancers, you register targets in target groups and route traffic to them.
+- With Classic Load Balancers, you register instances with the load balancer.
+- Load balancer performs health checks to monitor health of registered targets
+
+<p><img src="diag/load_balance.png" width="70%"></p>
+
+### Elastic Load Balancing use Cases
+- Highly available and fault-tolerant applications
+- Containerized applications
+- Elasticity and scalability
+- VPC
+- Hybrid Environments
+- Invoke Lambda functions over HTTP(s)
+
+### Load balancer monitoring
+<ul>
+	<li><b style="color:#">Amazon CloudWatch metrics</b></li>
+	<p>Used to verify that the system is performing as expected and uses alarms</p>
+	
+  <li><b style="color:#">Access Logs</b></li>
+	<p>Capture detailed information about requests sent to your load balancer</p>
+  
+  <li><b style="color:#">AWS CloudTrail Logs</b></li>
+	<p>Capture the who, what, when and where of API interactions in AWS services</p>
+</ul>
+
+### Amazon CloudWatch
+<ul>
+	<li><b style="color:#">Monitors</b></li>
+	<ul>
+		<li>AWS resources</li>
+		<li>Applications that run on AWS</li>
+	</ul>
+  <li><b style="color:#">Collects and Tracks</b></li>
+	<ul>
+		<li>Standard metrics</li>
+		<li>Custom metrics</li>
+	</ul>
+  <li><b style="color:#">Alarms</b></li>
+	<ul>
+		<li>Send notifications to an Amazon SNS topic</li>
+		<li>Perform Amazon EC2 Auto Scaling or actions</li>
+	</ul>
+  <li><b style="color:#">Events</b></li>
+	<ul>
+		<li>Define rules to match changes in AWS environment</li>
+		<li>Route these events to one or more targe functions or streams for processing</li>
+	</ul>
+</ul>
+
+### Amazon CloudWatch
+<ul>
+	<li><b style="color:#">Monitors</b></li>
+	<ul>
+		<li>AWS resources</li>
+		<li>Applications that run on AWS</li>
+	</ul>
+  <li><b style="color:#">Collects and Tracks</b></li>
+	<ul>
+		<li>Standard metrics</li>
+		<li>Custom metrics</li>
+	</ul>
+  <li><b style="color:#">Alarms</b></li>
+	<ul>
+		<li>Send notifications to an Amazon SNS topic</li>
+		<li>Perform Amazon EC2 Auto Scaling or actions</li>
+	</ul>
+  <li><b style="color:#">Events</b></li>
+	<ul>
+		<li>Define rules to match changes in AWS environment</li>
+		<li>Route these events to one or more targe functions or streams for processing</li>
+	</ul>
+</ul>
+
+### Amazon EC2 Auto - Scaling
+- Helps maintain application availability
+- Enables you to automatically add/remove EC2 instances according to defined conditions
+- Detects impaired EC2 instances and unhealthy applications and replaces the instances without your intervention
+- Provides several scaling options, manual scheduled dynamic or on demand and predictive
+- Collection of EC2 instances that are treated as a logical grouping for the purpose of auto scaling and management 
+
+### How it works
+<p><img src="diag/ec2_auto_scaling.png" width="70%"></p>
+
 
 ---

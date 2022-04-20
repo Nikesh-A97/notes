@@ -1428,7 +1428,9 @@ Consist of a  cluster of leader and compute nodes
 
 ### Pillars
 
-#### Operational Excellence
+<p><img src="diag/pillars.png" width="70%"></p>
+
+<h4><b style="">Operational Excellence</b></h4>
 <ul>
 	<li><b style="color:#f08f18">Focus</b></li>
 	<ul>
@@ -1464,7 +1466,7 @@ Consist of a  cluster of leader and compute nodes
 	<p>Share what has been learnt across teams and organization</p>
 </ul>
 
-#### Security
+<h4><b style="">Security</b></h4>
 <ul>
 	<li><b style="color:#f08f18">Focus</b></li>
 	<ul>
@@ -1504,7 +1506,7 @@ Consist of a  cluster of leader and compute nodes
 	<p>Run incident response simulations and tools to detect recovery</p>
 </ul>
 
-#### Reliability
+<h4><b style="">Reliability</b></h4>
 <ul>
 	<li><b style="color:#f08f18">Focus</b></li>
 	<ul>
@@ -1537,7 +1539,7 @@ Consist of a  cluster of leader and compute nodes
 	<p>Use automation to make changes to infrastructure</p>
 </ul>
 
-#### Performance Efficiency
+<h4><b style="">Performance efficiency</b></h4>
 <ul>
 	<li><b style="color:#f08f18">Focus</b></li>
 	<ul>
@@ -1570,7 +1572,7 @@ Consist of a  cluster of leader and compute nodes
 	<p>Use the best technology approach that aligns to what you need</p>
 </ul>
 
-#### Cost Optimization
+<h4><b style="">Cost optimization</b></h4>
 <ul>
 	<li><b style="color:#f08f18">Focus</b></li>
 	<ul>
@@ -1636,8 +1638,12 @@ Consist of a  cluster of leader and compute nodes
 
 ### AWS Trusted Advisors
 - Online tool that provides real-time guidance to help you provision your resources following AWS best practices
-- Looks at you entire AWS environment and gives you real time recommendations in five categories
-  - Cost Optimization, Performance, Security, Fault Tolerance, Service Limits
+- Provides insight in the following 5 areas :
+  - Cost Optimization 
+  - Performance 
+  - Security 
+  - Fault Tolerance 
+  - Service Limits
 --- 
 
 ## Module 10 : Auto-Scaling and Monitoring

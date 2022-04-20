@@ -2,7 +2,8 @@
 
 ## Commands
 
-- <b style="color:#0FBAF1"> SELECT </b> & <b style="color:#0FBAF1"> FROM </b>  
+- <h3><b style="color:#0FBAF1"> SELECT </b> & <b style="color:#0FBAF1"> FROM </b></h3>
+    
   ```SQL
   -- This query returns all (*) columns in the table tableName.
   SELECT * FROM tableName
@@ -122,34 +123,33 @@
 ---
 ## Joins
 
-- <b style="color:#0FBAF1"> INNER JOIN </b>
+<b style="color:#0FBAF1"> Syntax for joining</b>
   ```SQL 
-  SELECT *
-  FROM A
-  INNER JOIN B
-  ON A.<col> = B.<col>
+  SELECT 
+    *
+  FROM 
+    table_A a
+  <INNER / LEFT / RIGHT/ CROSS> JOIN 
+    table_B b
+  ON 
+    a.<col> = b.<col>
+    AND
+      <conditions>...
   ```
-- <b style="color:#0FBAF1"> LEFT JOIN </b>
-  ```SQL 
-  SELECT *
-  FROM A
-  LEFT JOIN B
-  ON A.<col> = B.<col>
-  ```
-- <b style="color:#0FBAF1"> RIGHT JOIN </b>
-  ```SQL 
-  SELECT *
-  FROM A
-  RIGHT JOIN B
-  ON A.<col> = B.<col>
-  ```
-- <b style="color:#0FBAF1"> CROSS JOIN </b>
-  ```SQL 
-  SELECT *
-  FROM A
-  CROSS JOIN B
-  ON A.<col> = B.<col>
-  ```
+
+<b style="color:#0FBAF1"> LEFT JOIN</b>
+
+<img src="diag/left_in_join.png" width="15%">
+
+<b style="color:#0FBAF1"> RIGHT JOIN</b>
+
+<img src="diag/right_in_join.png" width="15%">
+
+<b style="color:#0FBAF1"> INNER JOIN</b>
+
+<img src="diag/in_join.png" width="15%">
+
+----
 
 ## SQL Recap
 
@@ -287,3 +287,241 @@
 	<li>The size of the group of people taking the A-B tests</li>
 </ul> 
 
+----
+
+## SQL and Regex
+- Regular expressions differ slightly in SQL DBs but pattern syntax is the same (POSIX).
+- The boolean operator for matching regex in for PostgreSQL or Redshift is `~`
+
+<h3>Tilde (<b style="color:#0FBAF1"> ~ </b>)</h3>
+
+- Filters depending on the regex pattern that was used
+
+  ```SQL
+  SELECT
+    *
+  FROM
+    table_name
+  WHERE
+    table_col ~ '<regex_pattern>'
+  ```  
+
+<h3><b style="color:#0FBAF1"> SUBSTRING </b><b>(<code>text_input</code>, <code>regex</code>)</b></h3>
+
+- Extract a part of a text that matches the regex
+  ```SQL
+  -- The example below will return 'xyz.com'
+  SELECT
+    SUBSTRING('abc@xyz.com', '@(\w+.\w)')
+  ```
+
+<h3><b style="color:#0FBAF1"> REGEXP_REPLACE </b><b>(<code>text_input</code>, <code>regex</code>, <code>new_text</code>)</b></h3>
+
+- Replace a part of the text that matches the regex
+
+  ```SQL
+  -- The example below will return '***@xyz.com'
+  SELECT
+    REGEXP_REPLACE('abc@xyz.com', '(.+)@', '***@')
+  ```
+
+<h3><b style="color:#0FBAF1"> REGEXP_MATCHES </b><b>(<code>text_input</code>, <code>regex</code>)</b></h3>
+
+- All groups returned matched by a regex
+
+  ```SQL
+  -- The example below will return '{foo,bar}'
+  SELECT
+    REGEXP_MATCHES('foobar', '(foo)(bar)')
+  ```
+  ```SQL
+  -- The example below will return '{foo,NULL}'
+  SELECT
+    REGEXP_MATCHES('foo', '(foo)(bar)?')
+  ```
+
+- Non - matching group
+  ```SQL
+  -- The example below will return '{foo}'
+  SELECT
+    REGEXP_MATCHES('foobar', '(foo)(?:bar)')
+  ```
+  ```SQL
+  -- The example below will return '{foo}'
+  SELECT
+    REGEXP_MATCHES('foo', '(foo)(?:bar)?')
+  ```
+
+<h3><b style="color:#0FBAF1"> SPLIT_PART </b><b>(<code>text_input</code>, <code>delimiter</code>, <code>part_to_select</code>)</b></h3>
+
+- Selects the part you want to keep that is separated by the delimiter
+  ```SQL
+  -- The example below will return 'def'
+  SELECT
+    SPLIT_PART('abc,def,ghi', ',', 2)
+  ```
+
+
+
+<h3>Caret (<b style="color:#0FBAF1"> ^ </b>)</h3>
+
+- Matches the start of the text
+  ```SQL
+  -- The example below will return 'abc'
+  SELECT
+    SUBSTRING('abc@xyz.com', '^\w+')
+  ```
+- Negation if used inside `[]`
+  ```SQL
+  -- The example below will return '@'
+  SELECT
+    SUBSTRING('abc123@xyz.com', '[^\w]')
+  ```
+
+<h3>Dollar sign (<b style="color:#0FBAF1"> $ </b>)</h3>
+
+- Matches the end of text
+
+  ```SQL
+  -- The example below will return 'net'
+  SELECT
+    SUBSTRING('abc@xyz.net', '[^\w+]')
+  ```
+
+<h3>Dot (<b style="color:#0FBAF1"> . </b> )</h3>
+
+- Matches any character
+
+  ```SQL
+  -- The example below will return 'ab'
+  SELECT
+    SUBSTRING('abc@xyz.net', '.b')
+  ```
+
+<h3>Backslash (<b style="color:#0FBAF1"> \ </b>)</h3>
+
+- A special character used for escaping other characters and other cases
+
+  - `\n` : new line
+  - `\d` : any digit (`[0-9]`)
+  - `\D` : any non - digit (`[^0-9]`)
+  - `\w` : any word character (`[a-zA-Z0-9_]`)
+
+```SQL
+SELECT
+  SUBSTRING()
+```
+
+<h3>Curly brackets (<b style="color:#0FBAF1"> { } </b>)</h3>
+
+- Used to specify a range
+
+  - `a{n}` : exactly `n` number of <b>a</b> characters 
+  - `a{n, }` : `n`  or more <b>a</b> characters 
+  - `a{n, m}` : between `n` and `m` , <b>a</b> characters inclusive
+
+```SQL
+SELECT
+  SUBSTRING()
+```
+
+<h3>Question mark, Asterisk, Plus (<b style="color:#0FBAF1"> ? </b>, <b style="color:#0FBAF1"> + </b>, <b style="color:#0FBAF1"> * </b>)</h3>
+
+- Used to specify a range
+
+  - `?` : matches previous token either 0 or 1 times 
+  - `*` : matches previous token between 0 and &#8734;
+  - `+` : matches previous token between 1 and &#8734;
+
+```SQL
+SELECT
+  SUBSTRING()
+```
+
+<h3>Square Brackets (<b style="color:#0FBAF1"> [ ] </b>)</h3>
+
+- Set of characters to match a single character
+- Can define a range of characters
+
+```SQL
+SELECT
+  -- The example below will return 'aclg'
+  SUBSTRING('aclgeohn', '[a-l]+')
+```
+
+<h3>Parentheses (<b style="color:#0FBAF1"> ( ) </b>)</h3>
+
+- Define a group of characters
+- Allows special characters to be attached
+- Multiple search patterns within a single regex and can be manipulated separately
+
+  - `(<expr>)` : matches the first instance of the expression 
+
+```SQL
+SELECT
+  SUBSTRING()
+```
+
+<h3>Pipe (<b style="color:#0FBAF1"> | </b>)</h3>
+
+- Logical OR
+- Specify multiple search patterns in a single group
+```SQL
+SELECT
+  SUBSTRING()
+```
+
+----
+## SQL at Work
+
+- <b style="color:#0FBAF1"> 1 = 1 </b>
+  ```SQL
+  -- Use 1 = 1 to easily comment conditions to not let 'AND's hang
+  SELECT 
+    *
+  FROM 
+    tableA
+  WHERE
+    1 = 1
+    AND
+    tableCol1 <op> condition
+    AND
+    ...
+  ```
+
+  - <b style="color:#0FBAF1"> RANDOM() </b>
+  ```SQL
+  -- Generates a random number between [0, 1)
+  SELECT 
+    RANDOM() as random_number
+  ```
+
+----
+
+## Manipulating and updating tables
+
+- <b style="color:#0FBAF1"> INSERT INTO </b>
+  ```SQL
+  -- Generates a random number between [0, 1)
+  INSERT INTO users (email, first_name, last_name, country)
+  VALUES ('foo@example.org', 'Foo', 'Foo', 'by'), 
+          ('bar@example.org', 'Bar', 'Bar', 'us');
+  ```
+
+- <b style="color:#0FBAF1"> UPDATE </b>
+  ```SQL
+  UPDATE users
+  SET 
+    signup_date = created_at::date,
+    status = 'free'
+  WHERE
+    id IN (8391, 8392)
+  ```
+
+- <b style="color:#0FBAF1"> UPDATE </b>
+  ```SQL
+  DELETE 
+  FROM users
+  WHERE
+    id IN (8391, 8392)
+  ```

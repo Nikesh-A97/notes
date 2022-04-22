@@ -1,124 +1,218 @@
+<style>
+  img[alt$="#width30"]{
+  width: 30%;
+}
+  img[alt$="#width20"]{
+  width: 20%;
+}
+</style>
 # SQL Notes
 
 ## Commands
 
 - <h3><b style="color:#0FBAF1"> SELECT </b> & <b style="color:#0FBAF1"> FROM </b></h3>
+  
     
   ```SQL
-  -- This query returns all (*) columns in the table tableName.
-  SELECT * FROM tableName
+  -- This query returns all (*) columns in the table : table_A.
+  SELECT 
+    * 
+  FROM 
+    table_A
+  ```
 
-  -- This query returns specified table columns in tableName.
-  SELECT tableCol1, tableCol2, ... FROM tableName
-  ```
-- <b style="color:#0FBAF1"> WHERE </b>
   ```SQL
-  -- Returns the table with all columns but with the specified condition by WHERE
-  SELECT * FROM tableName WHERE tableCol = someValue
+  -- This query returns specified table columns in table_A.
+  SELECT 
+    column_1, 
+    column_2, ... 
+  FROM 
+    table_A
   ```
-- <b style="color:#0FBAF1"> ORDER BY </b> 
+- <h3><b style="color:#0FBAF1"> WHERE </b></h3>
+ 
+  ```SQL
+  -- Returns the table with all columns but filtered by the conditions in the WHERE clause
+  SELECT 
+    * 
+  FROM 
+    table_A 
+  WHERE 
+    <conditions>
+  ```
+- <h3><b style="color:#0FBAF1"> ORDER BY </b></h3>
+  
   ```SQL
   -- By default , the ordering will be ASC
   -- orders the table elements according to colName
-  SELECT * FROM tableName ORDER BY colName (ASC/DESC)
+  SELECT 
+    * 
+  FROM 
+    table_A 
+  ORDER BY 
+    column_name (ASC/DESC)
+  ```
+  ```SQL
+  -- First orders column_1 then while retaining the order, it will sort column_2
+  SELECT 
+    * 
+  FROM 
+    tableName 
+  ORDER BY 
+    column_1 ASC 
+    column_2 DESC
+  ```
+- <h3><b style="color:#0FBAF1"> LIMIT </b></h3>
+  
+  ```SQL
+  -- Limits the table to the number specified (does not modify actual table, just how you view it)
+  SELECT 
+    * 
+  FROM 
+    table_A 
+  LIMIT 10
+  ```
+- <h3><b style="color:#0FBAF1"> MIN </b></h3>
+  
+  ```SQL
+  -- find the minimum value of the specified column
+  SELECT 
+    MIN(column_name) 
+  FROM 
+    table_A
+  ```
 
-  -- First orders by tCol1 then keeps that order and orders the sub rows by tCol2
-  SELECT * FROM tableName ORDER BY tCol1 ASC tCol2 DESC
-  ```
-- <b style="color:#0FBAF1"> LIMIT </b>
+- <h3><b style="color:#0FBAF1"> MAX </b></h3>
+   
+
   ```SQL
-  -- Limits the table to the number specified
-  SELECT * FROM tableName LIMIT 10
+  -- find the maximum value of the specified column
+  SELECT 
+    MAX(column_name) 
+  FROM 
+    table_A
   ```
-- <b style="color:#0FBAF1"> MIN </b> & <b style="color:#0FBAF1"> MAX </b>  
+
+- <h3><b style="color:#0FBAF1"> COUNT </b></h3>
+ 
   ```SQL
-  -- find the min value of the table col
-  SELECT MIN/MAX(tableCol) FROM tableName
+  -- aggregates and counts the number of rows in the specified column
+  -- Can also add conditions inside the COUNT( ) clause for further filtering
+  SELECT 
+    COUNT(*) 
+  FROM 
+    table_A
   ```
-- <b style="color:#0FBAF1"> COUNT </b>
+- <h3><b style="color:#0FBAF1"> AND </b></h3>
+ 
   ```SQL
-  -- returns the number of records 
-  SELECT COUNT(*) FROM tableName
+  -- chain multiple AND conditions 
+  SELECT 
+    * 
+  FROM 
+    table_A 
+  WHERE 
+    column_1 <op> condition_1 
+    AND 
+    column_2 <op> condition_2 
+    .
+    .
+    .
   ```
-- <b style="color:#0FBAF1"> AND </b>
+- <h3><b style="color:#0FBAF1"> BETWEEN </b></h3>
+ 
   ```SQL
-  -- chain multiple conditions 
-  SELECT COUNT(*) FROM tableName WHERE tableCol1 <op> condition1 AND tableCol2 <op> condition2
-  ```
-- <b style="color:#0FBAF1"> AND </b>
-  ```SQL
-  -- chain multiple conditions 
-  SELECT COUNT(*) FROM tableName WHERE tableCol1 <op> condition1 AND tableCol2 <op> condition2
-  ```
-- <b style="color:#0FBAF1"> BETWEEN </b>
-  ```SQL
-  -- between is inclusive
-  SELECT COUNT(*) FROM tableName 
+  -- BETWEEN is inclusive
+  SELECT 
+    COUNT(*) 
+  FROM
+    table_A 
+  WHERE 
+    column_1 BETWEEN condition_1 AND condition_2
+  
+  -- Is the same as
+  SELECT 
+    COUNT(*) 
+  FROM 
+    table_A 
     WHERE 
-      tableCol1 BETWEEN condition1 AND condition2
-  -- is the same as
-  SELECT COUNT(*) FROM tableName 
-    WHERE 
-      tableCol1 >= condition1 AND 
-      tableCol1 <= condition2
+      column_1 >= condition_1 
+      AND 
+      column_2 <= condition_2
   ```
 - <b style="color:#0FBAF1"> AS </b>
   ```SQL
-  -- use an alias
+  -- Use an alias
   SELECT 
-    tableCol1 AS tableRowNewName
-    FROM tableName
+    column_name AS column_new_name
+  FROM 
+    table_A
   ```
-- <b style="color:#0FBAF1"> CASE, WHEN, THEN, ELSE </b>
+- <h3><b style="color:#0FBAF1"> CASE WHEN THEN ELSE </b></h3>
+ 
   ```SQL
   -- create a new table col with own name and values that depend on conditions
   SELECT 
     CASE
       WHEN condition_1 THEN result_1
+      .
+      .
+      .
       WHEN condition_n THEN result_n
       ELSE default_result
-    END AS aTableColName
-  FROM tableName
+    END AS column_name
+  FROM 
+    table_A
   ```
-- <b style="color:#0FBAF1"> WITH </b> and <b style="color:#0FBAF1"> AS </b> 
+- <h3><b style="color:#0FBAF1"> WITH </b> and <b style="color:#0FBAF1"> AS </b></h3>
+  
   ```SQL
-  -- Returns a sub-table of tableName called newTable with respect to the condition of WHERE
-  WITH newTable  AS (
-    SELECT * FROM tableName WHERE tableCol1 = someValue
+  -- Can use a sub-table that is created with an SQL SELECT-FROM query
+  -- The example below can have anything inside the WITH - AS to create a sub - table
+  WITH table_B  AS (
+    SELECT 
+      * 
+    FROM 
+      table_A 
+    WHERE 
+      <condition>
   )
-  SELECT * FROM newTable
-  ```
-- <b style="color:#0FBAF1"> :: </b>
-  ```SQL
-  -- Casts the given tableCol current data type to the given dataType
+
   SELECT 
-  COUNT(*)
-    FROM tableName
-    WHERE
-    tableCol::dataType <some condition>
+    * 
+  FROM 
+    table_B
   ```
-
-- <b style="color:#0FBAF1"> ROW_NUMBER() </b>
+- <h3> Cast (<b style="color:#0FBAF1"> :: </b>)</h3>
+ 
   ```SQL
-  -- Returns the same amount of rows, groups them and assigns an index that depends on the grouping
-
-  ROW_NUMBER() OVER (PARTITION BY colName1)
+  -- Casts the given column_name current data type to the given dataType
+  SELECT 
+    COUNT(*)
+  FROM 
+    table_A
+  WHERE
+    column_name::dataType <some condition>
   ```
 
-- <b style="color:#0FBAF1"> Order of operations </b>
+- <h3> <b style="color:#0FBAF1"> Order of operations </b> </h3>
+  
   ```SQL 
   /*
     Order of execution
     FROM --> WHERE --> GROUP BY --> SELECT --> DISTINCT --> ORDER BY --> LIMIT
   */
   SELECT
-  country,
-  COUNT(*) AS users_count
-  FROM users
+    *
+  FROM 
+    table_A
   WHERE
-    country IN ('us', 'ca', 'gb', 'au', 'at', 'de', 'ch')
-  GROUP BY country
-  ORDER BY users_count DESC
+    <conditions>
+  GROUP BY 
+    column_1
+  ORDER BY 
+    column_2 
+  LIMIT 20
   ```
 ---
 ## Joins
@@ -129,7 +223,7 @@
     *
   FROM 
     table_A a
-  <INNER / LEFT / RIGHT/ CROSS> JOIN 
+  <INNER / LEFT / RIGHT / CROSS> JOIN 
     table_B b
   ON 
     a.<col> = b.<col>
@@ -139,15 +233,29 @@
 
 <b style="color:#0FBAF1"> LEFT JOIN</b>
 
-<img src="diag/left_in_join.png" width="15%">
+![left_join #width20](diag/left_in_join.png)
 
 <b style="color:#0FBAF1"> RIGHT JOIN</b>
 
-<img src="diag/right_in_join.png" width="15%">
-
+![right_join #width20](diag/right_in_join.png)
+	
 <b style="color:#0FBAF1"> INNER JOIN</b>
 
-<img src="diag/in_join.png" width="15%">
+![in_join #width20](diag/in_join.png)
+
+----
+
+## Window Functions
+
+- <h3><b style="color:#0FBAF1"> ROW_NUMBER </b> ( )</h3>
+ 
+  ```SQL
+  -- Returns the same amount of rows, groups them and assigns an index that depends on the grouping
+  SELECT
+    ROW_NUMBER() OVER (PARTITION BY colName1)
+  FROM
+    table_A
+  ```
 
 ----
 

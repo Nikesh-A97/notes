@@ -38,14 +38,47 @@
 
 - Thinking of it as software, select services that match needs required 
 - Pay for what you use, and use it when you need to
-- Flexible with scaling capacity
+- Flexible with scaling capacity  
 
 ### Cloud Service Models
 <img src="diag/cloudServiceModels.png" width="500" height="100">
 
-iass : raw resources
-pass : taken care of by the platform
-sass : infrastructure and platforms are taken
+<ul>
+	<li><b style="color:#f08f18">IaaS</b></li>
+	<ul>
+		<li>Services for cloud IT such as networking features or data storage space</li>
+		<li>Provides you with the highest level of flexibility and control of your resources</li>
+	</ul>
+	<li><b style="color:#f08f18">PaaS</b></li>
+	<ul>
+		<li>Services that reduce the need to manage underlying infrastructure (hardware and OS)</li>
+		<li>Allows you to focus on the deployment of you applications</li>
+	</ul>
+	<li><b style="color:#f08f18">SaaS</b></li>
+	<ul>
+		<li>Services that provide you with a completed product that the provider manages</li>
+		<li>An example would be web-based-email where you do not manage extra features or maintain the servers and OS</li>
+	</ul>
+</ul>
+
+### Deployment models
+<ul>
+	<li><b style="color:#f08f18">Cloud</b></li>
+	<ul>
+		<li>Fully deployed in the cloud</li>
+		<li>Can be built on low level infrastructure or higher-level services that provide abstraction</li>
+	</ul>
+	<li><b style="color:#f08f18">Hybrid</b></li>
+	<ul>
+		<li>A way to connect infrastructure & applications between cloud based models</li>
+		<li>Allows you to focus on the deployment of you applications</li>
+	</ul>
+	<li><b style="color:#f08f18">On-premises</b></li>
+	<ul>
+		<li>Deploying resources on premise ("private cloud")</li>
+		<li>Does not [</li>
+	</ul>
+</ul>
 
 ### Advantages of Cloud Computing
 <ul>

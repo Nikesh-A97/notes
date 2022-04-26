@@ -250,6 +250,26 @@ The considerations are
 - Interconnected by a private network
 - Recommend replicating data/resources across zones
 
+### AWS Data Centers
+- They are designed for security
+- Where data lives and is processed
+- Each DC is separate and has redundant power, networking and connectivity
+- 50k - 80k physical servers
+
+#### DCs Design
+- Mitigate environmental risk
+- Anticipates and tolerates failure
+- Critical components are backed up across multiple AZs
+- DC locations are confidential
+- If failure occurs, the traffic of data is diverted
+
+### Points of Presence
+- PoP locations around the globe
+- Consists of edge locations and regional edge caches
+- Routes requests by measuring connectivity, performance and computing
+- Provides better real-time user experience
+- Content that is not used frequently is absorbed by regional edge caches
+
 ### AWS infrastructure features
 <ul>
 	<li><b style="color:#f08f18">Elasticity and scalability</b></li>
@@ -268,6 +288,12 @@ The considerations are
     <li>Little to no human intervention</li>
 	</ul>
 </ul>
+
+### Key takeaways
+- Global Infrastructure consists of Regions and AZs
+- Choice of Region depends on your needs such as compliance requirements or to reduces latency
+- Each AZ is physically independent of one another
+- Performance for users is improved by caching content 
 
 ### AWS Storage Service Category
 <ul>
@@ -385,6 +411,8 @@ The considerations are
 	</ul>
 </ul>
 
+^4cce0e
+
 ### AWS Security, Identity & Compliance Service Category
 <ul>
 	<li><b style="color:#f08f18">AWS IAM</b></li>
@@ -470,6 +498,8 @@ The considerations are
 ## Module 4 : AWS Cloud Security
 
 [ To the top ](#contents)
+
+<p><img src="diag/AWS_SRM.png" width="70%"></p>
 
 ### AWS responsibility: Security of the cloud
 AWS are responsible for protecting ...
@@ -609,6 +639,8 @@ You can assign both types of access.
   <li><b style="color:#f08f18">Scope for IAM service configs is global across AWS Regions</b></li>
 </ul>
 
+^42dea5
+
 ### Policies
 <ul>
 	<li><b style="color:#f08f18">A JSON document that lists and defines permissions</b></li>
@@ -688,7 +720,7 @@ The basic structure of the statements in an IAM Policy is:
 1. Create an <b> IAM user </b> for yourself while logged in as the root user.
    - Enable MFA for root user for more security
 2. Create an <b> IAM group </b>, add the user(you) to the group and give full admin perms
-3. If your account has <b>root access keys</b>, disable and remove them
+3. If your account has <b>root access keys</b>, disable and remove them ^9310af
 4. <b>Enable</b> a <b>password policy</b> for all users
    - Recommended to have MFA requirement enabled for all users
 5. Sign in with the <b>IAM user</b> credentials (the one you created in the first step)
@@ -1172,6 +1204,8 @@ Creating an AMI
 	</ul>
 </ul>
 
+^815dd0
+
 <h4><b> 9. Identify or create the key-pair </b></h4>
 Optional to include a key-pair before instance is launched.
 <ul>
@@ -1235,6 +1269,91 @@ Optional to include a key-pair before instance is launched.
 	<li><b style="color:#f08f18">Used to monitor EC2 instance in real-time and maintains historical data</b></li>
 	<li><b style="color:#f08f18">Basic (free) and detailed (payed) monitoring</b></li>
 </ul>
+
+### Amazon EC2 Pricing Models
+
+<ul>
+	<li><b style="color:#f08f18">On-Demand Instances</b></li>
+	<ul>
+		<li>Pay by the hour</li>
+		<li>No long term commitments</li>
+		<li>Eligible for the AWS Free Tier</li>
+	</ul>
+  <li><b style="color:#f08f18">Dedicated Hosts</b></li>
+	<ul>
+		<li>EC2 instanced server dedicated for your use</li>
+	</ul>
+  <li><b style="color:#f08f18">Dedicated Instances</b></li>
+	<ul>
+		<li>Isolated instances for a single customer that runs on the VPC</li>
+	</ul>
+  <li><b style="color:#f08f18">Reserved Instances</b></li>
+	<ul>
+		<li>Prices are fixed with either full, partial or no upfront costs</li>
+		<li>Hourly charges are discounted</li>
+		<li>1 or 3 year term</li>
+	</ul>
+  <li><b style="color:#f08f18">Scheduled Reserved Instances</b></li>
+	<ul>
+		<li>Reserve instances that recur on a daily, weekly or monthly basis</li>
+		<li>Only for a 1 year term</li>
+	</ul>
+  <li><b style="color:#f08f18">Spot Instances</b></li>
+	<ul>
+		<li>Request unused EC2 instances </li>
+		<li>Prices fluctuate that depend on supply and demand</li>
+		<li>The instances run when you outbid the market price</li>
+		<li>Better to use if you want to save as prices are less than on-demand instances</li>
+	</ul>
+</ul>
+
+#### Amazon EC2 Pricing Model : Benefits
+<ul>
+	<li><b style="color:#f08f18">On-Demand Instances</b></li>
+	<ul>
+		<li>Flexible and low cost</li>
+	</ul>
+  <li><b style="color:#f08f18">Spot Instances</b></li>
+	<ul>
+		<li>Large scale at a significantly discounted price</li>
+	</ul>
+  <li><b style="color:#f08f18">Reserved Instances</b></li>
+	<ul>
+		<li>For when you have predictable or steady-state compute needs</li>
+	</ul>
+  <li><b style="color:#f08f18">Dedicated Hosts</b></li>
+	<ul>
+		<li>When there are licensing restrictions or have compliance or regulatory requirements</li>
+	</ul>
+</ul>
+
+#### Amazon EC2 Pricing Model : Use Cases
+<ul>
+	<li><b style="color:#f08f18">On-Demand Instances</b></li>
+	<ul>
+		<li>Short term workloads</li>
+		<li>Application development & testing</li>
+	</ul>
+  <li><b style="color:#f08f18">Spot Instances</b></li>
+	<ul>
+		<li>Applications that are flexible and can tolerate short downtimes</li>
+		<li>Urgent computing needs for large amounts of additional capacity</li>
+	</ul>
+  <li><b style="color:#f08f18">Reserved Instances</b></li>
+	<ul>
+		<li>Long term and predictable workloads</li>
+		<li>Applications that you know will run in a consistent way for a long time</li>
+	</ul>
+  <li><b style="color:#f08f18">Dedicated Hosts</b></li>
+	<ul>
+		<li>For when you have per - socket/core/VM software licenses</li>
+		<li>To control instance placement</li>
+	</ul>
+</ul>
+<p><img src="diag/EC2_pricing_model_use_cases.png" width="60%" ></p>
+
+### Pillars of Cost Optimization
+<p><img src="diag/cost_opti_pillars.png" width="40%" ></p>
 
 --- 
 
@@ -1764,6 +1883,8 @@ Consist of a  cluster of leader and compute nodes
 		<li>Route these events to one or more targe functions or streams for processing</li>
 	</ul>
 </ul>
+
+^a8c75f
 
 ### Amazon EC2 Auto - Scaling
 - Helps maintain application availability

@@ -1355,6 +1355,222 @@ Optional to include a key-pair before instance is launched.
 ### Pillars of Cost Optimization
 <p><img src="diag/cost_opti_pillars.png" width="40%" ></p>
 
+
+
+#### Right - Size
+There are approximately 60 instance types and sizes so choose the right balance of instance types
+<ul>
+	<li><b style="color:#f08f18">Provision instances to match needs</b></li>
+	<ul>
+		<li>Select the most relevant and cheapest instances that meet your needs</li>
+		<li>Consider CPU, memory and network throughout and use load-testing to your advantage to size correctly</li>
+	</ul>
+  <li><b style="color:#f08f18">Amazon CloudWatch metrics</b></li>
+	<ul>
+		<li>Use this to monitor and downsize unused computing resources and instances</li>
+	</ul>
+  <li><b style="color:#f08f18">Right Size - Then Reserve</b></li>
+</ul>
+
+#### Increase Elasticity
+Design you deployments to be elastic in order to reduce the idle time of instances
+<ul>
+	<li><b style="color:#f08f18">Stop / Hibernate EBS instances that are not in use</b></li>
+	<ul>
+		<li>Saves costs by stopping non-production or development environments</li>
+	</ul>
+  <li><b style="color:#f08f18">Use auto-scaling</b></li>
+	<ul>
+		<li>Automatic scaling policies can help with peak capacity, by dynamically changing sizes</li>
+	</ul>
+</ul>
+
+#### Optimal Pricing Model
+Design you deployments to be elastic in order to reduce the idle time of instances
+<ul>
+	<li><b style="color:#f08f18">Right pricing model for your use case</b></li>
+	<ul>
+		<li>Save costs by mix-matching multiple instance types for your needs</li>
+	</ul>
+  <li><b style="color:#f08f18">Example : </b></li>
+	<ul>
+		<li>On-Demand/Spot instances for variable workloads</li>
+		<li>Reserved instances for predictable workloads</li>
+	</ul>
+  <li><b style="color:#f08f18">Consider serverless (AWS Lambda)</b></li>
+</ul>
+
+#### Optimize storage
+Design you deployments to be elastic in order to reduce the idle time of instances
+<ul>
+	<li><b style="color:#f08f18">Resize EBS volumes</b></li>
+	<ul>
+		<li>This reduces costs by resizing to suit storage capacity needs</li>
+	</ul>
+  <li><b style="color:#f08f18">Delete Snapshots</b></li>
+	<ul>
+		<li>Delete unused or redundant snapshots to save costs</li>
+	</ul>
+  <li><b style="color:#f08f18">Pick suitable storage option</b></li>
+	<ul>
+		<li>Can save costs if application is able to use cheaper storage such as S3 instead of EBS</li>
+	</ul>
+</ul>
+
+#### Measure, monitor and improve
+- Use tagging to provide helpful information resource usage
+- Use AWS cost explorer to encourage teams to architect with costs in mind
+- AWS Trusted Advisor for best practices
+
+
+### Containers
+
+#### Container Basics
+- Containers are a method of operating system virtualization
+- Does not contain entire OS, but share virtualized OS and resources are isolated
+- Contains all resources for software to run
+- Containers are consistent as everything inside a single object
+- Quick and easy to launch and terminate application compared to VMs regardless of environment
+
+#### Docker
+- Build, test and deploy applications quickly into any environment
+- Containers are created from <i>images</i> which are templates
+- Contains <text style="color:#f08f18"> bins/libs </text>, <text style="color:#f08f18"> system tools </text>, <text style="color:#f08f18"> code </text>, <text style="color:#f08f18"> runtime environments </text>
+
+#### Containers VS VMs
+<p><img src="diag/containers_vs_vms.png" width="75%" ></p>
+
+<ul>
+	<li><b style="color:#f08f18">Right side of diagram</b></li>
+	<ul>
+		<li>The EC2 instance has a docker engine and containers</li>
+    <li>Each application runs in its own container --> process isolation</li>
+    <li>Docker engine manages how containers are run</li>
+	</ul>
+  <li><b style="color:#f08f18">Left side of the diagram</b></li>
+	<ul>
+		<li>Each application has its own EC2 instance</li>
+		<li>This provides the process isolation as each instance is independent of one another</li>
+	</ul>
+</ul>
+
+#### Amazon Elastic Container Service
+Container management service that supports Docker containers
+<ul>
+	<li><b style="color:#f08f18">Key benefits</b></li>
+	<ul>
+		<li>Eliminates complexity of the infrastructure</li>
+    <li>Highly-scalable</li>
+    <li>Monitor, manage and schedule containers </li>
+	</ul>
+  <li><b style="color:#f08f18">Integrate features</b></li>
+	<ul>
+		<li>Elastic Load Balancing</li>
+		<li>Amazon EC2 security groups</li>
+		<li>Amazon EBS volumes</li>
+		<li>IAM roles</li>
+	</ul>
+</ul>
+
+#### Amazon ECS orchestrates containers
+Container management service that supports Docker containers
+<ul>
+	<li><b style="color:#f08f18">Tasks</b></li>
+	<ul>
+		<li>Create task defn. that describes container(s)</li>
+    <li>Tasks are instantiation of task defn.</li>
+    <li>A task runs between 1-10 containers</li>
+    <li>Places them on an ECS cluster</li>
+	</ul>
+</ul>
+
+#### Amazon ECS cluster options
+<p><img src="diag/ecs_cluster.png" width="60%" ></p>
+
+- Amazon ECS cluster backed by EC2 for more control
+- Amazon ECS cluster backed by Fargate to focus on your applications
+
+#### Kubernetes
+<ul>
+	<li><b style="color:#f08f18">An open source software for container orchestration</b></li>
+	<ul>
+		<li>Can be used on premise or in the cloud</li>
+		<li>Manage containerized applications at scale</li>
+	</ul>
+  <li><b style="color:#f08f18">Complements Docker</b></li>
+	<ul>
+		<li>Docker enables you to run multiple containers on a single OS</li>
+		<li>Kubernetes orchestrates multiple Docker hosts</li>
+	</ul>
+  <li><b style="color:#f08f18">Automates - </b></li>
+	<ul>
+		<li>Container provisioning</li>
+		<li>Networking</li>
+		<li>Load Distribution</li>
+		<li>Scaling</li>
+	</ul>
+</ul>
+
+#### Amazon Elastic Kubernetes Service
+- Can run Kubernetes on AWS
+- Supports both Linux and Windows containers
+- Supports kubernetes addons and community tools
+- Manage clusters of EC2 instances
+- Run Kubernetes controlled containers on those instances
+
+#### Amazon Elastic Container Registry
+- A registry that makes it easy to manage and deploy Docker container images
+- Supports team collaboration, access control and third party integration
+
+### AWS Lambda Service
+AWS $\lambda$ is a serverless computer service
+<p><img src="diag/aws_lambda.png" width="70%" ></p>
+
+<ul>
+	<li><b style="color:#f08f18">Supports multiple programming languages</b></li>
+	<ul>
+		<li>Java, Go, Powershell, C#, etc.</li>
+		<li>Use any native or third party library</li>
+	</ul>
+	<li><b style="color:#f08f18">Automated administration</b></li>
+	<ul>
+		<li>Manages infrastructure to run your code</li>
+		<li>Does all the admin, maintenance and patches </li>
+	</ul>
+	<li><b style="color:#f08f18">Run multiple Lambda functions</b></li>
+	<ul>
+		<li>For complex tasks and workflows by using step functions</li>
+		<li>Build stateful, long running processes for applications and backends</li>
+	</ul>
+  <li><b style="color:#f08f18">Pay for what you use</b></li>
+	<ul>
+		<li>Billing is in increments of 100ms</li>
+		<li>Easy to scale request and make them cost effective</li>
+	</ul>
+</ul>
+
+#### AWS Lambda Quotas
+<ul>
+	<li><b style="color:#f08f18">Soft limits per Region</b></li>
+	<ul>
+		<li>Concurrent executions = 1,000</li>
+		<li>Function and layer storage = 75 GB</li>
+	</ul>
+	<li><b style="color:#f08f18">Hard limits for individual functions</b></li>
+	<ul>
+		<li>Maximum function memory allocation = 10,240 MB</li>
+		<li>Function timeout = 15 mins</li>
+		<li>Deployment package size = 250 MB unzipped, including layers</li>
+		<li>Container image code package size = 10 GB</li>
+	</ul>
+</ul>
+
+#### AWS Lambda example
+An example that shows the usage of AWS Cloud Watch to start and stop instances at pre-defined times automatically
+
+<p><img src="diag/aws_lambda_example.png" width="70%" ></p>
+
+
 --- 
 
 ## Module 7 : Storage
@@ -1480,6 +1696,8 @@ Amazon S3 lifecycle policies enable you to delete or move objects based on age
 
 ### Storage Classes
 <p><img src="diag/storage_classes.png" width="70%"></p>
+
+
 
 --- 
 

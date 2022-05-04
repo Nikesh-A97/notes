@@ -1,11 +1,11 @@
 # AWS Cloud notes
 
 ## Contents
-  - [Module 1 : Cloud Concepts Overview](#module-1--cloud-concepts-overview)
-  - [Module 2 : Cloud Economics & Billing](#module-2--cloud-economics--billing)
-  - [Module 3 : AWS Global Infrastructure Overview](#module-3--aws-global-infrastructure-overview)
-  - [Module 4 : AWS Cloud Security](#module-4--aws-cloud-security)
-  - [Module 5 : Networking and Content Delivery](#module-5--networking-and-content-delivery)
+  - [Module 1 : Cloud Concepts Overview](#module-1--cloud-concepts-overview) [[awsCloudNotes#Module 1 Cloud Concepts Overview|obs --> link]]
+  - [Module 2 : Cloud Economics & Billing](#module-2--cloud-economics--billing) [[awsCloudNotes#Module 2 Cloud Economics Billing|obs --> link]]
+  - [Module 3 : AWS Global Infrastructure Overview](#module-3--aws-global-infrastructure-overview) [[awsCloudNotes#Module 3 AWS Global Infrastructure Overview|obs --> link]]
+  - [Module 4 : AWS Cloud Security](#module-4--aws-cloud-security) [[awsCloudNotes#Module 4 AWS Cloud Security|obs --> link]]
+  - [Module 5 : Networking and Content Delivery](#module-5--networking-and-content-delivery) [[awsCloudNotes#Module 5 Networking and Content Delivery|obs --> link]]
   - [Module 6 : Compute](#module-6--compute)
   - [Module 7 : Storage](#module-7--storage)
   - [Module 8 : Databases](#module-8--databases)

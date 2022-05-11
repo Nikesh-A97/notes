@@ -17,7 +17,7 @@
 - Can be used by any component as they are not linked to a component  
 - Used to configure different components with the same schema
 
-##### Updating metadat
+##### Updating metadata
 - Any updated changes to repo metadata  can be propagated to all Components and Jobs using it
 - Must select the Components to update
 - Can isolate the component from update, this changes the property type to built in

@@ -5,6 +5,15 @@
 - Used to maintain synchronization
 - It is impractical to dump and load entire DB to update so CDC is used instead
 ----
+##### When is a CDC used ?
+- When you have so much datat that is no longer practical to dump and load the entire DBs
+- Key benefits
+	- Time
+	- Compute resources
+	- Memory
+	- Network bandwidth
+---
+
 ##### CDC Architecture
 ![[cdc_1.png]]
 ![[cdc_3.png]]

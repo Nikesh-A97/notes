@@ -37,6 +37,11 @@
 - False
 - <span style="color:#32A852">True </span>
 
+
+#### Developers can connect to remote projects when permissions are granted in Talend Administration Center
+- False
+- <span style="color:#32A852">True </span>
+
 ----
 
 ## Jobs
@@ -66,6 +71,13 @@
 - Depending on various factors it can speed up or slow down the Job
 
 
+#### Where in Talend Studio can you find Joblets?
+- Repository --> Metadata --> Joblet Designs
+- <span style="color:#32A852">Repository --> Joblet Designs</span>
+- Repository --> Code --> Joblet Designs
+- <span style="color:#32A852">Pallette --> Joblet Designs</span>
+
+
 ----
 
 ## Parallelization
@@ -86,15 +98,29 @@
 
 ## CDC
 
-#### At Job Runtime a developer wants to **execute** only a **section of subjobs** in **parallel**, what component should be added to the Job workspace?
-- `tpartioner`
-- <code style="color:#32A852">tParallelize</code>
-- `tRowGenerator`
-- `tDepartitioner`
+#### What is the default mode of a CDC components in Studio
+- Xstream
+- <code style="color:#32A852">Trigger</code>
+  - The trigger mode is mostly used for maintaining the integrity of the information on the DB
+- Parallelization
+- Redo/archive job
 
+#### Where in Talend Studio can you store change data capture connections to be used in job
+- Xstream
+- <code style="color:#32A852">Trigger</code>
+  - The trigger mode is mostly used for maintaining the integrity of the information on the DB
+- Parallelization
+- Redo/archive job
 
-#### Automatic parallelization divides the Job execution into multiple threads using four steps, partition --> collect --> de-partition --> and recollect ?
-- <span style="color:#32A852">True </span>
-- False
+----
+
+## Components
+
+#### Which statement defines a <code>tRowGenerator</code> component ?
+- Generates and sends threads to the components that follow it for parallel execution
+- <span style="color:#32A852">Generates as many records as requrired using random values take from a list</span>
+- Generates and sends threads using random values taken from list
+- Generates and dispatches input records into a specific number of threads
+
 
 ----

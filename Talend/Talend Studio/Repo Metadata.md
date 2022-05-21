@@ -23,7 +23,7 @@
 - Can isolate the component from update, this changes the property type to built in
 - Manually changing property type cuts the link
 - Configuration still remains in the component after being cut
-- Run impact analysis to see  links between metadata and components
+- Run impact analysis to see links between metadata and components
 - Duplicate repo if metadata is regularly updated
 - Use context variables in metadata defn. so settings update according to selected context
 

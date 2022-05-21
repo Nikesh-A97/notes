@@ -1872,6 +1872,8 @@ Consist of a  cluster of leader and compute nodes
   <li><b style="color:#f08f18">Keep people away from data</b></li>
 	<p>Create tools and mechanisms to remove the direct access to data</p>
 
+^f3bd21
+
   <li><b style="color:#f08f18">Prepare for security events</b></li>
 	<p>Run incident response simulations and tools to detect recovery</p>
 </ul>

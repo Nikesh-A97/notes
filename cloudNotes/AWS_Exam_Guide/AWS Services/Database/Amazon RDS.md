@@ -1,0 +1,24 @@
+# Amazon RDS
+----
+- Used to bild and operate RDBMS
+- Suited for OLTP
+- Supports the following DB engines
+	- SQL Server, 
+	- PostgreSQL, 
+	- Amazon Aurora, 
+	- MYSQL, 
+	- MaraiDB, 
+	- Oracle
+	- Unsupported DBs can be deployed on EC2 instances
+- Provides read replicas
+- Tasks that need to be taken care of manually...
+	- Encryption and Security
+	- Updates and Backups
+	- Distaster Recovery
+- AWS KMSS provides encryption at rest for
+	- RDS instances
+	- DB snapshopts
+	- DB instance storage
+	- Read Replicas
+- Only scales up for compute and storage, cannot downsize
+- Provides multi-AZ and read replicas  

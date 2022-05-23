@@ -1,0 +1,11 @@
+# AWS Secrets Manager
+---
+- Prevents secret credentials from being hardcoded in source code
+- Accessed using the following ways
+	- AWS Management Console
+	- AWS CL tools
+	- AWS SDKs
+	- HTTPS Query API
+- Rotates credentials for AWS services with Lambda
+- Ensures in-transit encryption of the secret between AWS and the system to retrieve the secret
+- Integrates with CloudTrail and CloudWatch

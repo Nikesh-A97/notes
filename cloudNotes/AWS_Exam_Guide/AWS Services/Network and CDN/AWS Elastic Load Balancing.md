@@ -1,5 +1,3 @@
-
-
 # AWS ELB
 ---
 - Allows traffic to get distributed across EC2 instances containers and virtual appliances

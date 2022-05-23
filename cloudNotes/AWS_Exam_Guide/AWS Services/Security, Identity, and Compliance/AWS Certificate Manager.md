@@ -15,4 +15,6 @@
 - Multi - Domain SSL Cert
 - Unified Cert
 
-##### 
+##### Deploy X.509 Certs
+- ACM - Customers who need secure and public web presence
+- ACM Private - Private use within an org

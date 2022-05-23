@@ -1585,6 +1585,8 @@ An example that shows the usage of AWS Cloud Watch to start and stop instances a
   <li>Create individual volumes and attach to EC2 instance</li>
   <li>Volumes are automatically replicated within its AZ</li>
   <li>Can be backed up using Amazon S3 snapshots</li>
+  <li>Independently attached --> data won't be erased if it terminates</li>
+  <li>Uses AWS KMS with AES-256 Encryption</li>
 </ul>
 
 ### Block Storage VS Object storage
@@ -1621,21 +1623,6 @@ There are two main storage options
 - Bucket names may only contain letters, numbers and dashes
 
 <p><img src="diag/bucket2.png" width="30%"></p>
-
-### Amazon S3 Pricing
-<ul>
-	<li><b style="color:#f08f18">You pay for</b></li>
-	<ul>
-		<li>GBs per month</li>
-		<li>Transfer OUT to other Regions</li>
-		<li>PUT, COPY, POST, LIST and GET request</li>
-	</ul>
-  <li><b style="color:#f08f18">You do not pay for</b></li>
-	<ul>
-		<li>Transfers IN to S3</li>
-		<li>Transfers OUT from S3 to Cloudfront or EC2 in the same region</li>
-	</ul>
-</ul>
 
 ### Amazon S3 Storage Pricing
 

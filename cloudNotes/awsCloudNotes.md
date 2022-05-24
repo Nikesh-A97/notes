@@ -1585,8 +1585,10 @@ An example that shows the usage of AWS Cloud Watch to start and stop instances a
   <li>Create individual volumes and attach to EC2 instance</li>
   <li>Volumes are automatically replicated within its AZ</li>
   <li>Can be backed up using Amazon S3 snapshots</li>
-  <li>Independently attached --> data won't be erased if it terminates</li>
+  <li>Independently attached --> data won't be erased if instance terminates</li>
   <li>Uses AWS KMS with AES-256 Encryption</li>
+  <li>Bound to a specific AZ</li>
+  <li>Snapshot to move volume</li>
 </ul>
 
 ### Block Storage VS Object storage

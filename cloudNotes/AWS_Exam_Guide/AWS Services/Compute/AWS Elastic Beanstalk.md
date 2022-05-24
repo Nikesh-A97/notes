@@ -4,3 +4,6 @@
 - Supports web apps in Java, .Net, Node.js, PHP, Ruby, Ptyhon, Go, Docker
 - It uses ELB and Auto-Scaling
 - Handles the code and infrastructure, devs only need to write
+- Basically the infrastructure behind it is all in one view
+- Pay for the underlying instances
+- 

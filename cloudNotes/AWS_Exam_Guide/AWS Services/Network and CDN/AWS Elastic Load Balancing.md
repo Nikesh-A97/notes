@@ -3,6 +3,7 @@
 - Allows traffic to get distributed across EC2 instances containers and virtual appliances
 - Integrates with every AWS service
 - Tightly integrated with EC2, EKS/ECS
+- Can use ASG to scale EC2 instances and integrated with ELB
 
 ##### Types of load balancers
 - Classic

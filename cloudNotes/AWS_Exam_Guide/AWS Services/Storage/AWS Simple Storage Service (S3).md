@@ -5,6 +5,7 @@
 ![[awsCloudNotes#Amazon S3 Storage Pricing]]
 ![[storage_classes.png]]
 ##### S3 Security
+Private access by default, use bucket polices to enable different access 
 - User-based
 	- IAM Policies
 - Resource-based
@@ -17,6 +18,7 @@
 - ACLs tp control acces to objects and buckets
 - Provides cross account access
 - Can replicate objects across region or the same
+- Can host static websites
 
 ##### Amazon S3 Glacier
 - Cheapest storage

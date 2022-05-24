@@ -33,3 +33,5 @@
 - Provide a discount up to 72% compared to On - Demand
 - Can change families, OS types and size with no extra cost
 - Sell unused RIs in the marketplace
+- RI reservation, 3 year cheaper than 1 year
+- No / Partial / All Upfront -:- Expensive -> Cheapest

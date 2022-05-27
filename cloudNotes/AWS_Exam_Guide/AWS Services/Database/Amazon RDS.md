@@ -15,7 +15,7 @@
 	- Encryption and Security
 	- Updates and Backups
 	- Distaster Recovery
-- AWS KMSS provides encryption at rest for
+- AWS KMS provides encryption at rest for
 	- RDS instances
 	- DB snapshopts
 	- DB instance storage

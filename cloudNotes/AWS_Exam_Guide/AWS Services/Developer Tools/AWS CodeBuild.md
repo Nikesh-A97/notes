@@ -1,6 +1,6 @@
 # AWS CodeBuild
 ---
-- This is a CI/CD service
+- This is a CI service
 - Provides packaged and customized build environments
 - Scales automatically
 - Built and test stage of a pipeline in AWS CodePipeline

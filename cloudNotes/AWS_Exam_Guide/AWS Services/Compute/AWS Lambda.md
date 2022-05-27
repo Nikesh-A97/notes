@@ -8,3 +8,5 @@
 - Supports various languages
 - Charged on the number of requests to function and time taken to execute
 - Triggered by events and can be automatically deployed
+- Pay per **calls** and **time**
+- 

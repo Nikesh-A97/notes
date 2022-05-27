@@ -18,7 +18,7 @@
 - Failover
 	- If primary resource down, re-route to healthy one
 - Geo-location
-	- Routes traffic to the closest geographical location you are in
+	- Routes traffic to the closest geographical location your users are in
 - Geo-proximity
 	- Routes traffic based on the location of resources to the closest region within a geogrpahic area 
 - Latency Based

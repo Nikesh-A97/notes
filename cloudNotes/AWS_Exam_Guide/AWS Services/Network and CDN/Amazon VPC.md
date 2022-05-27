@@ -22,16 +22,18 @@
 ##### Internet & NAT Gateways
 - Internet Gateways : VPC --> Internet
 - Pub Subnet route to IGW
-- NAT Gateway & Instance help Priv Subnet access Internet
+- NAT Gateway & Instances
+	- NAT Gateway in public subnet (AWS managed)
+	- Nat Instance (self-managed) access internet while remaining private
 
 ##### Network ACL & Security Groups
 - NACL
 	- A firewall that controls traffic to and from a subnet
-	- Can have ALLOW and DENY rules
-	- Attached at Subnet Level
+	- Can have **ALLOW** and **DENY** rules
+	- **Attached** at **Subnet Level**
 	- Rules only include IP addresses
 - Security Groups
-	- A firewall that controls traffiic to and from an ENI / an EC2 Instance
+	- A firewall that **controls traffic** to and from an **ENI / an EC2 Instance**
 	- Can have only ALLOW rules
 	- Rules inlcude IP addresses and other security groups 
 

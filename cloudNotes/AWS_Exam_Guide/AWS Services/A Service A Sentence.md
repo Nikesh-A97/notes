@@ -176,3 +176,25 @@
 - **Store sercrets**, rotate, generate ($\lambda$), integrate them, and mostly used for RDS encyption 
 
 ---
+#####  [[AWS Artifact|Artifact]]
+- Portal that **provides** customers with **on-demand access** to AWS **Compliance Docs**
+
+---
+##### [[Amazon GuardDuty|GuardDuty]]
+- **Threat Discovery** for AWS account and uses **ML algorithms**
+
+---
+##### [[Amazon Inspector|Inpsector]]
+- **Security Assesments** for **EC2**
+
+---
+##### [[AWS Config|Config]]
+- Helps with **Auditing** & **Recording Compliance** & recprds **Config changes** over time
+
+---
+##### Amazon Macie
+- **Managed** data **sucrity & privacy** service that uses **ML** to identify **Personal Identifiable information**
+
+---
+##### [[AWS Organizations|Organizations]]
+- **Manage multiple accounts** and offers **consolidated billing** for savings & **restrict** access using **SCPs**

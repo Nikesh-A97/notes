@@ -165,9 +165,6 @@ Bridges the gap between binary representation of the JSON format
   <li><code> .count()</code></li>
 	<p>append on a <code>.find()</code> to count the number of documents which match the criteria</p>
 
-  <li><code> .count()</code></li>
-	<p>append on a <code>.find()</code> to count the number of documents which match the criteria</p>
-
   <li><code> .pretty()</code></li>
 	<p>append on a <code>.find()</code> to make result shown look easier to read</p>
 
@@ -714,7 +711,10 @@ Just used to improve performance and migrate schemas. However be careful of data
 ---
 
 ### <b>Schema Versioning Pattern</b>
-Used when there is a need to require no downtime when updating schema. The basic idea is that the schema has a version number field to indicate the version of the schema, in order for the application using it to know how to handle the data.
+
+- Used when there is need to require no downtime updating schema.
+- Schema has a version number field and corresponding value to indicate the version of schema
+- This tells the application using the schema to understand how to handle the data
 
 #### <b style="color:#32a852">Application Lifecycle</b>
 

@@ -1,0 +1,11 @@
+# Amazon GuardDuty
+---
+- Continously monitors for unauthourized or unusual behavior
+- Alerts sent to CloudWatch events and GuardDuty console
+- No upfront cost, pay for the events analyzed
+- Input
+	- CloudTrail logs
+	- VPC Flow Logs
+	- DNS Logs
+- Talks to Cloud Watch Event so can enable to trigger events to SNS or Lambda
+-  

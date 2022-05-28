@@ -1,11 +1,11 @@
 # AWS Cloud notes
 
 ## Contents
-  - [Module 1 : Cloud Concepts Overview](#module-1--cloud-concepts-overview)
-  - [Module 2 : Cloud Economics & Billing](#module-2--cloud-economics--billing)
-  - [Module 3 : AWS Global Infrastructure Overview](#module-3--aws-global-infrastructure-overview)
-  - [Module 4 : AWS Cloud Security](#module-4--aws-cloud-security)
-  - [Module 5 : Networking and Content Delivery](#module-5--networking-and-content-delivery)
+  - [Module 1 : Cloud Concepts Overview](#module-1--cloud-concepts-overview) [[awsCloudNotes#Module 1 Cloud Concepts Overview|obs --> link]]
+  - [Module 2 : Cloud Economics & Billing](#module-2--cloud-economics--billing) [[awsCloudNotes#Module 2 Cloud Economics Billing|obs --> link]]
+  - [Module 3 : AWS Global Infrastructure Overview](#module-3--aws-global-infrastructure-overview) [[awsCloudNotes#Module 3 AWS Global Infrastructure Overview|obs --> link]]
+  - [Module 4 : AWS Cloud Security](#module-4--aws-cloud-security) [[awsCloudNotes#Module 4 AWS Cloud Security|obs --> link]]
+  - [Module 5 : Networking and Content Delivery](#module-5--networking-and-content-delivery) [[awsCloudNotes#Module 5 Networking and Content Delivery|obs --> link]]
   - [Module 6 : Compute](#module-6--compute)
   - [Module 7 : Storage](#module-7--storage)
   - [Module 8 : Databases](#module-8--databases)
@@ -38,14 +38,47 @@
 
 - Thinking of it as software, select services that match needs required 
 - Pay for what you use, and use it when you need to
-- Flexible with scaling capacity
+- Flexible with scaling capacity  
 
 ### Cloud Service Models
 <img src="diag/cloudServiceModels.png" width="500" height="100">
 
-iass : raw resources
-pass : taken care of by the platform
-sass : infrastructure and platforms are taken
+<ul>
+	<li><b style="color:#f08f18">IaaS</b></li>
+	<ul>
+		<li>Services for cloud IT such as networking features or data storage space</li>
+		<li>Provides you with the highest level of flexibility and control of your resources</li>
+	</ul>
+	<li><b style="color:#f08f18">PaaS</b></li>
+	<ul>
+		<li>Services that reduce the need to manage underlying infrastructure (hardware and OS)</li>
+		<li>Allows you to focus on the deployment of you applications</li>
+	</ul>
+	<li><b style="color:#f08f18">SaaS</b></li>
+	<ul>
+		<li>Services that provide you with a completed product that the provider manages</li>
+		<li>An example would be web-based-email where you do not manage extra features or maintain the servers and OS</li>
+	</ul>
+</ul>
+
+### Deployment models
+<ul>
+	<li><b style="color:#f08f18">Cloud</b></li>
+	<ul>
+		<li>Fully deployed in the cloud</li>
+		<li>Can be built on low level infrastructure or higher-level services that provide abstraction</li>
+	</ul>
+	<li><b style="color:#f08f18">Hybrid</b></li>
+	<ul>
+		<li>A way to connect infrastructure & applications between cloud based models</li>
+		<li>Allows you to focus on the deployment of you applications</li>
+	</ul>
+	<li><b style="color:#f08f18">On-premises</b></li>
+	<ul>
+		<li>Deploying resources on premise ("private cloud")</li>
+		<li>Does not [</li>
+	</ul>
+</ul>
 
 ### Advantages of Cloud Computing
 <ul>
@@ -217,6 +250,26 @@ The considerations are
 - Interconnected by a private network
 - Recommend replicating data/resources across zones
 
+### AWS Data Centers
+- They are designed for security
+- Where data lives and is processed
+- Each DC is separate and has redundant power, networking and connectivity
+- 50k - 80k physical servers
+
+#### DCs Design
+- Mitigate environmental risk
+- Anticipates and tolerates failure
+- Critical components are backed up across multiple AZs
+- DC locations are confidential
+- If failure occurs, the traffic of data is diverted
+
+### Points of Presence
+- PoP locations around the globe
+- Consists of edge locations and regional edge caches
+- Routes requests by measuring connectivity, performance and computing
+- Provides better real-time user experience
+- Content that is not used frequently is absorbed by regional edge caches
+
 ### AWS infrastructure features
 <ul>
 	<li><b style="color:#f08f18">Elasticity and scalability</b></li>
@@ -235,6 +288,12 @@ The considerations are
     <li>Little to no human intervention</li>
 	</ul>
 </ul>
+
+### Key takeaways
+- Global Infrastructure consists of Regions and AZs
+- Choice of Region depends on your needs such as compliance requirements or to reduces latency
+- Each AZ is physically independent of one another
+- Performance for users is improved by caching content 
 
 ### AWS Storage Service Category
 <ul>
@@ -352,6 +411,8 @@ The considerations are
 	</ul>
 </ul>
 
+^4cce0e
+
 ### AWS Security, Identity & Compliance Service Category
 <ul>
 	<li><b style="color:#f08f18">AWS IAM</b></li>
@@ -437,6 +498,8 @@ The considerations are
 ## Module 4 : AWS Cloud Security
 
 [ To the top ](#contents)
+
+<p><img src="diag/AWS_SRM.png" width="70%"></p>
 
 ### AWS responsibility: Security of the cloud
 AWS are responsible for protecting ...
@@ -576,6 +639,8 @@ You can assign both types of access.
   <li><b style="color:#f08f18">Scope for IAM service configs is global across AWS Regions</b></li>
 </ul>
 
+^42dea5
+
 ### Policies
 <ul>
 	<li><b style="color:#f08f18">A JSON document that lists and defines permissions</b></li>
@@ -655,7 +720,7 @@ The basic structure of the statements in an IAM Policy is:
 1. Create an <b> IAM user </b> for yourself while logged in as the root user.
    - Enable MFA for root user for more security
 2. Create an <b> IAM group </b>, add the user(you) to the group and give full admin perms
-3. If your account has <b>root access keys</b>, disable and remove them
+3. If your account has <b>root access keys</b>, disable and remove them ^9310af
 4. <b>Enable</b> a <b>password policy</b> for all users
    - Recommended to have MFA requirement enabled for all users
 5. Sign in with the <b>IAM user</b> credentials (the one you created in the first step)
@@ -1139,6 +1204,8 @@ Creating an AMI
 	</ul>
 </ul>
 
+^815dd0
+
 <h4><b> 9. Identify or create the key-pair </b></h4>
 Optional to include a key-pair before instance is launched.
 <ul>
@@ -1203,6 +1270,307 @@ Optional to include a key-pair before instance is launched.
 	<li><b style="color:#f08f18">Basic (free) and detailed (payed) monitoring</b></li>
 </ul>
 
+### Amazon EC2 Pricing Models
+
+<ul>
+	<li><b style="color:#f08f18">On-Demand Instances</b></li>
+	<ul>
+		<li>Pay by the hour</li>
+		<li>No long term commitments</li>
+		<li>Eligible for the AWS Free Tier</li>
+	</ul>
+  <li><b style="color:#f08f18">Dedicated Hosts</b></li>
+	<ul>
+		<li>EC2 instanced server dedicated for your use</li>
+	</ul>
+  <li><b style="color:#f08f18">Dedicated Instances</b></li>
+	<ul>
+		<li>Isolated instances for a single customer that runs on the VPC</li>
+	</ul>
+  <li><b style="color:#f08f18">Reserved Instances</b></li>
+	<ul>
+		<li>Prices are fixed with either full, partial or no upfront costs</li>
+		<li>Hourly charges are discounted</li>
+		<li>1 or 3 year term</li>
+	</ul>
+  <li><b style="color:#f08f18">Scheduled Reserved Instances</b></li>
+	<ul>
+		<li>Reserve instances that recur on a daily, weekly or monthly basis</li>
+		<li>Only for a 1 year term</li>
+	</ul>
+  <li><b style="color:#f08f18">Spot Instances</b></li>
+	<ul>
+		<li>Request unused EC2 instances </li>
+		<li>Prices fluctuate that depend on supply and demand</li>
+		<li>The instances run when you outbid the market price</li>
+		<li>Better to use if you want to save as prices are less than on-demand instances</li>
+	</ul>
+</ul>
+
+#### Amazon EC2 Pricing Model : Benefits
+<ul>
+	<li><b style="color:#f08f18">On-Demand Instances</b></li>
+	<ul>
+		<li>Flexible and low cost</li>
+	</ul>
+  <li><b style="color:#f08f18">Spot Instances</b></li>
+	<ul>
+		<li>Large scale at a significantly discounted price</li>
+	</ul>
+  <li><b style="color:#f08f18">Reserved Instances</b></li>
+	<ul>
+		<li>For when you have predictable or steady-state compute needs</li>
+	</ul>
+  <li><b style="color:#f08f18">Dedicated Hosts</b></li>
+	<ul>
+		<li>When there are licensing restrictions or have compliance or regulatory requirements</li>
+	</ul>
+</ul>
+
+#### Amazon EC2 Pricing Model : Use Cases
+<ul>
+	<li><b style="color:#f08f18">On-Demand Instances</b></li>
+	<ul>
+		<li>Short term workloads</li>
+		<li>Application development & testing</li>
+	</ul>
+  <li><b style="color:#f08f18">Spot Instances</b></li>
+	<ul>
+		<li>Applications that are flexible and can tolerate short downtimes</li>
+		<li>Urgent computing needs for large amounts of additional capacity</li>
+	</ul>
+  <li><b style="color:#f08f18">Reserved Instances</b></li>
+	<ul>
+		<li>Long term and predictable workloads</li>
+		<li>Applications that you know will run in a consistent way for a long time</li>
+	</ul>
+  <li><b style="color:#f08f18">Dedicated Hosts</b></li>
+	<ul>
+		<li>For when you have per - socket/core/VM software licenses</li>
+		<li>To control instance placement</li>
+	</ul>
+</ul>
+<p><img src="diag/EC2_pricing_model_use_cases.png" width="60%" ></p>
+
+### Pillars of Cost Optimization
+<p><img src="diag/cost_opti_pillars.png" width="40%" ></p>
+
+
+
+#### Right - Size
+There are approximately 60 instance types and sizes so choose the right balance of instance types
+<ul>
+	<li><b style="color:#f08f18">Provision instances to match needs</b></li>
+	<ul>
+		<li>Select the most relevant and cheapest instances that meet your needs</li>
+		<li>Consider CPU, memory and network throughout and use load-testing to your advantage to size correctly</li>
+	</ul>
+  <li><b style="color:#f08f18">Amazon CloudWatch metrics</b></li>
+	<ul>
+		<li>Use this to monitor and downsize unused computing resources and instances</li>
+	</ul>
+  <li><b style="color:#f08f18">Right Size - Then Reserve</b></li>
+</ul>
+
+#### Increase Elasticity
+Design you deployments to be elastic in order to reduce the idle time of instances
+<ul>
+	<li><b style="color:#f08f18">Stop / Hibernate EBS instances that are not in use</b></li>
+	<ul>
+		<li>Saves costs by stopping non-production or development environments</li>
+	</ul>
+  <li><b style="color:#f08f18">Use auto-scaling</b></li>
+	<ul>
+		<li>Automatic scaling policies can help with peak capacity, by dynamically changing sizes</li>
+	</ul>
+</ul>
+
+#### Optimal Pricing Model
+Design you deployments to be elastic in order to reduce the idle time of instances
+<ul>
+	<li><b style="color:#f08f18">Right pricing model for your use case</b></li>
+	<ul>
+		<li>Save costs by mix-matching multiple instance types for your needs</li>
+	</ul>
+  <li><b style="color:#f08f18">Example : </b></li>
+	<ul>
+		<li>On-Demand/Spot instances for variable workloads</li>
+		<li>Reserved instances for predictable workloads</li>
+	</ul>
+  <li><b style="color:#f08f18">Consider serverless (AWS Lambda)</b></li>
+</ul>
+
+#### Optimize storage
+Design you deployments to be elastic in order to reduce the idle time of instances
+<ul>
+	<li><b style="color:#f08f18">Resize EBS volumes</b></li>
+	<ul>
+		<li>This reduces costs by resizing to suit storage capacity needs</li>
+	</ul>
+  <li><b style="color:#f08f18">Delete Snapshots</b></li>
+	<ul>
+		<li>Delete unused or redundant snapshots to save costs</li>
+	</ul>
+  <li><b style="color:#f08f18">Pick suitable storage option</b></li>
+	<ul>
+		<li>Can save costs if application is able to use cheaper storage such as S3 instead of EBS</li>
+	</ul>
+</ul>
+
+#### Measure, monitor and improve
+- Use tagging to provide helpful information resource usage
+- Use AWS cost explorer to encourage teams to architect with costs in mind
+- AWS Trusted Advisor for best practices
+
+
+### Containers
+
+#### Container Basics
+- Containers are a method of operating system virtualization
+- Does not contain entire OS, but share virtualized OS and resources are isolated
+- Contains all resources for software to run
+- Containers are consistent as everything inside a single object
+- Quick and easy to launch and terminate application compared to VMs regardless of environment
+
+#### Docker
+- Build, test and deploy applications quickly into any environment
+- Containers are created from <i>images</i> which are templates
+- Contains <text style="color:#f08f18"> bins/libs </text>, <text style="color:#f08f18"> system tools </text>, <text style="color:#f08f18"> code </text>, <text style="color:#f08f18"> runtime environments </text>
+
+#### Containers VS VMs
+<p><img src="diag/containers_vs_vms.png" width="75%" ></p>
+
+<ul>
+	<li><b style="color:#f08f18">Right side of diagram</b></li>
+	<ul>
+		<li>The EC2 instance has a docker engine and containers</li>
+    <li>Each application runs in its own container --> process isolation</li>
+    <li>Docker engine manages how containers are run</li>
+	</ul>
+  <li><b style="color:#f08f18">Left side of the diagram</b></li>
+	<ul>
+		<li>Each application has its own EC2 instance</li>
+		<li>This provides the process isolation as each instance is independent of one another</li>
+	</ul>
+</ul>
+
+#### Amazon Elastic Container Service
+Container management service that supports Docker containers
+<ul>
+	<li><b style="color:#f08f18">Key benefits</b></li>
+	<ul>
+		<li>Eliminates complexity of the infrastructure</li>
+    <li>Highly-scalable</li>
+    <li>Monitor, manage and schedule containers </li>
+	</ul>
+  <li><b style="color:#f08f18">Integrate features</b></li>
+	<ul>
+		<li>Elastic Load Balancing</li>
+		<li>Amazon EC2 security groups</li>
+		<li>Amazon EBS volumes</li>
+		<li>IAM roles</li>
+	</ul>
+</ul>
+
+#### Amazon ECS orchestrates containers
+Container management service that supports Docker containers
+<ul>
+	<li><b style="color:#f08f18">Tasks</b></li>
+	<ul>
+		<li>Create task defn. that describes container(s)</li>
+    <li>Tasks are instantiation of task defn.</li>
+    <li>A task runs between 1-10 containers</li>
+    <li>Places them on an ECS cluster</li>
+	</ul>
+</ul>
+
+#### Amazon ECS cluster options
+<p><img src="diag/ecs_cluster.png" width="60%" ></p>
+
+- Amazon ECS cluster backed by EC2 for more control
+- Amazon ECS cluster backed by Fargate to focus on your applications
+
+#### Kubernetes
+<ul>
+	<li><b style="color:#f08f18">An open source software for container orchestration</b></li>
+	<ul>
+		<li>Can be used on premise or in the cloud</li>
+		<li>Manage containerized applications at scale</li>
+	</ul>
+  <li><b style="color:#f08f18">Complements Docker</b></li>
+	<ul>
+		<li>Docker enables you to run multiple containers on a single OS</li>
+		<li>Kubernetes orchestrates multiple Docker hosts</li>
+	</ul>
+  <li><b style="color:#f08f18">Automates - </b></li>
+	<ul>
+		<li>Container provisioning</li>
+		<li>Networking</li>
+		<li>Load Distribution</li>
+		<li>Scaling</li>
+	</ul>
+</ul>
+
+#### Amazon Elastic Kubernetes Service
+- Can run Kubernetes on AWS
+- Supports both Linux and Windows containers
+- Supports kubernetes addons and community tools
+- Manage clusters of EC2 instances
+- Run Kubernetes controlled containers on those instances
+
+#### Amazon Elastic Container Registry
+- A registry that makes it easy to manage and deploy Docker container images
+- Supports team collaboration, access control and third party integration
+
+### AWS Lambda Service
+AWS $\lambda$ is a serverless computer service
+<p><img src="diag/aws_lambda.png" width="70%" ></p>
+
+<ul>
+	<li><b style="color:#f08f18">Supports multiple programming languages</b></li>
+	<ul>
+		<li>Java, Go, Powershell, C#, etc.</li>
+		<li>Use any native or third party library</li>
+	</ul>
+	<li><b style="color:#f08f18">Automated administration</b></li>
+	<ul>
+		<li>Manages infrastructure to run your code</li>
+		<li>Does all the admin, maintenance and patches </li>
+	</ul>
+	<li><b style="color:#f08f18">Run multiple Lambda functions</b></li>
+	<ul>
+		<li>For complex tasks and workflows by using step functions</li>
+		<li>Build stateful, long running processes for applications and backends</li>
+	</ul>
+  <li><b style="color:#f08f18">Pay for what you use</b></li>
+	<ul>
+		<li>Billing is in increments of 100ms</li>
+		<li>Easy to scale request and make them cost effective</li>
+	</ul>
+</ul>
+
+#### AWS Lambda Quotas
+<ul>
+	<li><b style="color:#f08f18">Soft limits per Region</b></li>
+	<ul>
+		<li>Concurrent executions = 1,000</li>
+		<li>Function and layer storage = 75 GB</li>
+	</ul>
+	<li><b style="color:#f08f18">Hard limits for individual functions</b></li>
+	<ul>
+		<li>Maximum function memory allocation = 10,240 MB</li>
+		<li>Function timeout = 15 mins</li>
+		<li>Deployment package size = 250 MB unzipped, including layers</li>
+		<li>Container image code package size = 10 GB</li>
+	</ul>
+</ul>
+
+#### AWS Lambda example
+An example that shows the usage of AWS Cloud Watch to start and stop instances at pre-defined times automatically
+
+<p><img src="diag/aws_lambda_example.png" width="70%" ></p>
+
+
 --- 
 
 ## Module 7 : Storage
@@ -1217,6 +1585,10 @@ Optional to include a key-pair before instance is launched.
   <li>Create individual volumes and attach to EC2 instance</li>
   <li>Volumes are automatically replicated within its AZ</li>
   <li>Can be backed up using Amazon S3 snapshots</li>
+  <li>Independently attached --> data won't be erased if instance terminates</li>
+  <li>Uses AWS KMS with AES-256 Encryption</li>
+  <li>Bound to a specific AZ</li>
+  <li>Snapshot to move volume</li>
 </ul>
 
 ### Block Storage VS Object storage
@@ -1253,21 +1625,6 @@ There are two main storage options
 - Bucket names may only contain letters, numbers and dashes
 
 <p><img src="diag/bucket2.png" width="30%"></p>
-
-### Amazon S3 Pricing
-<ul>
-	<li><b style="color:#f08f18">You pay for</b></li>
-	<ul>
-		<li>GBs per month</li>
-		<li>Transfer OUT to other Regions</li>
-		<li>PUT, COPY, POST, LIST and GET request</li>
-	</ul>
-  <li><b style="color:#f08f18">You do not pay for</b></li>
-	<ul>
-		<li>Transfers IN to S3</li>
-		<li>Transfers OUT from S3 to Cloudfront or EC2 in the same region</li>
-	</ul>
-</ul>
 
 ### Amazon S3 Storage Pricing
 
@@ -1328,6 +1685,8 @@ Amazon S3 lifecycle policies enable you to delete or move objects based on age
 
 ### Storage Classes
 <p><img src="diag/storage_classes.png" width="70%"></p>
+
+
 
 --- 
 
@@ -1501,6 +1860,8 @@ Consist of a  cluster of leader and compute nodes
 	
   <li><b style="color:#f08f18">Keep people away from data</b></li>
 	<p>Create tools and mechanisms to remove the direct access to data</p>
+
+^f3bd21
 
   <li><b style="color:#f08f18">Prepare for security events</b></li>
 	<p>Run incident response simulations and tools to detect recovery</p>
@@ -1731,6 +2092,8 @@ Consist of a  cluster of leader and compute nodes
 		<li>Route these events to one or more targe functions or streams for processing</li>
 	</ul>
 </ul>
+
+^a8c75f
 
 ### Amazon EC2 Auto - Scaling
 - Helps maintain application availability

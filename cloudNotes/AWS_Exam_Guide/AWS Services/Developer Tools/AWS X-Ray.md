@@ -1,0 +1,11 @@
+# AWS X-Ray
+---
+- Visual analysis or allows to trace microservices based apps
+- provides end-to-end info about the request, response and callse to other AWS resources
+- Creats a service graph using trace data
+- Troubleshooting performance
+- Understand dependencies in a microservice architecture
+- Poinpoint service issues
+- Review request behavior
+- Find errors and exceptions
+- Identify users that are impacted

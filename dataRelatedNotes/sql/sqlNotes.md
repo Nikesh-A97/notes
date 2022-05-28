@@ -10,29 +10,28 @@
 
 ## Commands
 
-- <h3><b style="color:#0FBAF1"> SELECT </b> & <b style="color:#0FBAF1"> FROM </b></h3>
-  
-    
+<h3><b style="color:#0FBAF1"> SELECT </b> & <b style="color:#0FBAF1"> FROM </b></h3>
+
+- Returns all (*) columns in the the table, <i style="color:#9b75d9">table_A</i>
   ```SQL
-  -- This query returns all (*) columns in the table : table_A.
   SELECT 
     * 
   FROM 
     table_A
   ```
-
+- Returns all the specified columns in the the table, <i style="color:#9b75d9">table_A</i>
   ```SQL
-  -- This query returns specified table columns in table_A.
   SELECT 
     column_1, 
     column_2, ... 
   FROM 
     table_A
   ```
-- <h3><b style="color:#0FBAF1"> WHERE </b></h3>
- 
+  
+<h3><b style="color:#0FBAF1"> WHERE </b></h3>
+
+- Returns a table with all columns that is filtered by the conditions in the <b><i style="color:#0FBAF1">WHERE</i></b> clause
   ```SQL
-  -- Returns the table with all columns but filtered by the conditions in the WHERE clause
   SELECT 
     * 
   FROM 
@@ -40,10 +39,11 @@
   WHERE 
     <conditions>
   ```
-- <h3><b style="color:#0FBAF1"> ORDER BY </b></h3>
   
+<h3><b style="color:#0FBAF1"> ORDER BY </b></h3>
+
+- By default, the ordering will be in <b><i style="color:#1bd517"> ascending </i></b> order   
   ```SQL
-  -- By default , the ordering will be ASC
   -- orders the table elements according to colName
   SELECT 
     * 
@@ -52,8 +52,9 @@
   ORDER BY 
     column_name (ASC/DESC)
   ```
+
+- Orders `column_1` first then whilst retaining the order, it will sort `column_2` next [[sql_table_examples#ORDER BY|example]]
   ```SQL
-  -- First orders column_1 then while retaining the order, it will sort column_2
   SELECT 
     * 
   FROM 
@@ -62,51 +63,53 @@
     column_1 ASC 
     column_2 DESC
   ```
-- <h3><b style="color:#0FBAF1"> LIMIT </b></h3>
-  
+
+<h3><b style="color:#0FBAF1"> LIMIT </b></h3>
+
+- Limits the table to the number specified (does not modify actual table, just how you view it)
   ```SQL
-  -- Limits the table to the number specified (does not modify actual table, just how you view it)
   SELECT 
     * 
   FROM 
     table_A 
-  LIMIT 10
+  LIMIT 2
   ```
-- <h3><b style="color:#0FBAF1"> MIN </b></h3>
-  
+
+<h3><b style="color:#0FBAF1"> MIN </b></h3>
+
+- Find the minium value of the specified `column_name`
   ```SQL
-  -- find the minimum value of the specified column
   SELECT 
     MIN(column_name) 
   FROM 
     table_A
   ```
 
-- <h3><b style="color:#0FBAF1"> MAX </b></h3>
-   
+<h3><b style="color:#0FBAF1"> MAX </b></h3>
 
+- Find the maxium value of the specified `column_name`
   ```SQL
-  -- find the maximum value of the specified column
   SELECT 
     MAX(column_name) 
   FROM 
     table_A
   ```
 
-- <h3><b style="color:#0FBAF1"> COUNT </b></h3>
- 
+<h3><b style="color:#0FBAF1"> COUNT </b></h3>
+
+- Aggregates and counts the number of rows in the specified column
+- Can also add conditions inside the <b style="color:#0FBAF1">COUNT( )</b> clause for further filtering
   ```SQL
-  -- aggregates and counts the number of rows in the specified column
-  -- Can also add conditions inside the COUNT( ) clause for further filtering
   SELECT 
     COUNT(*) 
   FROM 
     table_A
   ```
-- <h3><b style="color:#0FBAF1"> AND </b></h3>
- 
-  ```SQL
-  -- chain multiple AND conditions 
+
+<h3><b style="color:#0FBAF1"> AND </b></h3>
+
+- Used to chain multiple conditions
+  ```SQL 
   SELECT 
     * 
   FROM 
@@ -119,8 +122,10 @@
     .
     .
   ```
-- <h3><b style="color:#0FBAF1"> BETWEEN </b></h3>
- 
+
+<h3><b style="color:#0FBAF1"> BETWEEN </b></h3>
+
+- Used as an operator for some conditions
   ```SQL
   -- BETWEEN is inclusive
   SELECT 
@@ -130,7 +135,7 @@
   WHERE 
     column_1 BETWEEN condition_1 AND condition_2
   
-  -- Is the same as
+  -- The above query is the same as
   SELECT 
     COUNT(*) 
   FROM 
@@ -140,16 +145,20 @@
       AND 
       column_2 <= condition_2
   ```
-- <b style="color:#0FBAF1"> AS </b>
+
+<h3><b style="color:#0FBAF1"> AS </b></h3>
+
+- Used to rename and refer to the column as the new name
   ```SQL
-  -- Use an alias
   SELECT 
     column_name AS column_new_name
   FROM 
     table_A
   ```
-- <h3><b style="color:#0FBAF1"> CASE WHEN THEN ELSE </b></h3>
- 
+  
+<h3><b style="color:#0FBAF1"> CASE WHEN THEN ELSE </b></h3>
+
+- Create a new tbale column with own name and values that depend on conditions
   ```SQL
   -- create a new table col with own name and values that depend on conditions
   SELECT 
@@ -164,10 +173,11 @@
   FROM 
     table_A
   ```
-- <h3><b style="color:#0FBAF1"> WITH </b> and <b style="color:#0FBAF1"> AS </b></h3>
-  
+
+<h3><b style="color:#0FBAF1"> WITH </b> and <b style="color:#0FBAF1"> AS </b></h3>
+
+- Used to create a new table that is created with SQL SELECT - FROM query
   ```SQL
-  -- Can use a sub-table that is created with an SQL SELECT-FROM query
   -- The example below can have anything inside the WITH - AS to create a sub - table
   WITH table_B  AS (
     SELECT 
@@ -183,10 +193,11 @@
   FROM 
     table_B
   ```
-- <h3> Cast (<b style="color:#0FBAF1"> :: </b>)</h3>
- 
+
+<h3> Cast (<b style="color:#0FBAF1"> :: </b>)</h3>
+
+- Casts the given column current data type to the given dataType
   ```SQL
-  -- Casts the given column_name current data type to the given dataType
   SELECT 
     COUNT(*)
   FROM 
@@ -195,8 +206,10 @@
     column_name::dataType <some condition>
   ```
 
-- <h3> <b style="color:#0FBAF1"> Order of operations </b> </h3>
-  
+
+<h3> <b style=""> Order of execution for a query </b> </h3>
+
+- Order of Execution for a basic query
   ```SQL 
   /*
     Order of execution
@@ -214,6 +227,41 @@
     column_2 
   LIMIT 20
   ```
+
+- Order of execution with joins
+	```SQL
+		/*
+			Order of Execution with Joins
+			FROM - What SQL engine will look at first
+			JOIN - Join tables are merged with the main table to form a "big table"
+			WHERE - Filters are applied to the "big table"
+			GROUP BY - Splits the "big table" into the groups specified
+			SELECT - Columns are selected, and functions are calculated
+			DISTINCT - Filters out any duplicate values
+			ORDER BY - sorts the final results in the "big table"
+			LIMIT - Limits the rows in the final "big table" result
+		*/
+		SELECT
+			DISTINCT(<column_name_1>),...
+			/*other functions (aggregate, window) or columns*/
+		FROM
+			table_A a
+		INNER JOIN
+			tabale_B b
+			ON
+				a.<col_name> = b.<col_name>
+				AND
+					<conditions>...
+		WHERE
+			<conditions>...
+		GROUP BY 
+			<col_name>, ...
+		ORDER BY 
+			<col_name / ref>, ...
+		LIMIT <#number>
+	```
+
+
 ---
 ## Joins
 

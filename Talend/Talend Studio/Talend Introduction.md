@@ -18,6 +18,3 @@
 - Services might want to share information between them but keep their own tools
 - DW involves extracting large volumes of data from multiple locations
 - The only way to do this in real time is **Change Data Capture**
-
-#### Benefits of Data Integration
-- 

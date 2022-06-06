@@ -10,4 +10,9 @@ Reads a delimited file row by row to split them up into fields and then sends th
 
 ---
 ##### Metadata View
-![[Pasted image 20220513114012.png]]
+![[delim_1.png]]
+![[delim_2.png]]
+![[delim_4.png]]
+![[delim_3.png]]
+
+---

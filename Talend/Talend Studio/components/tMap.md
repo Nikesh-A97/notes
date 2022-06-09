@@ -1,6 +1,8 @@
 # `tMap`
 ---
 ##### What does it do ?
-Maps a main row input data with lookups and creates joins
+Transforms and routes data from single or multiple sources to single or multiple destinations 
 
 ---
+##### The `tMap` editor view
+![[Data Processing#tMap Editor]]

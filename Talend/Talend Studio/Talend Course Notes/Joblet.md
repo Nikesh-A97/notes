@@ -8,6 +8,9 @@
 - It allows for reuse in the same or other jobs
 - Easy to monitor the job
 - No performance issues as the joblet is integrated into the Job itself
+- It is possible to update a joblet but not update other jobs using the joblet
+- Can edit properties of components in another job without updating the original joblet
+- Can edit a joblet as long as it is not open in another job
 ---
 ##### How to create a Joblet
 - It can be created from scratch in a simlar way to how standard Jobs are created (from the repository window)

@@ -15,3 +15,22 @@
 ##### Steps to create
 - Similar to previous task but added parallelization for 1 way
 - Other way uses `tUnite`
+
+### Performing a `tMap` table join
+- ![[ms_4.png]]
+##### `tMap` In
+- Both table joins are Inner & Unique match joins
+- ![[ms_5.png]]
+##### `tMap` Out
+- ![[ms_6.png]]
+##### Steps to create
+- The *"SalesStaging"* table is the main input table
+	- Headers are : Shopname, CustomerID, ProductID, Quantity
+- The *"SalesCustomers"* is the first lookup table
+	- Headers are : CustomerID, CustomerName, CustomerAddress ...
+- The *"SalesProducts"* is the second lookup table
+	- Headers are: ProductID, ProductName
+
+The result of the double inner join is that we get a table with what customer bought which proudct and the quantity.
+
+### Catching rejects and performing calculations

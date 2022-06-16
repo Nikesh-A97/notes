@@ -45,6 +45,7 @@ After building the container is then started by using
 docker run -dp 3000:3000 getting-started
 ```
 
+---
 ## Replacing Old containers
 After updating app code and re-building trying to launch container again will cause an error
 
@@ -69,3 +70,37 @@ After updating app code and re-building trying to launch container again will ca
     ```
 
 Alternatively if using the Docker Dashboard, then just press the bin icon
+
+---
+
+## Data persistence
+After starting a container from and image, stopping it then restarting, data does not persist after being changed
+
+To see this effect start an ubuntu container and generate a txt file with a random number
+
+```sh
+docker run -d ubuntu bash -c "shuf -i 1-10000 -n 1 -o /data.txt && tail -f /dev/null"
+```
+
+- The first command generates a random number and writes it
+- The second command watches a file to keep the container running
+
+To see the data you run the following command in the ubuntu shell
+
+```sh
+cat /data.txt
+```
+
+Another way using your own terminal is
+
+```sh
+docker exec <container-id> cat /data.txt
+```
+
+When starting another ubuntu container
+
+```sh
+docker run -it ubuntu ls/
+```
+
+There is no `data.txt` file shown in the list

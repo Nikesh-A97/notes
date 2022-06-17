@@ -64,7 +64,7 @@ After updating app code and re-building trying to launch container again will ca
     docker rm <the-container-id>
     ```
 
-4. Can do both steps 2. and 3. using a sing command
+4. Can do both steps 2. and 3. using a single command
     ```sh
     docker rm -f <the-container-id>
     ```

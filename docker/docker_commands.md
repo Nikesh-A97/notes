@@ -1,11 +1,9 @@
-# Docker Examples
-
-## Pulling images and viewing docker containers
+# Docker Commands
 
 - To obtain docker **images** run
  
   ```sh
-  docker pull <container-name>
+  docker pull <image-name>
   ```
 
 - To **view all** docker **images** run
@@ -93,3 +91,10 @@
   ```sh
   docker exec -it <container-id>
   ```
+
+- Create a network for containers
+  
+  ```sh
+  docker network create <network-name>
+  ```
+

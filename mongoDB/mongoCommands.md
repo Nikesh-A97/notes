@@ -9,7 +9,7 @@
   show dbs
   ```
 
-- Switch to a database in order to use it
+- Switch to a database in order to query collections in them
   
   ```
   use <db-name>
@@ -22,33 +22,91 @@
   ```
 
 ---
-## Find
+## Cursors
+- A Cursor is populated with the results of the applied methods, like `.find({})`
+- Cursor methods are applied to the results not on the DB
+- Cursor methods are appended to the query method at the end
 
-- Find document(s) with a basic query condition
+### Cursor Methods
 
+- Append a `.count()` to get the number of documents in the cursor
+  
   ```js
-  db.<collection-name>.find( 
-    {"<field>" : "<value>"})
+  db.<collection-name>.<query-method>( {...} ).count();
   ```
 
-- Append a `.count()` to a query to get the number of documents returned for the query result
+- Append a `.pretty()` to make the output look cleaner
+  
   ```js
-  db.<collection-name>.find( {...} ).count();
+  db.<collection-name>.<query-method>( {...} ).pretty();
   ```
 
-- Find the first document
+- Append a `.limit(n)` to limit the output displayed
+  
   ```js
-  db.<collection-name>.findOne({ ... })
+  db.<collection-name>.<query-method>( {...} ).limit(n);
   ```
+
+- Append a `.sort({...})` to sort the output that depends on a condition
+  
+  ```js
+  db.<collection-name>.<query-method>( {...} ).sort({});
+  ```
+  
+  ```js
+    cursor.sort( { "<field-name>" :  1 } ); //sorts  ascending
+    cursor.sort( { "<field-name>" : -1 } ); //sorts descending
+  ```
+- Note that `.sort({...})` and `.limit()` used together will always assume `.sort({}).limit(n)`
 
 ---
 ## CRUD Operations
 
-### Create
 
-### Update
+---
+### [Create](https://www.mongodb.com/docs/manual/tutorial/insert-documents/)
 
-### Delete
+
+---
+### [Read](https://www.mongodb.com/docs/manual/tutorial/query-documents/) 
+- Find document(s) with a basic query condition
+
+  ```js
+  db.<collection-name>.find( {"<field>" : "<value>"})
+  ```
+
+- Find the first document of the search
+  
+  ```js
+  db.<collection-name>.findOne({ ... })
+  ```
+- Use operators in the queries to filter search conditions
+- Use Cursor methods to refine search results
+
+#### Nested Documents
+- To search for an exact match on a nested document, match the structure
+  
+  ```js
+  (...).find(
+    { "field1" : 
+      { "nestedField1" : "value" }}
+  )
+  ```
+
+- To query a value in a nested field, use dot notation and include the full path
+  
+  ```json
+    {"field1.nestedField1" : {"$<operator>" : "value"}}
+  ```
+
+
+---
+### [Update](https://www.mongodb.com/docs/manual/tutorial/update-documents/)
+
+
+
+---
+### [Delete](https://www.mongodb.com/docs/manual/tutorial/remove-documents/)
 
 
 ---
@@ -67,7 +125,7 @@
   | Operator | Meaning |
   | -------- | ------- |
   | `$eq`    | $=$     |
-  | `$neq`   | $\neq$  |
+  | `$ne`    | $\neq$  |
   | `$lt`    | $\lt$   |
   | `$lte`   | $\leq$  |
   | `$gt`    | $\gt$   |
@@ -112,14 +170,19 @@
   ```
 
 ---
+## Arrays
 
+
+---
 ## Aggregation
+
 
 ---
 ### Expressive Query
 
 
-
-
 ---
 ### Match
+
+---
+

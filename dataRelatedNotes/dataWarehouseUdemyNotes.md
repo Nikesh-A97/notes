@@ -76,14 +76,17 @@
 ### <b>Data Mart</b>
 - <b style="color:#f08f18"> Dependent </b> data marts depend on the data warehouse to obtain specific data
 - <b style="color:#f08f18"> Independent </b> data marts does not require a data warehouse and draws from 1 or more sources.
+  
   | <b style="color:#0FBAF1">Dependent</b> | <b style="color:#0FBAF1">Independent</b> |
   | -------------------------------------- | ---------------------------------------- |
   | data from warehouse                    | data from applications / systems         |
   | uniform                                | not uniform                              |
   | architecturally straightforward        | "spaghetti" architecture                 |
 
+
 ### <b>Data Warehouse VS Independent Data Mart</b>
 They are basically the same except for the number of data sources
+  
   | <b style="color:#0FBAF1">Data Warehouse</b> | <b style="color:#0FBAF1">Data Mart</b> |
   | ------------------------------------------- | -------------------------------------- |
   | Many sources (```50+```)                    | Few sources (```1-6```)                |
@@ -774,6 +777,7 @@ Ever DW is used to make Data driven decisions but depends on the type of BI
 
 #### <b>Best practice and guidelines</b>
 <ul>
+	
 	<li><b style="color:#0FBAF1">Limit amount of incoming data to be processed</b></li>
 	<p>Limit it to a small subset, so data that's not in the DW or update information</p>
 

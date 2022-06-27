@@ -53,12 +53,3 @@ These children run build version of code for different OS versions or multiple v
     - Jenkins (mac) Child
 
 ---
-
-## Some Jenkins Configs 
-
-### Manage Jenkins
-
-#### Configure System
-
-- Number of Executors
-  - The number of jobs that can be executed in parallel

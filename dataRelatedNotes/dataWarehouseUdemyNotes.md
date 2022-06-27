@@ -777,7 +777,6 @@ Ever DW is used to make Data driven decisions but depends on the type of BI
 
 #### <b>Best practice and guidelines</b>
 <ul>
-	
 	<li><b style="color:#0FBAF1">Limit amount of incoming data to be processed</b></li>
 	<p>Limit it to a small subset, so data that's not in the DW or update information</p>
 

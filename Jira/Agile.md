@@ -139,4 +139,48 @@
 	- *is the stage of creating new rules or ways of doing things*
 
 ---
-#### Agile Patterns
+## Agile Patterns
+- Agile patterns that organizations use to get work done
+- Strategy & governance
+	- Helps leaders develop the direction in which the company will go
+- Operations pattern
+	- For continuous, repeatable and day to day work
+- Programs pattern
+	- For project work that has a definite start and end
+
+#### Pattern Phases
+- Mobilize
+- Understand
+- Explore & Strategize
+- Build, test and implement
+- Manage & Evolve
+
+---
+## Agile & Distributed Teams
+- A team with members who are scattered in different locations or time zones
+- Important to agree on how to collaborate
+- Right tools to work remotely such as Skype, Zoom, etc
+- Be respectful for different schedules
+- Shouldn't always be remote, try to get together
+- Other standards and processes based on work, like where will documents be stored, etc
+
+---
+## Agile Myths
+- Agile is just for techies
+	- Anyone can use and adapt the process
+- Agile can't be used for all projects
+	- Flexible and can be used for all types of projects
+- Agile has no planning 
+	- There's a lot of planning and done differently
+- Teams don't know what they will deliver
+	- The outcome is defined very clearly at the start and is flexible
+- Agile is not very disciplined
+	- Teams follow values and principles and practice to do the work
+- Agile does not document
+	- You talk first then document understanding NOT the other way
+
+---
+## Agile and Design Thinking
+- Design Thinking is a method for creative problem solving
+- Used to deliver great user experiences
+- Design thinking techniques integrate with Agile practives for a better use r experience.

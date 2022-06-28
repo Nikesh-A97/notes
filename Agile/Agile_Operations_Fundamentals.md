@@ -21,10 +21,10 @@
 ### Steps taken
 
 ##### Request
-- It starts with some sort of incomming request for work, like a help desk ticket or a call
+- It starts with some sort of incoming request for work, like a help desk ticket or a call
 
 ##### Prioritization
-- The work is prioritzed against all the other work to determine the completion order of all requests
+- The work is prioritized against all the other work to determine the completion order of all requests
 
 ##### Operations Funnel
 - Work moves through a funnel with highest priority being addressed first and then second, etc
@@ -35,7 +35,7 @@
 
 ### Bottlenecks
 - You can only deliver as fast as the slowest part of your process
-- Even after resolving a bottlenexk it likely thereis aanother somewhere else in the process
+- Even after resolving a bottleneck it likely there is another somewhere else in the process
 - As a team , decide where the bottlenecks should go
 - Clear out what bottlenecks that can be removed so the ones that cannot change remain
 
@@ -73,7 +73,7 @@
 <span style="color:lightblue" ><b><i>"A wall of work is a simple visual depiction of how teams can track their progress on work completion"</b></i></span>
 
 - Same concept applies 
-- There's a todo - doing - done , table for the continious process (can be different)
+- There's a todo - doing - done , table for the continuous process (can be different)
 - For example with tickets, they can be put in a todo column, and progress through the columns of the table
 - Agile team uses the Kanban method for managing wall of work
 
@@ -81,15 +81,15 @@
 <span style="color:lightblue" ><b><i>"Stand-ups are short status meetings"</b></i></span>
 
 - ![[Agile_basics#Stand-up]]
-- Stand-up times are more flexible since work is continious in operations
+- Stand-up times are more flexible since work is continuous in operations
 - Stand-ups typically occur about once a month but the same three questions are asked
 
 ### Agile Retrospectives - Operations
-<span style="color:lightblue" ><b><i>"A retrospective meeting is an opportunity for teams to reflect on their perforamncec and look for ways to improve"</b></i></span>
+<span style="color:lightblue" ><b><i>"A retrospective meeting is an opportunity for teams to reflect on their performance and look for ways to improve"</b></i></span>
 
-- Very important for teams to undertake as it allows them to understand how they can imporve for better resutls
-- Occurence of retrospective depnds on team and task
-- Anwers the fundamental question of Agile : "How do we get better ?"
+- Very important for teams to undertake as it allows them to understand how they can improve for better results
+- Occurrence of retrospective depends on team and task
+- Answers the fundamental question of Agile : "How do we get better ?"
 
 ---
 ## Agile Operations Teams
@@ -120,8 +120,8 @@
 - The owner of the work or outcome of the work
 - Holds the vision of the product
 - The communicator between client and team & manages stakeholders
-- Prioritzes the work
-- Maximises the value delivered by team
+- Prioritizes the work
+- Maximizes the value delivered by team
 - Available to team members for guidance
 
 #### Subject Matter Expert
@@ -137,7 +137,7 @@
 ### Extended Team
 <span style="color:lightblue" ><b><i>"Extended team members are brought on to assist and do work when needed"</b></i></span>
 
-### Key roles for the extended team
+### Key roles for the Extended team
 
 #### Stakeholder
 - They have visibility into the work in order to provide insights to achieve their goals
@@ -149,3 +149,54 @@
 - Change management is a method use to implement new changes in its processes
 - Allows for easier transitions with minimal distruptions
 - Responsibility for the changes their work leads to
+
+#### Subject Matter Experts
+- Sometimes additional subject matter experts are needed
+
+### Key Roles for the Governance Team
+<span style="color:lightblue" ><b><i>"The governance team is the group who provides guidance and directions for the overall team"</b></i></span>
+
+### Steering Committee (SC)
+- A meeting where big decisions are made
+- Checking and approving the project plan
+- Re-assessing business case
+- Reviewing and approving project development
+- Reviewing and suggesting solutions for the issue for critical project success
+
+---
+## Kanban
+
+### Kanban method
+- Helps manage process-oriented work
+- Similar to a simple "to-do" board
+
+### Kanban Principles
+<span style="color:lightblue" ><b><i>"Five principles increase the success of the Kanban method"</b></i></span>
+
+#### Visualize
+- Make the work visible so it's easier for everyone to see
+- Easy to see and understand the workflow
+- A board consists of a series of columns 
+	- Backlog (list of work to complete)
+	- To do : Work selected to do during the time
+	- Work in progress 
+	- Work done
+- Each task has structure , for example can have name, description, who it's assigned to  
+
+#### Limit work in progress
+- Limit the amount of tasks in the "WIP" column
+- Help focus on tasks to finish them quickly
+- Prevents overburdening
+- Pull tasks when "WIP" is not over-burdened
+
+#### Manage the flow
+- Since the flow is visualized, monitoring this allows for the best optimization
+- Too little and too much work is not efficient for the team's productivity
+
+#### Make process polices explicit
+
+#### Improve collaboratively
+- Improve processes overtime by making small changes along the way
+- Small changes are easy to implement
+
+	

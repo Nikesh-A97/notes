@@ -20,7 +20,7 @@
 - Responding to change over following a plan
 
 ---
-##  Agile Values
+## Agile Values
 ### Values in general
 - Values are about both believing and living it every day
 - There are values you live by and walk past

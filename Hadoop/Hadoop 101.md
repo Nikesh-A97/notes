@@ -7,11 +7,11 @@
 - Batch and parallel processing
 - Uses map reduce
 - Data is replicated across clusters
-- Not suitible with OLTP, OLAP, DSS
+- Not suitable with OLTP, OLAP, DSS
 - Not a replacement for RDBMS
 
 ### What it's not used for
-- Not to process transactinos
+- Not to process transactions
 - Not good for work that cannot be parallelized
 - Not food for low latency data access
 - Not good for processing lots of small files
@@ -23,9 +23,9 @@
 ### Terminology
 - Node is just a computing unit
 - A rack is a collection of nodes
-- A cluser is a collection of racks
+- A cluster is a collection of racks
 
-### Architeccture
+### Architecture
 -  Two main components
 	- HDFS
 - MapReduce Engine
@@ -42,7 +42,7 @@
 - Uses blocks to store files
 
 #### HDFS file Blocks
-- Default block size is 64MB (128MB is recomended)
+- Default block size is 64MB (128MB is recommended)
 - Size of a file can be larger than any single disk in cluster
 	- A single file is spread across multiple nodes
 - Only the needed space is used if the file can fit inside a block

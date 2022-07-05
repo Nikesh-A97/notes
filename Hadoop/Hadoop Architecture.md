@@ -3,7 +3,7 @@
 ## Overview of Hadoop
 - The Hadoop framework allows you to manage and process big data
 - HDFS is just a file system for large amounts of data
-- YARN facillitates scheduled tasks
+- YARN facilitates scheduled tasks
 - Hadoop MapReduce helps programs perform computation
 - Hadoop ecosystem is made up of these layers and processing tools
 ![[hadoop-ecosystem-projects-architecture.png]]
@@ -14,7 +14,7 @@
 
 ### Distributed Storage Layer
 - Hadoop Cluster --> $\{ n$ racks --> $\{m$ nodes
-- Each node hass own disk space, memory, bandiwth, processing
+- Each node has own disk space, memory, bandwidth, processing
 - Stores replicas for fault tolerant system
 
 ### Cluster resource management
@@ -24,7 +24,7 @@
 
 ### Processing Framework Layer
 - The processing layer consists of frameworks that analyze and process datasets
-- The strutured & unstractured data sets are mapped --> sorted --> merged --> reduced
+- The structured & unstructured data sets are mapped --> sorted --> merged --> reduced
 - Frameworks such as Spark, Storm and Tez used for real time processing
 
 ### APIs

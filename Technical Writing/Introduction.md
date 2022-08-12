@@ -156,6 +156,23 @@
 
 ---
 
+### Summary
+- User terms consistently
+- Avoid ambiguous pronouns
+- Active > Passive
+- Specific verbs
+- Sentence = 1 idea
+- Long sentence into lists
+- Eliminate unneeded words
+- Different type of lists for different things
+- Items in lists are parallel
+- Introduce and contsruct tables appropriately
+- Paragraphs starter introduces central point
+- Keep paragraphs medium in length (3-5) sentences
+- Fit docs to your audience
+- Establish document key points at the start
+
+---
 
 
 

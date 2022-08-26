@@ -281,15 +281,15 @@
 
 <b style="color:#0FBAF1"> LEFT JOIN</b>
 
-![left_join #width20](diag/left_in_join.png)
+![left_join #width20](left_in_join.png)
 
 <b style="color:#0FBAF1"> RIGHT JOIN</b>
 
-![right_join #width20](diag/right_in_join.png)
+![right_join #width20](right_in_join.png)
 	
 <b style="color:#0FBAF1"> INNER JOIN</b>
 
-![in_join #width20](diag/in_join.png)
+![in_join #width20](in_join.png)
 
 ----
 

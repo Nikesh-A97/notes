@@ -24,8 +24,9 @@ Relational data is stored as a table,  with rows for dimensions and measures or 
 - MDX queries return a "cellset" which is "flattened" into 2D for display
 
 
-### TODO : IMAGE COMPARING 2D and 3D table
+### TODO : IMAGE COMPARING 2D and 3D "flat" table
 
 ---
+## Dimensions & Hierarchies
 
 

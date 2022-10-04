@@ -300,7 +300,7 @@ Condition:
 Updation:
 - Same as Initialization except no declarations
 
-### Enhance `for` loop
+### Enhanced `for` loop
 - Syntax:
 ```java
 for(Type variableName: array_orIterable){

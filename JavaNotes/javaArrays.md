@@ -2,9 +2,26 @@
 
 ## Declaring and initializing arrays
 
-- One dimensional : ``` int[] ia; int ja[]; ```
-- Two dimensional : ``` int[][] ib; int[] jb[]; ```
+### Decalaring
+
+- One dimensional
+
+    ```java
+    int[] javaStyle;
+    int cStyle[]; 
+    ```
+
+- Two dimensional
+
+    ```java
+    int[][] ib; 
+    int[] jb[]; 
+    ```
+
 - Objects declared in the same way
+
+### Initilizing
+
 - Use the ``` new ``` keyword to create an array object and must have size : ``` int[] i = new int[2]; ```
 - Initial values for numeric primitives, boolean, object is ```0```, ```false```, ```null```.
 - Initialize : ```int[] i = new int[]{1, 2, 3}```, cannot specify size
@@ -27,13 +44,14 @@
 
 - In the example below both ```i``` and ```j``` are the same in dimensions:
 
- ```java
- int[][] i = new int[2][3];
- int[][] j = new int[2][];
- j[0] = new int[3];
- j[1] = new int[3];
- ```
+    ```java
+    int[][] i = new int[2][3];
+    
+    int[][] j = new int[2][];
+    j[0] = new int[3];
+    j[1] = new int[3];
+    ```
 
-- With this concept can create jagged arrays.
+- With this concept, we can create jagged arrays (arrays within arrays with varying length).
 
 ---

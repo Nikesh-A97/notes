@@ -19,10 +19,10 @@ Similar to the tDBInput but with a bit more features
 	- The table is removed and created again
 - **Create a table** :
 	- The table does not exist and gets created
-- **Create atable if not exists** : 
+- **Create a table if not exists** : 
 	- The table is created if it does not exist
 - **Drop a table if exists and create** :
-	- The table is removed if it already exists and created agian
+	- The table is removed if it already exists and created again
 - **Truncate table** :
 	- The table content is quickly deleted
 	- Will not be able to rollback operation    
